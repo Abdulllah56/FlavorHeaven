@@ -910,3 +910,47 @@ nav a.active::after {
     flex-direction: column;
     justify-content: space-between;
 }
+
+/* Utility classes for animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+/* Cart dropdown styles */
+.cart-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    max-width: 320px;
+    min-width: 280px;
+}
+
+.cart-icon:hover .cart-dropdown,
+.cart-dropdown:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.cart-item img {
+    transition: transform 0.2s ease;
+}
+
+.cart-item:hover img {
+    transform: scale(1.05);
+}
+
+.cart-count {
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}

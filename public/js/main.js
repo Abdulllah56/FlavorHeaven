@@ -270,7 +270,10 @@ function initCart() {
     if (!cartIcon || !cartCount || !cartDropdown) return;
 
     // Update cart count with animation
-    const updateCartCount = (count) => {
+    const updateCartCount = () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const count = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+        
         cartCount.textContent = count;
         cartCount.style.display = count > 0 ? 'flex' : 'none';
         
@@ -323,7 +326,7 @@ function initCart() {
     // Load cart items from localStorage
     const loadCartItems = () => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        updateCartCount(cart.length);
+        updateCartCount();
         
         // Update cart dropdown content
         const cartItems = cartDropdown.querySelector('.cart-items');
@@ -335,8 +338,8 @@ function initCart() {
                     <div class="cart-item flex items-center gap-4 mb-4 fade-in">
                         <img src="${item.image || 'https://via.placeholder.com/150'}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
                         <div class="flex-1">
-                            <h4 class="font-bold">${item.name}</h4>
-                            <p class="text-gray-600">$${item.price.toFixed(2)}</p>
+                            <h4 class="font-bold text-sm">${item.name}</h4>
+                            <p class="text-gray-600 text-xs">$${parseFloat(item.price).toFixed(2)} × ${item.quantity || 1}</p>
                         </div>
                         <button class="text-red-500 hover:text-red-600 transform hover:scale-110 transition-transform" onclick="removeFromCart('${item.id}')">
                             <i class="fas fa-times"></i>
@@ -344,11 +347,19 @@ function initCart() {
                     </div>
                 `).join('');
                 
-                // Add checkout button
+                // Calculate total
+                const total = cart.reduce((sum, item) => sum + (parseFloat(item.price) * (item.quantity || 1)), 0);
+                
+                // Add total and checkout button
                 cartItems.innerHTML += `
-                    <a href="checkout.html" class="bg-red-500 text-white w-full py-2 px-4 rounded text-center block hover:bg-red-600 transform hover:scale-105 transition-all">
-                        Checkout
-                    </a>
+                    <div class="border-t pt-2 mt-2">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-bold">Total: $${total.toFixed(2)}</span>
+                        </div>
+                        <a href="checkout.html" class="bg-red-500 text-white w-full py-2 px-4 rounded text-center block hover:bg-red-600 transform hover:scale-105 transition-all">
+                            Checkout
+                        </a>
+                    </div>
                 `;
             }
         }
@@ -359,43 +370,88 @@ function initCart() {
     window.addEventListener('storage', loadCartItems);
     
     // Add to cart function - make it globally available
-    window.addToCart = function(name, price, image) {
+    window.addToCart = function(itemData) {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const id = Date.now().toString();
         
-        cart.push({
-            id,
-            name,
-            price: parseFloat(price),
-            image: image || 'https://via.placeholder.com/150',
-            quantity: 1
-        });
+        // Handle both old and new parameter formats
+        let item;
+        if (typeof itemData === 'string') {
+            // Old format: addToCart(name, price, image)
+            item = {
+                id: Date.now().toString(),
+                name: arguments[0],
+                price: parseFloat(arguments[1]),
+                image: arguments[2] || 'https://via.placeholder.com/150',
+                description: '',
+                quantity: 1
+            };
+        } else {
+            // New format: addToCart(itemObject)
+            item = {
+                id: itemData.id || Date.now().toString(),
+                name: itemData.name,
+                price: parseFloat(itemData.price),
+                image: itemData.image || 'https://via.placeholder.com/150',
+                description: itemData.description || '',
+                quantity: itemData.quantity || 1
+            };
+        }
+        
+        // Check if item already exists in cart
+        const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+        
+        if (existingItemIndex > -1) {
+            cart[existingItemIndex].quantity += item.quantity;
+        } else {
+            cart.push(item);
+        }
         
         localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount(cart.length);
+        updateCartCount();
         loadCartItems();
         
         // Show visual feedback
         const notification = document.createElement('div');
         notification.className = 'fixed top-20 right-5 bg-green-500 text-white p-3 rounded-lg shadow-lg z-50 fade-in';
-        notification.innerHTML = `<p>Added ${name} to cart!</p>`;
+        notification.innerHTML = `<p>Added ${item.name} to cart!</p>`;
         document.body.appendChild(notification);
         
         setTimeout(() => {
             notification.classList.add('fade-out');
             setTimeout(() => {
-                document.body.removeChild(notification);
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
             }, 500);
         }, 2000);
     }
 }
 
-function removeFromCart(itemId) {
+// Make removeFromCart globally available
+window.removeFromCart = function(itemId) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const updatedCart = cart.filter(item => item.id !== itemId);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     
-    // Update UI - trigger storage event manually to update cart display
+    // Update UI components
+    const cartIcon = document.querySelector('.cart-icon');
+    if (cartIcon) {
+        const cartDropdown = cartIcon.querySelector('.cart-dropdown');
+        if (cartDropdown) {
+            // Re-initialize cart functionality
+            initCart();
+        }
+    }
+    
+    // Update cart count
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+        const count = updatedCart.reduce((total, item) => total + (item.quantity || 1), 0);
+        cartCount.textContent = count;
+        cartCount.style.display = count > 0 ? 'flex' : 'none';
+    }
+    
+    // Trigger storage event for other pages
     window.dispatchEvent(new Event('storage'));
 }
 
@@ -710,7 +766,13 @@ function loadFeaturedItems() {
                     // Update add to cart button to use our enhanced function
                     const button = card.querySelector('button');
                     if (button) {
-                        button.setAttribute('onclick', `addToCart('${featuredItems[index].name}', ${featuredItems[index].price}, '${featuredItems[index].image}')`);
+                        button.setAttribute('onclick', `addToCart({
+                            name: '${featuredItems[index].name}',
+                            price: ${featuredItems[index].price},
+                            image: '${featuredItems[index].image}',
+                            description: '${featuredItems[index].description}',
+                            quantity: 1
+                        })`);
                     }
                 }
             });

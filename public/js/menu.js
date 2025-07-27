@@ -718,8 +718,8 @@ function setupMenuItems() {
                 const itemImage = item.querySelector('img')?.src || '';
                 const itemDescription = item.querySelector('.description')?.textContent || '';
 
-                // Add to cart
-                addToCart({
+                // Add to cart using global function
+                window.addToCart({
                     id: itemId,
                     name: itemName,
                     price: itemPrice,

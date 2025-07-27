@@ -238,18 +238,10 @@ function updateStepIndicators(currentStep) {
 }
 
 function addRecommendedToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Use the global addToCart function for consistency
+    window.addToCart(product);
     
-    // Check if item already exists in cart
-    const existingItemIndex = cart.findIndex(item => item.id === product.id);
-    
-    if (existingItemIndex > -1) {
-        cart[existingItemIndex].quantity += 1;
-    } else {
-        cart.push(product);
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
+    // Reload cart items and update count
     loadCartItems();
     updateCartCount();
     
