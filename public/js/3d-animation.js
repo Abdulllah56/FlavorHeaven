@@ -1,5 +1,25 @@
 // Simple 3D-like animations without Three.js dependency
 
+// Add CSS animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes logoSpin {
+        0% { transform: rotateY(0deg); }
+        100% { transform: rotateY(360deg); }
+    }
+    
+    @keyframes float3D {
+        0%, 100% { transform: translateY(0px) rotateX(0deg); }
+        50% { transform: translateY(-10px) rotateX(5deg); }
+    }
+    
+    @keyframes cardFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+    }
+`;
+document.head.appendChild(style);
+
 // Logo 3D rotation effect
 function initLogoAnimation() {
     const logoContainer = document.querySelector('.logo-container');
@@ -40,7 +60,26 @@ function initHero3D() {
     }
 }
 
-// Add CSS animations
+// Card hover effects
+function initCardAnimations() {
+    const cards = document.querySelectorAll('.menu-item, .card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.animation = 'cardFloat 2s ease-in-out infinite';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.animation = '';
+        });
+    });
+}
+
+// Initialize all animations
+document.addEventListener('DOMContentLoaded', () => {
+    initLogoAnimation();
+    initHero3D();
+    initCardAnimations();
+});tions
 function addAnimationStyles() {
     const style = document.createElement('style');
     style.textContent = `
