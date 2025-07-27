@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flavor Heaven - About Us">
+    <title>About Us - Flavor Heaven Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/src/output.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-800">Flavor Heaven</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition duration-300">Home</a>
+                <a href="menu.html" class="text-white hover:text-red-400 font-medium transition duration-300">Menu</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium transition duration-300">About</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium transition duration-300">Contact</a>
+            </div>
+            
+            <div class="flex items-center">
+                <!-- Cart Icon -->
+                <div class="cart-icon mr-4 relative">
+                    <a href="checkout.html" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    
+                    <!-- Cart Dropdown -->
+                    <div class="cart-dropdown">
+                        <h3 class="text-lg font-bold mb-4">Your Cart</h3>
+                        <div class="cart-items">
+                            <!-- Cart items will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="mobile-menu-toggle md:hidden">
+                    <i class="fas fa-bars text-xl text-gray-600"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="mobile-menu-items">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html" class="font-bold">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    <div class="mobile-menu-overlay md:hidden"></div>
+
+    <!-- Page Header -->
+    <header class="bg-cover bg-center h-64 relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-white text-4xl md:text-5xl font-bold mb-2">About Us</h1>
+            <p class="text-white text-lg">Our story, our team, our passion</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Our Story Section -->
+        <section id="our-story" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Story</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Flavor Heaven History" class="rounded-lg shadow-md w-full hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">From Humble Beginnings</h3>
+                    <p class="text-gray-600 mb-4">Flavor Heaven was founded in 2005 by Chef Michael Rodriguez with a simple mission: to create a dining experience that celebrates the rich tapestry of global cuisines while using the freshest local ingredients.</p>
+                    <p class="text-gray-600 mb-4">What started as a small family-owned restaurant with just 10 tables has grown into one of the city's most beloved culinary destinations. Despite our growth, we've never lost sight of our core values: exceptional food, warm hospitality, and a commitment to sustainability.</p>
+                    <p class="text-gray-600">Over the years, we've been honored to receive numerous accolades, including "Best Restaurant" by City Magazine for three consecutive years. But our greatest reward remains the satisfaction of our guests who return time and again to experience the magic of Flavor Heaven.</p>
+                </div>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center">Our Journey</h3>
+                
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-red-500"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="relative z-10">
+                        <!-- 2005 -->
+                        <div class="flex flex-col md:flex-row items-center mb-12">
+                            <div class="md:w-1/2 md:pr-12 md:text-right">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">2005</h4>
+                                <p class="text-gray-600">Flavor Heaven opens its doors with a small menu of family recipes and a passionate team of 5 staff members.</p>
+                            </div>
+                            <div class="timeline-dot bg-red-500 rounded-full w-6 h-6 flex items-center justify-center">
+                                <div class="bg-white rounded-full w-2 h-2"></div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2005" class="rounded-lg shadow-md mt-4 md:mt-0">
+                            </div>
+                        </div>
+                        
+                        <!-- 2010 -->
+                        <div class="flex flex-col md:flex-row-reverse items-center mb-12">
+                            <div class="md:w-1/2 md:pl-12">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">2010</h4>
+                                <p class="text-gray-600">Expansion to a larger location to accommodate growing demand. Introduction of our signature tasting menu.</p>
+                            </div>
+                            <div class="timeline-dot bg-red-500 rounded-full w-6 h-6 flex items-center justify-center">
+                                <div class="bg-white rounded-full w-2 h-2"></div>
+                            </div>
+                            <div class="md:w-1/2 md:pr-12 md:text-right">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2010" class="rounded-lg shadow-md mt-4 md:mt-0">
+                            </div>
+                        </div>
+                        
+                        <!-- 2015 -->
+                        <div class="flex flex-col md:flex-row items-center mb-12">
+                            <div class="md:w-1/2 md:pr-12 md:text-right">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">2015</h4>
+                                <p class="text-gray-600">Awarded our first Michelin star. Launch of our farm-to-table initiative with local producers.</p>
+                            </div>
+                            <div class="timeline-dot bg-red-500 rounded-full w-6 h-6 flex items-center justify-center">
+                                <div class="bg-white rounded-full w-2 h-2"></div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2015" class="rounded-lg shadow-md mt-4 md:mt-0">
+                            </div>
+                        </div>
+                        
+                        <!-- 2020 -->
+                        <div class="flex flex-col md:flex-row-reverse items-center">
+                            <div class="md:w-1/2 md:pl-12">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">2020</h4>
+                                <p class="text-gray-600">Adapted to challenging times with innovative takeout options and virtual cooking classes. Strengthened our community support initiatives.</p>
+                            </div>
+                            <div class="timeline-dot bg-red-500 rounded-full w-6 h-6 flex items-center justify-center">
+                                <div class="bg-white rounded-full w-2 h-2"></div>
+                            </div>
+                            <div class="md:w-1/2 md:pr-12 md:text-right">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2020" class="rounded-lg shadow-md mt-4 md:mt-0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Meet Our Team -->
+        <section id="meet-our-team" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Meet Our Team</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="team-member bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Chef Michael" class="w-32 h-32 mx-auto rounded-full mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">Chef Michael Rodriguez</h3>
+                    <p class="text-gray-600">Founder & Executive Chef</p>
+                    <p class="text-gray-500 mt-2">"Cooking is an art, and every dish tells a story."</p>
+                </div>
+                <div class="team-member bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sous Chef" class="w-32 h-32 mx-auto rounded-full mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">Sophia Lee</h3>
+                    <p class="text-gray-600">Sous Chef</p>
+                    <p class="text-gray-500 mt-2">"Passion and precision are the keys to great cuisine."</p>
+                </div>
+                <div class="team-member bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Manager" class="w-32 h-32 mx-auto rounded-full mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">James Carter</h3>
+                    <p class="text-gray-600">Restaurant Manager</p>
+                    <p class="text-gray-500 mt-2">"Creating memorable experiences for our guests is my priority."</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Cuisine and Specialities Section -->
+        <section id="cuisine-specialities" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Cuisine & Specialities</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Asian Cuisine -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Asian Cuisine" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Asian Fusion</h3>
+                        <p class="text-gray-600 mb-4">Experience the perfect blend of traditional Asian flavors with modern culinary techniques. Our signature dishes include:</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4">
+                            <li>Zinger Burger</li>
+                            <li>Korean BBQ Ribs</li>
+                            <li>Dim Sum Platter</li>
+                            <li>Miso Black Cod</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Pakistani Cuisine -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pakistani Cuisine" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pakistani Delights</h3>
+                        <p class="text-gray-600 mb-4">Authentic Pakistani cuisine prepared with traditional spices and cooking methods. Our specialties include:</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4">
+                            <li>Butter Chicken</li>
+                            <li>Biryani</li>
+                            <li>Seekh Kebab</li>
+                            <li>Nihari</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Signature Dishes -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Signature Dishes" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Signature Dishes</h3>
+                        <p class="text-gray-600 mb-4">Our unique creations that combine the best of both worlds:</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4">
+                            <li>Fusion Biryani</li>
+                            <li>Spicy Asian Wings</li>
+                            <li>Curry Noodles</li>
+                            <li>Kebab Tacos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action Section -->
+        <section id="cta" class="mb-16 bg-red-500 rounded-lg overflow-hidden">
+            <div class="container mx-auto px-4 py-12">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                        <h2 class="text-3xl font-bold text-white mb-4">Ready to Experience Our Culinary Journey?</h2>
+                        <p class="text-white text-lg mb-6">Join us for an unforgettable dining experience that combines the best of Asian and Pakistani cuisine.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <a href="menu.html" class="bg-white text-red-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">View Menu</a>
+                            <a href="contact.html#reservation" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-500 transition duration-300">Make a Reservation</a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurant Interior" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Gallery</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="gallery-item group relative overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3" alt="Modern Restaurant Interior" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex items-center justify-center">
+                        <span class="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">Elegant Dining Space</span>
+                    </div>
+                </div>
+                <div class="gallery-item group relative overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3" alt="Gourmet Dish" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex items-center justify-center">
+                        <span class="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">Signature Dishes</span>
+                    </div>
+                </div>
+                <div class="gallery-item group relative overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3" alt="Chef at Work" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex items-center justify-center">
+                        <span class="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">Culinary Excellence</span>
+                    </div>
+                </div>
+                <div class="gallery-item group relative overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3" alt="Bar Area" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex items-center justify-center">
+                        <span class="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">Sophisticated Bar</span>
+                    </div>
+                </div>
+                <div class="gallery-item group relative overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3" alt="Food Plating" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex items-center justify-center">
+                        <span class="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">Artful Presentation</span>
+                    </div>
+                </div>
+                <div class="gallery-item group relative overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3" alt="Dessert" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex items-center justify-center">
+                        <span class="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">Sweet Delights</span>
+                    </div>
+                </div>
+                <div class="gallery-item group relative overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3" alt="Private Dining" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex items-center justify-center">
+                        <span class="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">Private Events</span>
+                    </div>
+                </div>
+                <div class="gallery-item group relative overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3" alt="Outdoor Seating" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex items-center justify-center">
+                        <span class="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">Al Fresco Dining</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Values Section -->
+        <section id="values" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Values</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-red-500 text-4xl mb-4">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Sustainability</h3>
+                    <p class="text-gray-600">We're committed to sustainable practices, from sourcing local ingredients to minimizing waste and reducing our environmental footprint.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-red-500 text-4xl mb-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Culinary Excellence</h3>
+                    <p class="text-gray-600">We pursue perfection in every dish, combining traditional techniques with innovative approaches to create memorable dining experiences.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-red-500 text-4xl mb-4">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Community</h3>
+                    <p class="text-gray-600">We believe in giving back to our community through partnerships with local charities, educational programs, and employment opportunities.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials -->
+        <section id="testimonials">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">What People Say About Us</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="images/customer1.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"I've been dining at Flavor Heaven for years, and it never disappoints. The attention to detail, the warm atmosphere, and of course, the incredible food keep me coming back. It's more than a restaurant; it's an experience."</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="images/customer2.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"As a food critic, I've dined at hundreds of restaurants, but Flavor Heaven stands out for its innovative approach to traditional cuisine. Chef Rodriguez and his team are true artists, creating dishes that are both familiar and surprising."</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Flavor Heaven</h3>
+                    <p class="mb-4">Experience the taste of paradise with our carefully crafted dishes made from the finest ingredients.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="menu.html" class="text-gray-300 hover:text-white">Menu</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white">Contact</a></li>
+                        <li><a href="contact.html#reservation" class="text-gray-300 hover:text-white">Reservations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Main Street, City, Country</li>
+                        <li><i class="fas fa-phone mr-2"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@flavorheaven.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Opening Hours</h3>
+                    <ul class="space-y-2">
+                        <li>Monday - Friday: 11:00 AM - 10:00 PM</li>
+                        <li>Saturday: 10:00 AM - 11:00 PM</li>
+                        <li>Sunday: 10:00 AM - 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>&copy; 2023 Flavor Heaven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-90"></div>
+        <div class="relative h-full flex items-center justify-center">
+            <button id="close-gallery-modal" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
+            <button id="prev-image" class="absolute left-4 text-white text-3xl"><i class="fas fa-chevron-left"></i></button>
+            <button id="next-image" class="absolute right-4 text-white text-3xl"><i class="fas fa-chevron-right"></i></button>
+            <img id="modal-image" src="" alt="" class="max-h-[80vh] max-w-[80vw]">
+        </div>
+    </div>
+    
+    <script>
+        // Gallery functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item img');
+            const modal = document.getElementById('gallery-modal');
+            const modalImage = document.getElementById('modal-image');
+            const closeButton = document.getElementById('close-gallery-modal');
+            const prevButton = document.getElementById('prev-image');
+            const nextButton = document.getElementById('next-image');
+            
+            let currentIndex = 0;
+            
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    currentIndex = index;
+                    modalImage.src = this.src;
+                    modalImage.alt = this.alt;
+                    modal.classList.remove('hidden');
+                });
+            });
+            
+            closeButton.addEventListener('click', function() {
+                modal.classList.add('hidden');
+            });
+            
+            prevButton.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                modalImage.src = galleryItems[currentIndex].src;
+                modalImage.alt = galleryItems[currentIndex].alt;
+            });
+            
+            nextButton.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % galleryItems.length;
+                modalImage.src = galleryItems[currentIndex].src;
+                modalImage.alt = galleryItems[currentIndex].alt;
+            });
+            
+            // Close modal when clicking outside the image
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(event) {
+                if (modal.classList.contains('hidden')) return;
+                
+                if (event.key === 'Escape') {
+                    modal.classList.add('hidden');
+                } else if (event.key === 'ArrowLeft') {
+                    prevButton.click();
+                } else if (event.key === 'ArrowRight') {
+                    nextButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

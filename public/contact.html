@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flavor Heaven - Contact Us">
+    <title>Contact Us - Flavor Heaven Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-800">Flavor Heaven</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition duration-300">Home</a>
+                <a href="menu.html" class="text-white hover:text-red-400 font-medium transition duration-300">Menu</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium transition duration-300">About</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium transition duration-300">Contact</a>
+            </div>
+            
+            <div class="flex items-center">
+                <!-- Cart Icon -->
+                <div class="cart-icon mr-4 relative">
+                    <a href="checkout.html" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    
+                    <!-- Cart Dropdown -->
+                    <div class="cart-dropdown">
+                        <h3 class="text-lg font-bold mb-4">Your Cart</h3>
+                        <div class="cart-items">
+                            <!-- Cart items will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="mobile-menu-toggle md:hidden">
+                    <i class="fas fa-bars text-xl text-gray-600"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times text-xl"></i>
+        </div>
+        <div class="mobile-menu-items">
+            <a href="index.html" class="text-gray-800 text-lg">Home</a>
+            <a href="menu.html" class="text-gray-800 text-lg">Menu</a>
+            <a href="about.html" class="text-gray-800 text-lg">About</a>
+            <a href="contact.html" class="text-gray-800 text-lg font-bold">Contact</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="bg-cover bg-center h-64 relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-white text-4xl md:text-5xl font-bold mb-2">Contact Us</h1>
+            <p class="text-white text-lg">Get in touch, make a reservation, or share your feedback</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Location & Hours Section -->
+        <section id="location" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Location & Hours</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <!-- Google Maps Embed -->
+                    <div class="h-96 bg-gray-300 rounded-lg overflow-hidden">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a23e28c1191%3A0x49f75d3281df052a!2s123%20Main%20St%2C%20New%20York%2C%20NY%2010001%2C%20USA!5e0!3m2!1sen!2sus!4v1628544910542!5m2!1sen!2sus"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Visit Us</h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-2">Address</h4>
+                            <p class="text-gray-600">
+                                123 Main Street<br>
+                                City, State 12345<br>
+                                Country
+                            </p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-2">Contact</h4>
+                            <p class="text-gray-600 mb-1">
+                                <i class="fas fa-phone mr-2"></i> (123) 456-7890
+                            </p>
+                            <p class="text-gray-600">
+                                <i class="fas fa-envelope mr-2"></i> info@flavorheaven.com
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-2">Hours</h4>
+                            <table class="w-full text-gray-600">
+                                <tr>
+                                    <td class="py-1">Monday - Friday:</td>
+                                    <td class="py-1">11:00 AM - 10:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1">Saturday:</td>
+                                    <td class="py-1">10:00 AM - 11:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1">Sunday:</td>
+                                    <td class="py-1">10:00 AM - 9:00 PM</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Reservation Section -->
+        <section id="reservation" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Make a Reservation</h2>
+            
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <form id="reservation-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <label for="name" class="block text-gray-700 mb-2">Full Name *</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="block text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="block text-gray-700 mb-2">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guests" class="block text-gray-700 mb-2">Number of Guests *</label>
+                        <select id="guests" name="guests" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6">6 People</option>
+                            <option value="7">7 People</option>
+                            <option value="8">8 People</option>
+                            <option value="9">9 People</option>
+                            <option value="10">10 People</option>
+                            <option value="more">More than 10 (Please specify in special requests)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date" class="block text-gray-700 mb-2">Date *</label>
+                        <input type="date" id="date" name="date" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="time" class="block text-gray-700 mb-2">Time *</label>
+                        <select id="time" name="time" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="11:30">11:30 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="12:30">12:30 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="13:30">1:30 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="18:00">6:00 PM</option>
+                            <option value="18:30">6:30 PM</option>
+                            <option value="19:00">7:00 PM</option>
+                            <option value="19:30">7:30 PM</option>
+                            <option value="20:00">8:00 PM</option>
+                            <option value="20:30">8:30 PM</option>
+                            <option value="21:00">9:00 PM</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group md:col-span-2">
+                        <label for="special-requests" class="block text-gray-700 mb-2">Special Requests</label>
+                        <textarea id="special-requests" name="special-requests" class="form-control" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <button type="submit" class="bg-red-500 text-white py-3 px-6 rounded hover:bg-red-600 w-full md:w-auto">
+                            Check Availability
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Reservation Confirmation (Hidden by default) -->
+                <div id="reservation-confirmation" class="hidden bg-green-100 text-green-800 p-4 rounded mt-6">
+                    <h3 class="text-lg font-bold mb-2">Reservation Confirmed!</h3>
+                    <p>Thank you for your reservation. We've sent a confirmation email with all the details.</p>
+                </div>
+                
+                <!-- Reservation Error (Hidden by default) -->
+                <div id="reservation-error" class="hidden bg-red-100 text-red-800 p-4 rounded mt-6">
+                    <h3 class="text-lg font-bold mb-2">Reservation Error</h3>
+                    <p>We're sorry, but we couldn't process your reservation at this time. Please try again or contact us directly.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Feedback Form Section -->
+        <section id="feedback">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Share Your Feedback</h2>
+            
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <form id="feedback-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <label for="feedback-name" class="block text-gray-700 mb-2">Full Name *</label>
+                        <input type="text" id="feedback-name" name="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-email" class="block text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" id="feedback-email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-phone" class="block text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" id="feedback-phone" name="phone" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-subject" class="block text-gray-700 mb-2">Subject *</label>
+                        <input type="text" id="feedback-subject" name="subject" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group md:col-span-2">
+                        <label class="block text-gray-700 mb-2">Your Rating *</label>
+                        <div class="flex space-x-2">
+                            <div class="rating">
+                                <input type="radio" id="star5" name="rating" value="5" class="hidden" required>
+                                <label for="star5" class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400">★</label>
+                                
+                                <input type="radio" id="star4" name="rating" value="4" class="hidden">
+                                <label for="star4" class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400">★</label>
+                                
+                                <input type="radio" id="star3" name="rating" value="3" class="hidden">
+                                <label for="star3" class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400">★</label>
+                                
+                                <input type="radio" id="star2" name="rating" value="2" class="hidden">
+                                <label for="star2" class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400">★</label>
+                                
+                                <input type="radio" id="star1" name="rating" value="1" class="hidden">
+                                <label for="star1" class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400">★</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group md:col-span-2">
+                        <label for="feedback-message" class="block text-gray-700 mb-2">Your Message *</label>
+                        <textarea id="feedback-message" name="message" class="form-control" rows="6" required></textarea>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <button type="submit" class="bg-red-500 text-white py-3 px-6 rounded hover:bg-red-600 w-full md:w-auto">
+                            Submit Feedback
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Feedback Confirmation (Hidden by default) -->
+                <div id="feedback-confirmation" class="hidden bg-green-100 text-green-800 p-4 rounded mt-6">
+                    <h3 class="text-lg font-bold mb-2">Thank You for Your Feedback!</h3>
+                    <p>We appreciate you taking the time to share your thoughts with us. Your feedback helps us improve our service.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Flavor Heaven</h3>
+                    <p class="mb-4">Experience the taste of paradise with our carefully crafted dishes made from the finest ingredients.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="menu.html" class="text-gray-300 hover:text-white">Menu</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white">Contact</a></li>
+                        <li><a href="contact.html#reservation" class="text-gray-300 hover:text-white">Reservations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Main Street, City, Country</li>
+                        <li><i class="fas fa-phone mr-2"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@flavorheaven.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Opening Hours</h3>
+                    <ul class="space-y-2">
+                        <li>Monday - Friday: 11:00 AM - 10:00 PM</li>
+                        <li>Saturday: 10:00 AM - 11:00 PM</li>
+                        <li>Sunday: 10:00 AM - 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>&copy; 2023 Flavor Heaven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reservation form
+            const reservationForm = document.getElementById('reservation-form');
+            const reservationConfirmation = document.getElementById('reservation-confirmation');
+            const reservationError = document.getElementById('reservation-error');
+            
+            if (reservationForm) {
+                reservationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Hide the form
+                        reservationForm.style.display = 'none';
+                        
+                        // Show confirmation
+                        reservationConfirmation.classList.remove('hidden');
+                        
+                        // Scroll to confirmation
+                        reservationConfirmation.scrollIntoView({ behavior: 'smooth' });
+                    }, 1500);
+                });
+            }
+            
+            // Feedback form
+            const feedbackForm = document.getElementById('feedback-form');
+            const feedbackConfirmation = document.getElementById('feedback-confirmation');
+            
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Hide the form
+                        feedbackForm.style.display = 'none';
+                        
+                        // Show confirmation
+                        feedbackConfirmation.classList.remove('hidden');
+                        
+                        // Scroll to confirmation
+                        feedbackConfirmation.scrollIntoView({ behavior: 'smooth' });
+                    }, 1500);
+                });
+            }
+            
+            // Star rating functionality
+            const ratingLabels = document.querySelectorAll('.rating label');
+            const ratingInputs = document.querySelectorAll('.rating input');
+            
+            ratingLabels.forEach((label, index) => {
+                label.addEventListener('click', () => {
+                    // Reset all stars
+                    ratingLabels.forEach(l => l.classList.remove('text-yellow-400'));
+                    ratingLabels.forEach(l => l.classList.add('text-gray-300'));
+                    
+                    // Fill stars up to the clicked one
+                    for (let i = 0; i <= index; i++) {
+                        ratingLabels[4 - i].classList.remove('text-gray-300');
+                        ratingLabels[4 - i].classList.add('text-yellow-400');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

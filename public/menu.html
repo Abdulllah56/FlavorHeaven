@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flavor Heaven - Menu">
+    <title>Menu - Flavor Heaven Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+    <script src="js/3d-animation.js" type="module" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/menu.js" defer></script>
+    <style>
+        /* Additional custom styles */
+        .cart-count {
+            position: relative;
+            top: -8px;
+            right: -8px;
+            background-color: #ef4444;
+            color: white;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            padding: 2px 6px;
+        }
+        
+        .category-btn.active {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 40;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 5rem;
+            gap: 1.5rem;
+        }
+        
+        /* Menu item animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .menu-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* Search styles */
+        .search-container {
+            position: relative;
+        }
+        
+        .search-input {
+            padding-left: 2.5rem;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 shadow-xl fixed w-full z-10 transition duration-300 ease-in-out">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold text-white hover:text-red-400 transition duration-300 flex items-center">
+                <!-- 3D Spinning Logo Container -->
+                <div class="logo-container w-14 h-14 mr-3 flex items-center justify-center">
+                    <canvas id="spinningLogo" class="w-full h-full"></canvas>
+                </div>
+                <span class="text-2xl align-middle">Flavor Heaven</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="index.html" class="text-white hover:text-red-400 text-lg font-medium transition duration-300">Home</a>
+                <a href="menu.html" class="text-red-400 hover:text-red-500 text-lg font-bold transition duration-300 border-b-2 border-red-400">Menu</a>
+                <a href="about.html" class="text-white hover:text-red-400 text-lg font-medium transition duration-300">About</a>
+                <a href="contact.html" class="text-white hover:text-red-400 text-lg font-medium transition duration-300">Contact</a>
+            </div>
+            
+            <div class="flex items-center">
+                <!-- Cart Icon -->
+                <div class="cart-icon mr-4 relative group flex items-center">
+                    <a href="checkout.html" class="text-white hover:text-red-400 transition duration-300 flex items-center">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="cart-count bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5" style="position: absolute; top: -6px; right: -10px;">0</span>
+                    </a>
+                    
+                    <!-- Cart Dropdown -->
+                    <div class="cart-dropdown absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg p-4 hidden group-hover:block">
+                        <h3 class="text-lg font-bold mb-4">Your Cart</h3>
+                        <div class="cart-items">
+                            <!-- Cart items will be rendered here -->
+                            <p class="text-gray-600">Your cart is empty.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="mobile-menu-toggle md:hidden cursor-pointer">
+                    <i class="fas fa-bars text-xl text-white hover:text-red-400 transition duration-300"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden fixed top-0 left-0 w-full h-full bg-gray-900 z-20 transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="mobile-menu-close p-4 cursor-pointer text-right">
+            <i class="fas fa-times text-xl text-white hover:text-red-400 transition duration-300"></i>
+        </div>
+        <div class="mobile-menu-items flex flex-col items-center space-y-6 mt-8">
+            <a href="index.html" class="text-white text-xl hover:text-red-400 transition duration-300">Home</a>
+            <a href="menu.html" class="text-red-400 text-xl hover:text-red-500 transition duration-300 font-bold border-b-2 border-red-400">Menu</a>
+            <a href="about.html" class="text-white text-xl hover:text-red-400 transition duration-300">About</a>
+            <a href="contact.html" class="text-white text-xl hover:text-red-400 transition duration-300">Contact</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 h-96 relative fade-in overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-red-500 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-40 h-40 bg-orange-500 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-yellow-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <!-- Content Container -->
+        <div class="relative z-10 h-full flex items-center justify-center px-4">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-white text-4xl md:text-6xl font-bold mb-4 animate__animated animate__fadeInDown">
+                    Discover Our <span class="text-red-400">Culinary</span> Journey
+                </h1>
+                <p class="text-gray-200 text-lg md:text-xl mb-8 animate__animated animate__fadeInUp max-w-2xl mx-auto">
+                    From appetizers to desserts, explore our carefully crafted menu featuring fresh ingredients and bold flavors
+                </p>
+                
+                <!-- Enhanced Search Bar -->
+                <div class="search-container relative max-w-md mx-auto animate__animated animate__zoomIn">
+                    <div class="relative">
+                        <input type="text" id="menu-search" 
+                               class="search-input w-full pl-12 pr-4 py-4 rounded-2xl text-lg bg-white/90 backdrop-blur-sm border-2 border-transparent focus:border-red-400 focus:outline-none focus:bg-white transition-all duration-300 shadow-xl" 
+                               placeholder="Search dishes...">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-red-500 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Food Icons -->
+        <div class="absolute inset-0 pointer-events-none">
+            <i class="fas fa-pizza-slice absolute top-20 left-1/4 text-white/20 text-3xl animate-bounce" style="animation-delay: 0s;"></i>
+            <i class="fas fa-hamburger absolute top-32 right-1/4 text-white/20 text-2xl animate-bounce" style="animation-delay: 1s;"></i>
+            <i class="fas fa-ice-cream absolute bottom-20 left-1/3 text-white/20 text-2xl animate-bounce" style="animation-delay: 2s;"></i>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-16">
+        <!-- Section Title -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Menu Collection</h2>
+            <div class="w-24 h-1 bg-red-500 mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Menu Categories Navigation -->
+        <div class="mb-12">
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <button class="category-btn active px-6 py-3 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg font-medium" data-category="all">
+                    <i class="fas fa-utensils mr-2"></i>All Dishes
+                </button>
+                <button class="category-btn px-6 py-3 rounded-full bg-white text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg border border-gray-200 font-medium" data-category="starters">
+                    <i class="fas fa-seedling mr-2"></i>Starters
+                </button>
+                <button class="category-btn px-6 py-3 rounded-full bg-white text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg border border-gray-200 font-medium" data-category="main-dishes">
+                    <i class="fas fa-drumstick-bite mr-2"></i>Main Dishes
+                </button>
+                <button class="category-btn px-6 py-3 rounded-full bg-white text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg border border-gray-200 font-medium" data-category="fast-food">
+                    <i class="fas fa-hamburger mr-2"></i>Fast Food
+                </button>
+                <button class="category-btn px-6 py-3 rounded-full bg-white text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg border border-gray-200 font-medium" data-category="desserts">
+                    <i class="fas fa-ice-cream mr-2"></i>Desserts
+                </button>
+            </div>
+        </div>
+        
+        <!-- Compact Filters Section -->
+        <div class="mb-8 bg-white rounded-xl shadow-md border border-gray-100">
+            <div class="p-4">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <!-- Filter Dropdowns Container -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- Dietary Preferences Dropdown -->
+                        <div class="relative">
+                            <button id="dietary-dropdown-btn" class="flex items-center px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition-colors duration-200 text-sm font-medium">
+                                <i class="fas fa-leaf text-green-500 mr-2"></i>
+                                <span>Dietary</span>
+                                <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                            </button>
+                            <div id="dietary-dropdown" class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-20 hidden">
+                                <div class="p-3 space-y-2">
+                                    <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                        <input type="checkbox" class="dietary-filter mr-3 text-red-500 focus:ring-red-500" value="vegetarian">
+                                        <i class="fas fa-leaf text-green-600 mr-2"></i>
+                                        <span class="text-sm">Vegetarian</span>
+                                    </label>
+                                    <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                        <input type="checkbox" class="dietary-filter mr-3 text-red-500 focus:ring-red-500" value="vegan">
+                                        <i class="fas fa-seedling text-green-700 mr-2"></i>
+                                        <span class="text-sm">Vegan</span>
+                                    </label>
+                                    <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                        <input type="checkbox" class="dietary-filter mr-3 text-red-500 focus:ring-red-500" value="gluten-free">
+                                        <i class="fas fa-wheat-awn-circle-exclamation text-yellow-700 mr-2"></i>
+                                        <span class="text-sm">Gluten-Free</span>
+                                    </label>
+                                    <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                        <input type="checkbox" class="dietary-filter mr-3 text-red-500 focus:ring-red-500" value="spicy">
+                                        <i class="fas fa-pepper-hot text-red-600 mr-2"></i>
+                                        <span class="text-sm">Spicy</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Range Dropdown -->
+                        <div class="relative">
+                            <button id="price-dropdown-btn" class="flex items-center px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition-colors duration-200 text-sm font-medium">
+                                <i class="fas fa-dollar-sign text-green-500 mr-2"></i>
+                                <span>Price Range</span>
+                                <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                            </button>
+                            <div id="price-dropdown" class="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-20 hidden">
+                                <div class="p-3 space-y-2">
+                                    <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                        <input type="radio" name="price-range" value="all" class="mr-3 text-red-500 focus:ring-red-500" checked>
+                                        <span class="text-sm">All Prices</span>
+                                    </label>
+                                    <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                        <input type="radio" name="price-range" value="budget" class="mr-3 text-red-500 focus:ring-red-500">
+                                        <span class="text-sm">Under $15</span>
+                                    </label>
+                                    <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                        <input type="radio" name="price-range" value="premium" class="mr-3 text-red-500 focus:ring-red-500">
+                                        <span class="text-sm">$15 - $25</span>
+                                    </label>
+                                    <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                        <input type="radio" name="price-range" value="luxury" class="mr-3 text-red-500 focus:ring-red-500">
+                                        <span class="text-sm">$25+</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sort Dropdown -->
+                        <div class="relative">
+                            <select class="sort-select px-4 py-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100 transition-all duration-200 appearance-none cursor-pointer text-sm font-medium pr-8">
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                                <option value="price-asc">Price (Low to High)</option>
+                                <option value="price-desc">Price (High to Low)</option>
+                                <option value="popular">Most Popular</option>
+                            </select>
+                            <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Active Filters & Reset -->
+                    <div class="flex items-center gap-3">
+                        <!-- Active Filters Display -->
+                        <div id="active-filters" class="flex flex-wrap gap-2"></div>
+                        
+                        <!-- Reset Button -->
+                        <button id="reset-filters" class="flex items-center px-3 py-2 text-red-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 text-sm font-medium">
+                            <i class="fas fa-undo mr-1"></i>Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menu Items -->
+        <div id="menu-items" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+            <!-- Menu items will be loaded dynamically -->
+            <div class="menu-item-loading flex justify-center items-center col-span-full py-12">
+                <div class="text-center">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500 mb-4"></div>
+                    <p class="text-gray-600">Loading menu items...</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- No Results Message (hidden by default) -->
+        <div id="no-results-message" class="hidden text-center py-12">
+            <i class="fas fa-search text-5xl text-gray-400 mb-4"></i>
+            <h3 class="text-2xl font-bold text-gray-700 mb-2">No menu items found</h3>
+            <p class="text-gray-600">Try adjusting your filters or search criteria</p>
+            <button id="reset-filters" class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300">
+                Reset Filters
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="transform hover:translate-y-[-5px] transition-transform duration-300">
+                    <h3 class="text-xl font-bold mb-4">Flavor Heaven</h3>
+                    <p class="text-gray-300 mb-4">Experience the taste of paradise with our carefully crafted dishes made from the finest ingredients.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-red-400 transform hover:scale-125 transition-transform duration-300"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white hover:text-red-400 transform hover:scale-125 transition-transform duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-red-400 transform hover:scale-125 transition-transform duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-red-400 transform hover:scale-125 transition-transform duration-300"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="transform hover:translate-y-[-5px] transition-transform duration-300">
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-2 inline-block">Home</a></li>
+                        <li><a href="menu.html" class="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-2 inline-block">Menu</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-2 inline-block">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-2 inline-block">Contact</a></li>
+                        <li><a href="contact.html#reservation" class="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-2 inline-block">Reservations</a></li>
+                    </ul>
+                </div>
+                <div class="transform hover:translate-y-[-5px] transition-transform duration-300">
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-400"></i> 123 Main Street, City, Country</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-2 text-red-400"></i> (123) 456-7890</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-red-400"></i> info@flavorheaven.com</li>
+                    </ul>
+                </div>
+                <div class="transform hover:translate-y-[-5px] transition-transform duration-300">
+                    <h3 class="text-xl font-bold mb-4">Opening Hours</h3>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between items-center">
+                            <span>Monday - Friday:</span>
+                            <span class="text-red-400">11:00 AM - 10:00 PM</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Saturday:</span>
+                            <span class="text-red-400">10:00 AM - 11:00 PM</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Sunday:</span>
+                            <span class="text-red-400">10:00 AM - 9:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>&copy; 2023 Flavor Heaven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Item Detail Modal -->
+    <div id="item-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="relative bg-white rounded-lg max-w-4xl mx-auto my-8 overflow-hidden shadow-xl transform transition-all">
+            <div class="absolute top-4 right-4 z-10">
+                <button id="close-modal" class="text-gray-500 hover:text-gray-800 text-2xl bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-transform duration-300 hover:rotate-90">&times;</button>
+            </div>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2">
+                    <div id="modal-image-gallery" class="relative h-64 md:h-full">
+                        <img id="modal-main-image" src="" alt="" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 flex justify-center p-2 bg-black bg-opacity-50">
+                            <div id="modal-thumbnails" class="flex space-x-2">
+                                <!-- Thumbnails will be added dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 p-6">
+                    <h3 id="modal-title" class="text-2xl font-bold text-gray-800 mb-2"></h3>
+                    <p id="modal-description" class="text-gray-600 mb-4"></p>
+                    <div id="modal-dietary-tags" class="mb-4 flex flex-wrap gap-1">
+                        <!-- Dietary tags will be added dynamically -->
+                    </div>
+                    <div class="mb-6">
+                        <span id="modal-price" class="text-2xl font-bold text-gray-800"></span>
+                    </div>
+                    
+                    <div id="modal-customizations" class="mb-6">
+                        <!-- Customization options will be added dynamically -->
+                    </div>
+                    
+                    <div class="flex items-center mb-6">
+                        <label class="mr-4 font-medium">Quantity:</label>
+                        <div class="flex items-center">
+                            <button id="decrease-quantity" class="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-l transition duration-300">-</button>
+                            <input id="item-quantity" type="number" value="1" min="1" class="w-12 text-center border-t border-b border-gray-300 py-1">
+                            <button id="increase-quantity" class="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-r transition duration-300">+</button>
+                        </div>
+                    </div>
+                    
+                    <button id="modal-add-to-cart" class="w-full bg-red-500 text-white py-3 rounded hover:bg-red-600 transition transform hover:scale-105 duration-300 flex items-center justify-center">
+                        <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg transform translate-y-full opacity-0 transition-all duration-300 z-50 flex items-center">
+        <i class="fas fa-check-circle text-green-400 mr-2"></i>
+        <span id="notification-message">Item added to cart</span>
+    </div>
+
+    <script>
+        // Dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dietary dropdown
+            const dietaryBtn = document.getElementById('dietary-dropdown-btn');
+            const dietaryDropdown = document.getElementById('dietary-dropdown');
+            
+            // Price dropdown
+            const priceBtn = document.getElementById('price-dropdown-btn');
+            const priceDropdown = document.getElementById('price-dropdown');
+            
+            // Active filters container
+            const activeFiltersContainer = document.getElementById('active-filters');
+            
+            // Toggle dropdown function
+            function toggleDropdown(button, dropdown, otherDropdowns = []) {
+                // Close other dropdowns
+                otherDropdowns.forEach(dd => dd.classList.add('hidden'));
+                
+                // Toggle current dropdown
+                dropdown.classList.toggle('hidden');
+                
+                // Update button state
+                const chevron = button.querySelector('.fa-chevron-down');
+                if (dropdown.classList.contains('hidden')) {
+                    chevron.style.transform = 'rotate(0deg)';
+                } else {
+                    chevron.style.transform = 'rotate(180deg)';
+                }
+            }
+            
+            // Dietary dropdown toggle
+            dietaryBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleDropdown(dietaryBtn, dietaryDropdown, [priceDropdown]);
+            });
+            
+            // Price dropdown toggle
+            priceBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleDropdown(priceBtn, priceDropdown, [dietaryDropdown]);
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dietaryBtn.contains(e.target) && !dietaryDropdown.contains(e.target)) {
+                    dietaryDropdown.classList.add('hidden');
+                    dietaryBtn.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                }
+                if (!priceBtn.contains(e.target) && !priceDropdown.contains(e.target)) {
+                    priceDropdown.classList.add('hidden');
+                    priceBtn.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Update active filters display
+            function updateActiveFilters() {
+                activeFiltersContainer.innerHTML = '';
+                
+                // Check dietary filters
+                const checkedDietary = document.querySelectorAll('.dietary-filter:checked');
+                checkedDietary.forEach(filter => {
+                    const tag = createFilterTag(filter.value, 'dietary');
+                    activeFiltersContainer.appendChild(tag);
+                });
+                
+                // Check price range
+                const checkedPrice = document.querySelector('input[name="price-range"]:checked');
+                if (checkedPrice && checkedPrice.value !== 'all') {
+                    const tag = createFilterTag(checkedPrice.value, 'price');
+                    activeFiltersContainer.appendChild(tag);
+                }
+            }
+            
+            // Create filter tag
+            function createFilterTag(value, type) {
+                const tag = document.createElement('span');
+                tag.className = 'inline-flex items-center px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full';
+                
+                let displayText = value;
+                if (type === 'price') {
+                    const priceMap = {
+                        'budget': 'Under $15',
+                        'premium': '$15-$25',
+                        'luxury': '$25+'
+                    };
+                    displayText = priceMap[value] || value;
+                } else {
+                    displayText = value.charAt(0).toUpperCase() + value.slice(1).replace('-', ' ');
+                }
+                
+                tag.innerHTML = `
+                    ${displayText}
+                    <button class="ml-1 text-red-600 hover:text-red-800" onclick="removeFilter('${value}', '${type}')">
+                        <i class="fas fa-times text-xs"></i>
+                    </button>
+                `;
+                
+                return tag;
+            }
+            
+            // Remove filter function
+            window.removeFilter = function(value, type) {
+                if (type === 'dietary') {
+                    const checkbox = document.querySelector(`.dietary-filter[value="${value}"]`);
+                    if (checkbox) checkbox.checked = false;
+                } else if (type === 'price') {
+                    const radio = document.querySelector('input[name="price-range"][value="all"]');
+                    if (radio) radio.checked = true;
+                }
+                updateActiveFilters();
+            };
+            
+            // Listen for filter changes
+            document.querySelectorAll('.dietary-filter').forEach(filter => {
+                filter.addEventListener('change', updateActiveFilters);
+            });
+            
+            document.querySelectorAll('input[name="price-range"]').forEach(filter => {
+                filter.addEventListener('change', updateActiveFilters);
+            });
+            
+            // Reset filters
+            document.getElementById('reset-filters').addEventListener('click', function() {
+                // Reset dietary filters
+                document.querySelectorAll('.dietary-filter').forEach(filter => {
+                    filter.checked = false;
+                });
+                
+                // Reset price range
+                document.querySelector('input[name="price-range"][value="all"]').checked = true;
+                
+                // Reset sort
+                document.querySelector('.sort-select').value = 'name-asc';
+                
+                // Update active filters
+                updateActiveFilters();
+            });
+            
+            // Initialize active filters
+            updateActiveFilters();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flavor Heaven - Checkout">
+    <title>Checkout - Flavor Heaven Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/src/output.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/checkout.js" defer></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-10 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-gray-800 hover:text-red-500 transition duration-300">
+                    Flavor Heaven
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-white hover:text-red-400 font-medium transition duration-300">Home</a>
+                    <a href="menu.html" class="text-white hover:text-red-400 font-medium transition duration-300">Menu</a>
+                    <a href="about.html" class="text-white hover:text-red-400 font-medium transition duration-300">About</a>
+                    <a href="contact.html" class="text-white hover:text-red-400 font-medium transition duration-300">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Cart Icon with Enhanced Dropdown -->
+                    <div class="cart-icon relative group">
+                        <a href="#" class="text-gray-600 hover:text-red-500 transition duration-300">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="cart-count bg-red-500 text-white text-xs rounded-full px-2 py-1 absolute -top-2 -right-2 transform scale-0 transition-transform duration-300">0</span>
+                        </a>
+                        
+                        <!-- Enhanced Cart Dropdown -->
+                        <div class="cart-dropdown">
+                            <h3 class="text-lg font-bold mb-4">Your Cart</h3>
+                            <div class="cart-items space-y-4">
+                                <!-- Cart items will be rendered here -->
+                                <p class="text-gray-600">Your cart is empty</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-200">
+                                <a href="checkout.html" class="block w-full bg-red-500 text-white text-center py-2 rounded hover:bg-red-600 transition duration-300">
+                                    Checkout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle md:hidden text-gray-600 hover:text-red-500 transition duration-300">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Enhanced Mobile Menu -->
+    <div class="mobile-menu md:hidden">
+        <div class="mobile-menu-close text-gray-600 hover:text-red-500">
+            <i class="fas fa-times text-xl"></i>
+        </div>
+        <div class="mobile-menu-items">
+            <a href="index.html" class="text-gray-800 text-lg">Home</a>
+            <a href="menu.html" class="text-gray-800 text-lg">Menu</a>
+            <a href="about.html" class="text-gray-800 text-lg">About</a>
+            <a href="contact.html" class="text-gray-800 text-lg">Contact</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="bg-cover bg-center h-48 relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1556742393-d75f468bfcb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-white text-4xl md:text-5xl font-bold mb-2">Checkout</h1>
+            <p class="text-white text-lg">Complete your order</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Checkout Steps -->
+        <div class="flex justify-between items-center mb-8 border-b pb-4">
+            <div class="checkout-step active">
+                <div class="step-number bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center mb-2">1</div>
+                <div class="step-name text-sm font-medium">Order Summary</div>
+            </div>
+            <div class="checkout-step-line flex-1 h-1 bg-gray-300 mx-2"></div>
+            <div class="checkout-step">
+                <div class="step-number bg-gray-300 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center mb-2">2</div>
+                <div class="step-name text-sm font-medium">Delivery Info</div>
+            </div>
+            <div class="checkout-step-line flex-1 h-1 bg-gray-300 mx-2"></div>
+            <div class="checkout-step">
+                <div class="step-number bg-gray-300 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center mb-2">3</div>
+                <div class="step-name text-sm font-medium">Payment</div>
+            </div>
+            <div class="checkout-step-line flex-1 h-1 bg-gray-300 mx-2"></div>
+            <div class="checkout-step">
+                <div class="step-number bg-gray-300 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center mb-2">4</div>
+                <div class="step-name text-sm font-medium">Confirmation</div>
+            </div>
+        </div>
+        
+        <!-- Checkout Content -->
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Left Column - Order Summary -->
+            <div class="md:w-2/3">
+                <!-- Step 1: Order Summary (Initially Visible) -->
+                <div id="step-1" class="checkout-step-content">
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Your Order</h2>
+                        
+                        <!-- Cart Items Container -->
+                        <div id="cart-items" class="mb-6 reveal">
+                            <!-- Cart items will be loaded here dynamically -->
+                            <div class="empty-cart-message text-center p-6">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Empty Cart" class="w-32 h-32 mx-auto mb-4 rounded-full object-cover">
+                                <h3 class="text-xl font-bold mb-2">Your cart is empty</h3>
+                                <p class="text-gray-600 mb-4">Looks like you haven't added any items to your cart yet.</p>
+                                <a href="menu.html" class="inline-block mt-4 bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">Browse Menu</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center border-t border-gray-200 pt-4">
+                            <button id="continue-to-delivery" class="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600">
+                                Continue to Delivery
+                            </button>
+                            <a href="menu.html" class="text-red-500 hover:text-red-600">
+                                <i class="fas fa-plus mr-1"></i> Add More Items
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Featured Recommendations -->
+                    <div class="bg-white p-6 rounded-lg shadow-md reveal">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">You Might Also Like</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-gray-50 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80" alt="Bruschetta" class="w-full h-40 object-cover">
+                                <div class="p-3">
+                                    <h4 class="font-bold">Bruschetta</h4>
+                                    <p class="text-sm text-gray-600">Grilled bread with fresh tomatoes and basil</p>
+                                    <div class="flex justify-between items-center mt-2">
+                                        <span class="font-bold">$8.99</span>
+                                        <button 
+                                            class="recommended-add-to-cart text-red-500 hover:text-red-600 text-sm"
+                                            data-id="bruschetta1"
+                                            data-name="Bruschetta"
+                                            data-price="8.99"
+                                            data-image="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80"
+                                            data-description="Grilled bread with fresh tomatoes and basil">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1626082927389-6cd097cee6a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pasta Carbonara" class="w-full h-40 object-cover">
+                                <div class="p-3">
+                                    <h4 class="font-bold">Pasta Carbonara</h4>
+                                    <p class="text-sm text-gray-600">Creamy pasta with pancetta and parmesan</p>
+                                    <div class="flex justify-between items-center mt-2">
+                                        <span class="font-bold">$16.99</span>
+                                        <button 
+                                            class="recommended-add-to-cart text-red-500 hover:text-red-600 text-sm"
+                                            data-id="pasta-carbonara1"
+                                            data-name="Pasta Carbonara"
+                                            data-price="16.99"
+                                            data-image="https://images.unsplash.com/photo-1626082927389-6cd097cee6a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                                            data-description="Creamy pasta with pancetta and parmesan">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=327&q=80" alt="Tiramisu" class="w-full h-40 object-cover">
+                                <div class="p-3">
+                                    <h4 class="font-bold">Tiramisu</h4>
+                                    <p class="text-sm text-gray-600">Classic Italian coffee-flavored dessert</p>
+                                    <div class="flex justify-between items-center mt-2">
+                                        <span class="font-bold">$7.99</span>
+                                        <button 
+                                            class="recommended-add-to-cart text-red-500 hover:text-red-600 text-sm"
+                                            data-id="tiramisu1"
+                                            data-name="Tiramisu"
+                                            data-price="7.99"
+                                            data-image="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=327&q=80"
+                                            data-description="Classic Italian coffee-flavored dessert">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Delivery Information (Initially Hidden) -->
+                <div id="step-2" class="checkout-step-content hidden">
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Delivery Information</h2>
+                        
+                        <div class="mb-6">
+                            <div class="flex space-x-4 mb-6">
+                                <label class="flex items-center">
+                                    <input type="radio" name="order-type" value="delivery" checked class="mr-2">
+                                    <span>Delivery</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="order-type" value="pickup" class="mr-2">
+                                    <span>Pickup</span>
+                                </label>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                                <div>
+                                    <div id="delivery-form">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class="form-group">
+                                                <label for="name" class="block text-gray-700 mb-2">Full Name *</label>
+                                                <input type="text" id="name" name="name" class="form-control" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="phone" class="block text-gray-700 mb-2">Phone Number *</label>
+                                                <input type="tel" id="phone" name="phone" class="form-control" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="email" class="block text-gray-700 mb-2">Email Address *</label>
+                                                <input type="email" id="email" name="email" class="form-control" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="address" class="block text-gray-700 mb-2">Street Address *</label>
+                                                <input type="text" id="address" name="address" class="form-control" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="city" class="block text-gray-700 mb-2">City *</label>
+                                                <input type="text" id="city" name="city" class="form-control" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="zip" class="block text-gray-700 mb-2">ZIP Code *</label>
+                                                <input type="text" id="zip" name="zip" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="pickup-form" class="hidden">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class="form-group">
+                                                <label for="pickup-name" class="block text-gray-700 mb-2">Full Name *</label>
+                                                <input type="text" id="pickup-name" name="pickup-name" class="form-control" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="pickup-phone" class="block text-gray-700 mb-2">Phone Number *</label>
+                                                <input type="tel" id="pickup-phone" name="pickup-phone" class="form-control" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="pickup-email" class="block text-gray-700 mb-2">Email Address *</label>
+                                                <input type="email" id="pickup-email" name="pickup-email" class="form-control" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="pickup-time" class="block text-gray-700 mb-2">Pickup Time *</label>
+                                                <select id="pickup-time" name="pickup-time" class="form-control" required>
+                                                    <option value="">Select</option>
+                                                    <option value="asap">As Soon As Possible</option>
+                                                    <option value="30min">In 30 Minutes</option>
+                                                    <option value="1hour">In 1 Hour</option>
+                                                    <option value="2hours">In 2 Hours</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4 p-4 bg-gray-100 rounded">
+                                            <h3 class="font-bold mb-2">Pickup Location</h3>
+                                            <p>123 Main Street, City, State 12345</p>
+                                            <p class="text-sm text-gray-600 mt-2">Please have your order number ready when you arrive.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="hidden md:block">
+                                    <div id="delivery-image" class="h-full">
+                                        <img src="https://images.unsplash.com/photo-1594385208974-2e75f8d7bb48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Food Delivery" class="w-full h-full object-cover rounded-lg shadow-md">
+                                        <div class="mt-4 bg-gray-100 p-4 rounded-lg">
+                                            <h4 class="font-bold text-gray-800 mb-2">Fast Delivery</h4>
+                                            <p class="text-gray-600 text-sm">Your food will be delivered hot and fresh within 30-45 minutes of ordering.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="pickup-image" class="h-full hidden">
+                                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Restaurant Pickup" class="w-full h-full object-cover rounded-lg shadow-md">
+                                        <div class="mt-4 bg-gray-100 p-4 rounded-lg">
+                                            <h4 class="font-bold text-gray-800 mb-2">Convenient Pickup</h4>
+                                            <p class="text-gray-600 text-sm">Skip the wait! Your order will be ready for pickup at your selected time.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="special-instructions" class="block text-gray-700 mb-2">Special Instructions</label>
+                            <textarea id="special-instructions" name="special-instructions" class="form-control" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="flex justify-between items-center mt-6">
+                            <button id="back-to-order" class="border border-gray-300 text-gray-600 px-6 py-3 rounded hover:bg-gray-100">
+                                Back
+                            </button>
+                            <button id="continue-to-payment" class="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600">
+                                Continue to Payment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Payment (Initially Hidden) -->
+                <div id="step-3" class="checkout-step-content hidden">
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Payment Method</h2>
+                        
+                        <div class="mb-6">
+                            <div class="flex flex-col space-y-4 mb-6">
+                                <label class="flex items-center p-4 border rounded hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="payment-method" value="credit-card" checked class="mr-2">
+                                    <span class="flex-1">Credit Card</span>
+                                    <div class="flex space-x-2">
+                                        <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=50&q=80" alt="Credit Card" class="w-8 h-6 object-contain">
+                                        <i class="fab fa-cc-visa text-blue-700 text-2xl"></i>
+                                        <i class="fab fa-cc-mastercard text-red-500 text-2xl"></i>
+                                        <i class="fab fa-cc-amex text-blue-500 text-2xl"></i>
+                                    </div>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border rounded hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="payment-method" value="paypal" class="mr-2">
+                                    <span class="flex-1">PayPal</span>
+                                    <i class="fab fa-paypal text-blue-600 text-2xl"></i>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border rounded hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="payment-method" value="cash" class="mr-2">
+                                    <span class="flex-1">Cash on Delivery</span>
+                                    <i class="fas fa-money-bill-wave text-green-600 text-2xl"></i>
+                                </label>
+                            </div>
+                            
+                            <!-- Credit Card Form (Initially Visible) -->
+                            <div id="credit-card-form">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="form-group md:col-span-2">
+                                        <label for="card-number" class="block text-gray-700 mb-2">Card Number *</label>
+                                        <div class="relative">
+                                            <input type="text" id="card-number" name="card-number" class="form-control pl-12" placeholder="1234 5678 9012 3456" required>
+                                            <div class="absolute left-3 top-1/2 transform -translate-y-1/2">
+                                                <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Credit Card" class="w-6 h-6 object-contain">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="card-name" class="block text-gray-700 mb-2">Name on Card *</label>
+                                        <input type="text" id="card-name" name="card-name" class="form-control" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label for="expiry-date" class="block text-gray-700 mb-2">Expiry Date *</label>
+                                                <input type="text" id="expiry-date" name="expiry-date" class="form-control" placeholder="MM/YY" required>
+                                            </div>
+                                            <div>
+                                                <label for="cvv" class="block text-gray-700 mb-2">CVV *</label>
+                                                <input type="text" id="cvv" name="cvv" class="form-control" placeholder="123" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 p-4 bg-gray-50 rounded">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Secure Payment" class="w-8 h-8 mr-3">
+                                        <p class="text-sm text-gray-600">Your payment information is secure. We use encryption to protect your data.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- PayPal Form (Initially Hidden) -->
+                            <div id="paypal-form" class="hidden">
+                                <p class="text-gray-600 mb-4">You will be redirected to PayPal to complete your payment.</p>
+                                <div class="bg-blue-50 p-4 rounded">
+                                    <p class="text-sm text-blue-600">PayPal offers buyer protection and allows you to pay with your PayPal balance, bank account, or credit card.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Cash Form (Initially Hidden) -->
+                            <div id="cash-form" class="hidden">
+                                <p class="text-gray-600 mb-4">Please have the exact amount ready when your order is delivered.</p>
+                                <div class="bg-green-50 p-4 rounded">
+                                    <p class="text-sm text-green-600">Our delivery person will provide a receipt upon delivery.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center mt-6">
+                            <button id="back-to-delivery" class="border border-gray-300 text-gray-600 px-6 py-3 rounded hover:bg-gray-100">
+                                Back
+                            </button>
+                            <button id="place-order" class="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600">
+                                Place Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Confirmation (Initially Hidden) -->
+                <div id="step-4" class="checkout-step-content hidden">
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 text-center">
+                        <div class="text-green-500 text-6xl mb-4 flex justify-center">
+                            <img src="https://images.unsplash.com/photo-1576021182211-9ea8dced3690?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" alt="Order Success" class="w-24 h-24 object-cover rounded-full border-4 border-green-500">
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Order Confirmed!</h2>
+                        <p class="text-gray-600 mb-6">Thank you for your order. Your order number is <span class="font-bold" id="order-number">FH-12345</span>.</p>
+                        
+                        <div class="bg-gray-50 p-4 rounded mb-6 text-left">
+                            <h3 class="font-bold mb-2">Order Details</h3>
+                            <div id="confirmation-details">
+                                <!-- Order details will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6">A confirmation email has been sent to <span id="confirmation-email">your email address</span>.</p>
+                        
+                        <div class="flex justify-center">
+                            <a href="/" class="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600 mr-4">
+                                Return to Home
+                            </a>
+                            <a href="menu.html" class="border border-gray-300 text-gray-600 px-6 py-3 rounded hover:bg-gray-100">
+                                Order Again
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - Order Summary -->
+            <div class="md:w-1/3">
+                <div class="bg-white p-6 rounded-lg shadow-md sticky top-24">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Order Summary</h3>
+                    
+                    <div id="summary-items" class="mb-4">
+                        <!-- Summary items will be loaded here -->
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-4">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span id="summary-subtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Tax</span>
+                            <span id="summary-tax">$0.00</span>
+                        </div>
+                        <div class="flex justify-between mb-2 delivery-row">
+                            <span class="text-gray-600">Delivery Fee</span>
+                            <span id="summary-delivery">$0.00</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-lg mt-4 pt-4 border-t border-gray-200">
+                            <span>Total</span>
+                            <span id="summary-total">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-sm text-gray-500">
+                        <p>Estimated delivery time: 30-45 minutes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Flavor Heaven</h3>
+                    <p class="mb-4">Experience the taste of paradise with our carefully crafted dishes made from the finest ingredients.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="menu.html" class="text-gray-300 hover:text-white">Menu</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white">Contact</a></li>
+                        <li><a href="contact.html#reservation" class="text-gray-300 hover:text-white">Reservations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Main Street, City, Country</li>
+                        <li><i class="fas fa-phone mr-2"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@flavorheaven.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Opening Hours</h3>
+                    <ul class="space-y-2">
+                        <li>Monday - Friday: 11:00 AM - 10:00 PM</li>
+                        <li>Saturday: 10:00 AM - 11:00 PM</li>
+                        <li>Sunday: 10:00 AM - 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>&copy; 2023 Flavor Heaven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
