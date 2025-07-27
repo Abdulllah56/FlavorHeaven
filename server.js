@@ -1,14 +1,8 @@
+
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose');
 const cors = require('cors');
-
-// Import routes
-const menuRoutes = require('./src/routes/menuRoutes');
-const reservationRoutes = require('./src/routes/reservationRoutes');
-const orderRoutes = require('./src/routes/orderRoutes');
-const contactRoutes = require('./src/routes/contactRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,36 +13,87 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/flavorHeaven', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000, // Add timeout
-  retryWrites: true
-})
-.then(() => {
-  console.log('MongoDB connected successfully');
-  console.log('Database URL:', process.env.MONGODB_URI || 'mongodb://localhost:27017/flavorHeaven');
-})
-.catch(err => {
-  console.error('MongoDB connection error:', err);
-  process.exit(1); // Exit if cannot connect to database
+// Serve CSS files from src directory
+app.use('/src', express.static('src'));
+
+// Simple in-memory data storage (for demonstration)
+let menuItems = [
+  {
+    id: 1,
+    name: "Grilled Salmon",
+    description: "Fresh Atlantic salmon with herbs",
+    price: 24.99,
+    category: "mains",
+    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288",
+    available: true
+  },
+  {
+    id: 2,
+    name: "Caesar Salad",
+    description: "Classic Caesar with croutons and parmesan",
+    price: 12.99,
+    category: "salads",
+    image: "https://images.unsplash.com/photo-1546793665-c74683f339c1",
+    available: true
+  },
+  {
+    id: 3,
+    name: "Chocolate Cake",
+    description: "Rich chocolate cake with vanilla ice cream",
+    price: 8.99,
+    category: "desserts",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+    available: true
+  }
+];
+
+let reservations = [];
+let orders = [];
+let contacts = [];
+
+// Simple API routes without database
+app.get('/api/menu', (req, res) => {
+  res.json(menuItems);
 });
 
-// Add error handler for MongoDB connection
-mongoose.connection.on('error', err => {
-  console.error('MongoDB connection error:', err);
+app.get('/api/menu/category/:category', (req, res) => {
+  const filteredItems = menuItems.filter(item => item.category === req.params.category);
+  res.json(filteredItems);
 });
 
-mongoose.connection.on('disconnected', () => {
-  console.log('MongoDB disconnected. Attempting to reconnect...');
+app.post('/api/reservations', (req, res) => {
+  const reservation = {
+    id: reservations.length + 1,
+    ...req.body,
+    status: 'confirmed',
+    createdAt: new Date()
+  };
+  reservations.push(reservation);
+  res.status(201).json(reservation);
 });
 
-// Routes
-app.use('/api/menu', menuRoutes);
-app.use('/api/reservations', reservationRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/contact', contactRoutes);
+app.post('/api/orders', (req, res) => {
+  const order = {
+    id: orders.length + 1,
+    ...req.body,
+    orderStatus: 'pending',
+    paymentStatus: 'pending',
+    createdAt: new Date()
+  };
+  orders.push(order);
+  res.status(201).json(order);
+});
+
+app.post('/api/contact', (req, res) => {
+  const contact = {
+    id: contacts.length + 1,
+    ...req.body,
+    status: 'new',
+    createdAt: new Date()
+  };
+  contacts.push(contact);
+  res.status(201).json(contact);
+});
 
 // Serve static files for any other route
 app.get('*', (req, res) => {
@@ -61,9 +106,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something went wrong!' });
 });
 
-// Serve CSS files from src directory
-app.use('/src', express.static('src'));
-
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log('Database functionality removed - using in-memory storage');
 });
