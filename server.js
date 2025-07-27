@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
@@ -60,6 +61,12 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Something went wrong!' });
 });
+
+// Serve static files from public directory
+app.use(express.static('public'));
+
+// Serve CSS files from src directory
+app.use('/src', express.static('src'));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
