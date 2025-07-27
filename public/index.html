@@ -134,132 +134,249 @@
         </section>
 
         <!-- Trending Dishes Section -->
-        <section id="trending-dishes" class="mb-16 reveal">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Trending Dishes</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <!-- Zinger Burger Card -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform-gpu hover:z-10 transition-all">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                             alt="Zinger Burger" 
-                             class="w-full h-48 object-cover transition duration-500 ease-in-out">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                            <span class="text-white px-4 py-2 font-bold">Popular Choice</span>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Zinger Burger</h3>
-                        <p class="text-gray-600 mb-4">Crispy chicken patty with fresh lettuce and mayo.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold">$5.99</span>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition transform hover:scale-105" onclick="addToCart('Zinger Burger', 5.99, 'https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
+        <section id="trending-dishes" class="mb-16 reveal relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-10 left-10 w-20 h-20 bg-red-500 rounded-full animate-pulse"></div>
+                <div class="absolute top-32 right-20 w-16 h-16 bg-yellow-400 rounded-full animate-bounce"></div>
+                <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-green-400 rounded-full animate-ping"></div>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                        🔥 <span class="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">Trending</span> Dishes
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover the most popular dishes that our customers can't stop ordering!</p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-orange-500 mx-auto mt-4 rounded-full"></div>
                 </div>
-                <!-- Biryani Card -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform-gpu hover:z-10 transition-all">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1600628421384-2c4f4c2b8b2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                             alt="Biryani" 
-                             class="w-full h-48 object-cover transition duration-500 ease-in-out">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                            <span class="text-white px-4 py-2 font-bold">Chef's Special</span>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Zinger Burger Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Zinger Burger" 
+                                 class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                                🔥 Hot
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <span class="text-lg font-bold flex items-center">
+                                        <i class="fas fa-star text-yellow-400 mr-2"></i>Popular Choice
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Zinger Burger</h3>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Crispy chicken patty with fresh lettuce, tomatoes, and spicy mayo sauce.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-red-500">$5.99</span>
+                                <button class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg" onclick="addToCart('Zinger Burger', 5.99, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                                    <i class="fas fa-plus mr-2"></i>Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Biryani</h3>
-                        <p class="text-gray-600 mb-4">Aromatic rice with tender chicken and spices.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold">$7.99</span>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition transform hover:scale-105" onclick="addToCart('Biryani', 7.99, 'https://images.unsplash.com/photo-1600628421384-2c4f4c2b8b2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
-                                Add to Cart
-                            </button>
+                    
+                    <!-- Biryani Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1563379091339-03246963d321?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Chicken Biryani" 
+                                 class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 right-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                                👨‍🍳 Chef's Special
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <span class="text-lg font-bold flex items-center">
+                                        <i class="fas fa-crown text-yellow-400 mr-2"></i>Chef's Special
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Chicken Biryani</h3>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Aromatic basmati rice with tender chicken, exotic spices, and saffron.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-red-500">$7.99</span>
+                                <button class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg" onclick="addToCart('Chicken Biryani', 7.99, 'https://images.unsplash.com/photo-1563379091339-03246963d321?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                                    <i class="fas fa-plus mr-2"></i>Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Chocolate Cake Card -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform-gpu hover:z-10 transition-all">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1604917877937-0d7c9f9d6b6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                             alt="Chocolate Cake" 
-                             class="w-full h-48 object-cover transition duration-500 ease-in-out">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                            <span class="text-white px-4 py-2 font-bold">Dessert Favorite</span>
+                    
+                    <!-- Chocolate Cake Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1489&q=80" 
+                                 alt="Chocolate Cake" 
+                                 class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 right-4 bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                                🍰 Sweet
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <span class="text-lg font-bold flex items-center">
+                                        <i class="fas fa-heart text-pink-400 mr-2"></i>Dessert Favorite
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Chocolate Cake</h3>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Rich and moist chocolate cake with creamy chocolate frosting and berries.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-red-500">$4.99</span>
+                                <button class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg" onclick="addToCart('Chocolate Cake', 4.99, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1489&q=80')">
+                                    <i class="fas fa-plus mr-2"></i>Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Chocolate Cake</h3>
-                        <p class="text-gray-600 mb-4">Rich and moist chocolate cake with frosting.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold">$4.99</span>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition transform hover:scale-105" onclick="addToCart('Chocolate Cake', 4.99, 'https://images.unsplash.com/photo-1604917877937-0d7c9f9d6b6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
-                                Add to Cart
-                            </button>
+                    
+                    <!-- Margherita Pizza Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1481&q=80" 
+                                 alt="Margherita Pizza" 
+                                 class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                                🇮🇹 Italian
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <span class="text-lg font-bold flex items-center">
+                                        <i class="fas fa-users text-blue-400 mr-2"></i>Family Favorite
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Margherita Pizza</h3>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Classic Italian pizza with fresh mozzarella, tomatoes, and basil.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-red-500">$8.99</span>
+                                <button class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg" onclick="addToCart('Margherita Pizza', 8.99, 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1481&q=80')">
+                                    <i class="fas fa-plus mr-2"></i>Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Pizza Card -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform-gpu hover:z-10 transition-all">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1601924579440-1a7a7f5c5c3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                             alt="Pizza" 
-                             class="w-full h-48 object-cover transition duration-500 ease-in-out">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                            <span class="text-white px-4 py-2 font-bold">Family Favorite</span>
+                    
+                    <!-- Alfredo Pasta Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Chicken Alfredo Pasta" 
+                                 class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                                🧄 Creamy
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <span class="text-lg font-bold flex items-center">
+                                        <i class="fas fa-leaf text-green-400 mr-2"></i>Italian Classic
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Chicken Alfredo</h3>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Creamy Alfredo fettuccine pasta with grilled chicken and herbs.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-red-500">$6.99</span>
+                                <button class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg" onclick="addToCart('Chicken Alfredo', 6.99, 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                                    <i class="fas fa-plus mr-2"></i>Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pizza</h3>
-                        <p class="text-gray-600 mb-4">Cheesy pizza with fresh toppings and herbs.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold">$8.99</span>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition transform hover:scale-105" onclick="addToCart('Pizza', 8.99, 'https://images.unsplash.com/photo-1601924579440-1a7a7f5c5c3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
-                                Add to Cart
-                            </button>
+                    
+                    <!-- Ice Cream Sundae Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" 
+                                 alt="Ice Cream Sundae" 
+                                 class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 right-4 bg-cyan-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                                🍨 Cold
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <span class="text-lg font-bold flex items-center">
+                                        <i class="fas fa-smile text-yellow-400 mr-2"></i>Sweet Treat
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Pasta Card -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform-gpu hover:z-10 transition-all">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                             alt="Pasta" 
-                             class="w-full h-48 object-cover transition duration-500 ease-in-out">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                            <span class="text-white px-4 py-2 font-bold">Italian Classic</span>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pasta</h3>
-                        <p class="text-gray-600 mb-4">Creamy Alfredo pasta with chicken and herbs.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold">$6.99</span>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition transform hover:scale-105" onclick="addToCart('Pasta', 6.99, 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Ice Cream Card -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform-gpu hover:z-10 transition-all">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80" 
-                             alt="Ice Cream" 
-                             class="w-full h-48 object-cover transition duration-500 ease-in-out">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                            <span class="text-white px-4 py-2 font-bold">Sweet Treat</span>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Ice Cream</h3>
-                        <p class="text-gray-600 mb-4">Delicious vanilla ice cream with toppings.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold">$3.99</span>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition transform hover:scale-105" onclick="addToCart('Ice Cream', 3.99, 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80')">
-                                Add to Cart
-                            </button>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Ice Cream Sundae</h3>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">Premium vanilla ice cream with chocolate sauce, nuts, and cherry.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-red-500">$3.99</span>
+                                <button class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg" onclick="addToCart('Ice Cream Sundae', 3.99, 'https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80')">
+                                    <i class="fas fa-plus mr-2"></i>Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -267,33 +384,124 @@
         </section>
 
         <!-- Promotions and Events -->
-        <section id="promotions" class="mb-16 reveal">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Promotions & Events</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1567696911980-2c669794ce78?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Happy Hour" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Happy Hour</h3>
-                        <p class="text-gray-600 mb-4">Enjoy 50% off on all drinks from 5PM to 7PM, Monday to Friday</p>
-                        <a href="menu.html" class="text-red-500 hover:text-red-600">Learn More</a>
+        <section id="promotions" class="mb-16 reveal relative">
+            <!-- Background Gradient -->
+            <div class="absolute inset-0 bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl transform -rotate-1"></div>
+            <div class="absolute inset-0 bg-gradient-to-tl from-yellow-50 to-pink-50 rounded-3xl transform rotate-1"></div>
+            
+            <div class="relative z-10 bg-white bg-opacity-80 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                        🎉 <span class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Special</span> Offers
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Don't miss out on our amazing deals and exciting events!</p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Happy Hour Card -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform transition-all duration-500 hover:scale-105 hover:-rotate-1 border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1574096079513-d8259312b785?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Happy Hour Drinks" class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold animate-bounce">
+                                🍻 50% OFF
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-clock mr-2"></i>
+                                    <span>Mon-Fri: 5PM-7PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-glass-cheers text-blue-500 mr-3"></i>
+                                Happy Hour
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">Enjoy 50% off on all premium drinks, cocktails, and mocktails from 5PM to 7PM, Monday to Friday</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Valid until Dec 31</span>
+                                </div>
+                                <a href="menu.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm font-semibold">
+                                    <i class="fas fa-arrow-right mr-2"></i>Order Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Weekend Brunch Card -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform transition-all duration-500 hover:scale-105 hover:-rotate-1 border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Weekend Brunch Buffet" class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 left-4 bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-bold animate-bounce">
+                                🥞 All You Can Eat
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-green-900/70 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-calendar-week mr-2"></i>
+                                    <span>Sat-Sun: 10AM-2PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-utensils text-green-500 mr-3"></i>
+                                Weekend Brunch
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">All-you-can-eat brunch buffet featuring fresh pastries, eggs, pancakes, and more every Saturday and Sunday</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-dollar-sign mr-2"></i>
+                                    <span>Starting from $19.99</span>
+                                </div>
+                                <a href="menu.html" class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-6 py-3 rounded-full hover:from-green-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm font-semibold">
+                                    <i class="fas fa-arrow-right mr-2"></i>Book Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pasta Saturday Card -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform transition-all duration-500 hover:scale-105 hover:-rotate-1 border border-gray-100">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Creamy Pasta Selection" class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 left-4 bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-bold animate-bounce">
+                                🍝 20% OFF
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-orange-900/70 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-calendar-day mr-2"></i>
+                                    <span>Every Saturday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-pepper-hot text-orange-500 mr-3"></i>
+                                Pasta Saturday
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">Indulge in our special creamy pasta selection every Saturday with 20% off on all pasta dishes and free garlic bread</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-gift mr-2"></i>
+                                    <span>Free garlic bread included</span>
+                                </div>
+                                <a href="menu.html" class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-full hover:from-orange-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm font-semibold">
+                                    <i class="fas fa-arrow-right mr-2"></i>Try Now
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Weekend Brunch" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Weekend Brunch</h3>
-                        <p class="text-gray-600 mb-4">All-you-can-eat brunch buffet every Saturday and Sunday, 10AM to 2PM</p>
-                        <a href="menu.html" class="text-red-500 hover:text-red-600">Learn More</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1663590717726-3d2047e1e5df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Creamy Saturday" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Creamy Saturday</h3>
-                        <p class="text-gray-600 mb-4">Indulge in our special creamy pasta selection every Saturday with 20% off on all pasta dishes</p>
-                        <a href="menu.html" class="text-red-500 hover:text-red-600">Learn More</a>
-                    </div>
-                </div>
+                
+                <!-- Additional Floating Elements -->
+                <div class="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full animate-ping opacity-30"></div>
+                <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-pink-400 rounded-full animate-pulse opacity-40"></div>
             </div>
         </section>
 
