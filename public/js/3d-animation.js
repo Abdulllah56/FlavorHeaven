@@ -17,17 +17,7 @@ document.head.appendChild(style);
 
 // Simple logo hover effect
 function initLogoAnimation() {
-    const logo = document.querySelector('.logo-container');
-    if (logo) {
-        logo.addEventListener('mouseenter', () => {
-            logo.style.transform = 'scale(1.05)';
-            logo.style.transition = 'transform 0.3s ease';
-        });
-
-        logo.addEventListener('mouseleave', () => {
-            logo.style.transform = 'scale(1)';
-        });
-    }
+    // Removed 3D logo animations for menu page
 }
 
 // Hero section simple effects

@@ -38,22 +38,22 @@ document.addEventListener('DOMContentLoaded', function() {
 function initMenuPage() {
     // Load menu items
     loadMenuItems();
-    
+
     // Setup category filters
     setupCategoryFilters();
-    
+
     // Setup dietary filters
     setupDietaryFilters();
-    
+
     // Setup sorting
     setupSorting();
-    
+
     // Setup search functionality
     setupSearch();
-    
+
     // Setup mobile menu
     setupMobileMenu();
-    
+
     // Initialize cart count
     updateCartCount();
 }
@@ -65,20 +65,20 @@ function setupMobileMenu() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     const mobileMenuClose = document.querySelector('.mobile-menu-close');
-    
+
     if (mobileMenuToggle && mobileMenu && mobileMenuClose) {
         mobileMenuToggle.addEventListener('click', () => {
             mobileMenu.classList.remove('-translate-x-full');
             mobileMenu.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
         });
-        
+
         mobileMenuClose.addEventListener('click', () => {
             mobileMenu.classList.add('-translate-x-full');
             mobileMenu.classList.remove('active');
             document.body.style.overflow = ''; // Re-enable scrolling
         });
-        
+
         // Close menu when clicking on a mobile menu item
         const mobileMenuItems = document.querySelectorAll('.mobile-menu-items a');
         mobileMenuItems.forEach(item => {
@@ -97,10 +97,10 @@ function setupMobileMenu() {
 function loadMenuItems() {
     const menuItemsContainer = document.getElementById('menu-items');
     if (!menuItemsContainer) return;
-    
+
     // Clear loading message
     menuItemsContainer.innerHTML = '';
-    
+
     // Try to fetch menu items from the server
     fetch('/api/menu')
         .then(response => {
@@ -129,335 +129,236 @@ function loadMenuItems() {
  * Create sample menu items for demonstration
  */
 function createSampleMenuItems() {
-    const sampleItems = [
+    // Menu items data
+    const menuItems = [
         // Starters
         {
-            id: 'starter-1',
-            name: 'Vegetable Samosa',
-            description: 'Crispy pastry filled with spiced potatoes and peas, served with mint chutney',
-            price: 6.99,
-            category: 'starters',
-            image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: true
-        },
-        {
-            id: 'starter-2',
-            name: 'Spring Rolls',
-            description: 'Crispy Vietnamese spring rolls with vegetables and glass noodles',
-            price: 7.99,
-            category: 'starters',
-            image: 'https://images.unsplash.com/photo-1544601284-28e67fe4c36c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
-            dietaryTags: ['vegetarian', 'vegan'],
-            featured: false
-        },
-        {
-            id: 'starter-3',
-            name: 'Buffalo Wings',
-            description: 'Crispy chicken wings tossed in spicy buffalo sauce, served with blue cheese dip',
-            price: 9.99,
-            category: 'starters',
-            image: 'https://images.unsplash.com/photo-1587495153193-82958a80b661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['spicy'],
-            featured: false
-        },
-        {
-            id: 'starter-4',
-            name: 'Garlic Bread',
-            description: 'Freshly baked bread with garlic butter and herbs, topped with melted cheese',
-            price: 5.99,
-            category: 'starters',
-            image: 'https://images.unsplash.com/photo-1573140401552-3fab0b24427f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
-        },
-        {
-            id: 'starter-5',
-            name: 'Mozzarella Sticks',
-            description: 'Golden fried mozzarella cheese sticks served with marinara sauce',
-            price: 8.99,
-            category: 'starters',
-            image: 'https://images.unsplash.com/photo-1548340748-6d2b7d7da280?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
-        },
-        {
-            id: 'starter-6',
-            name: 'Chicken Quesadilla',
-            description: 'Grilled tortilla filled with seasoned chicken, cheese, and peppers',
-            price: 10.99,
-            category: 'starters',
-            image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: false
-        },
-        {
-            id: 'starter-7',
-            name: 'Hummus Platter',
-            description: 'Fresh hummus served with warm pita bread, olives, and vegetables',
-            price: 7.99,
-            category: 'starters',
-            image: 'https://images.unsplash.com/photo-1571197119282-7c4e5b2faa1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian', 'vegan'],
-            featured: false
-        },
-        {
-            id: 'starter-8',
-            name: 'Calamari Rings',
-            description: 'Crispy fried squid rings served with spicy aioli dipping sauce',
+            id: 1,
+            name: "Caesar Salad",
+            description: "Crisp romaine lettuce with parmesan cheese and croutons",
             price: 12.99,
-            category: 'starters',
-            image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: false
-        },
-        // Main Dishes - Pakistani
-        {
-            id: 'main-1',
-            name: 'Butter Chicken',
-            description: 'Tender chicken in rich tomato-based curry sauce with butter and cream',
-            price: 18.99,
-            category: 'main-dishes',
-            image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: true
+            category: "starters",
+            image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
         },
         {
-            id: 'main-2',
-            name: 'Biryani',
-            description: 'Aromatic rice dish with tender meat, saffron, and exotic spices',
-            price: 16.99,
-            category: 'main-dishes',
-            image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['spicy'],
-            featured: true
-        },
-        {
-            id: 'main-3',
-            name: 'Zinger Burger',
-            description: 'Crispy chicken patty with special sauce, lettuce, and tomato in a toasted bun',
-            price: 12.99,
-            category: 'main-dishes',
-            image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['spicy'],
-            featured: false
-        },
-        {
-            id: 'main-4',
-            name: 'Vegetable Curry',
-            description: 'Mixed seasonal vegetables cooked in aromatic curry sauce with Indian spices',
+            id: 2,
+            name: "Buffalo Wings",
+            description: "Crispy chicken wings tossed in spicy buffalo sauce",
             price: 14.99,
-            category: 'main-dishes',
-            image: 'https://images.unsplash.com/photo-1631292784640-2b24be416462?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
-            dietaryTags: ['vegetarian', 'vegan', 'gluten-free'],
-            featured: false
+            category: "starters",
+            image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&h=300&fit=crop&crop=center",
+            dietary: ["spicy"]
         },
         {
-            id: 'main-5',
-            name: 'Grilled Salmon',
-            description: 'Fresh Atlantic salmon fillet grilled to perfection, served with seasonal vegetables',
-            price: 22.99,
-            category: 'main-dishes',
-            image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['gluten-free'],
-            featured: true
+            id: 3,
+            name: "Garlic Bread",
+            description: "Toasted bread with garlic butter and herbs",
+            price: 8.99,
+            category: "starters",
+            image: "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
         },
         {
-            id: 'main-6',
-            name: 'Lamb Karahi',
-            description: 'Tender lamb cooked in traditional Pakistani spices with tomatoes and peppers',
+            id: 4,
+            name: "Mozzarella Sticks",
+            description: "Golden fried mozzarella with marinara sauce",
+            price: 10.99,
+            category: "starters",
+            image: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
+        },
+        {
+            id: 5,
+            name: "Greek Salad",
+            description: "Fresh vegetables with feta cheese and olives",
+            price: 13.99,
+            category: "starters",
+            image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian", "gluten-free"]
+        },
+        {
+            id: 6,
+            name: "Stuffed Mushrooms",
+            description: "Portobello mushrooms stuffed with cheese and herbs",
+            price: 11.99,
+            category: "starters",
+            image: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
+        },
+
+        // Main Dishes
+        {
+            id: 7,
+            name: "Grilled Salmon",
+            description: "Fresh Atlantic salmon grilled to perfection with herbs and lemon",
+            price: 24.99,
+            category: "main-dishes",
+            image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop&crop=center",
+            dietary: ["gluten-free"],
+            popular: true
+        },
+        {
+            id: 8,
+            name: "Ribeye Steak",
+            description: "Prime ribeye steak cooked to your preference",
+            price: 32.99,
+            category: "main-dishes",
+            image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop&crop=center",
+            dietary: ["gluten-free"]
+        },
+        {
+            id: 9,
+            name: "Chicken Parmesan",
+            description: "Breaded chicken breast with marinara and mozzarella",
             price: 19.99,
-            category: 'main-dishes',
-            image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['spicy'],
-            featured: false
+            category: "main-dishes",
+            image: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=400&h=300&fit=crop&crop=center",
+            dietary: []
         },
         {
-            id: 'main-7',
-            name: 'Beef Stroganoff',
-            description: 'Classic Russian dish with tender beef strips in creamy mushroom sauce',
-            price: 17.99,
-            category: 'main-dishes',
-            image: 'https://images.unsplash.com/photo-1572441713132-51c75654db73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: false
-        },
-        {
-            id: 'main-8',
-            name: 'Chicken Tikka Masala',
-            description: 'Marinated chicken in a rich, creamy tomato-based curry sauce',
+            id: 10,
+            name: "Vegetarian Pasta",
+            description: "Fresh pasta with seasonal vegetables and herbs",
             price: 16.99,
-            category: 'main-dishes',
-            image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: true
+            category: "main-dishes",
+            image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
         },
+        {
+            id: 11,
+            name: "BBQ Ribs",
+            description: "Slow-cooked ribs with our signature BBQ sauce",
+            price: 26.99,
+            category: "main-dishes",
+            image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop&crop=center",
+            dietary: ["spicy"]
+        },
+        {
+            id: 12,
+            name: "Fish Tacos",
+            description: "Grilled fish with fresh salsa in corn tortillas",
+            price: 18.99,
+            category: "main-dishes",
+            image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop&crop=center",
+            dietary: ["gluten-free"]
+        },
+
         // Fast Food
         {
-            id: 'fast-1',
-            name: 'Seekh Kebab Roll',
-            description: 'Grilled spiced meat wrapped in paratha with mint chutney',
+            id: 13,
+            name: "Classic Burger",
+            description: "Beef patty with lettuce, tomato, and special sauce",
+            price: 13.99,
+            category: "fast-food",
+            image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop&crop=center",
+            dietary: []
+        },
+        {
+            id: 14,
+            name: "Chicken Sandwich",
+            description: "Crispy chicken breast with pickles and mayo",
+            price: 12.99,
+            category: "fast-food",
+            image: "https://images.unsplash.com/photo-1606755962773-d324e2d63c40?w=400&h=300&fit=crop&crop=center",
+            dietary: []
+        },
+        {
+            id: 15,
+            name: "Loaded Fries",
+            description: "French fries topped with cheese, bacon, and sour cream",
             price: 9.99,
-            category: 'fast-food',
-            image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['spicy'],
-            featured: true
+            category: "fast-food",
+            image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=300&fit=crop&crop=center",
+            dietary: []
         },
         {
-            id: 'fast-2',
-            name: 'Crispy Fried Chicken',
-            description: 'Juicy chicken pieces coated in our secret spices and deep-fried to perfection',
-            price: 10.99,
-            category: 'fast-food',
-            image: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: false
-        },
-        {
-            id: 'fast-3',
-            name: 'Classic Pizza',
-            description: 'Hand-tossed pizza with tomato sauce, mozzarella cheese, and fresh toppings',
-            price: 13.99,
-            category: 'fast-food',
-            image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
-        },
-        {
-            id: 'fast-4',
-            name: 'Loaded Nachos',
-            description: 'Crispy tortilla chips topped with melted cheese, guacamole, salsa, and sour cream',
-            price: 8.99,
-            category: 'fast-food',
-            image: 'https://images.unsplash.com/photo-1582169296194-e4d644c48063?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-            dietaryTags: ['vegetarian', 'gluten-free'],
-            featured: false
-        },
-        {
-            id: 'fast-5',
-            name: 'Fish & Chips',
-            description: 'Beer-battered cod with crispy fries and mushy peas',
+            id: 16,
+            name: "Veggie Burger",
+            description: "Plant-based patty with avocado and sprouts",
             price: 14.99,
-            category: 'fast-food',
-            image: 'https://images.unsplash.com/photo-1544982503-9f984c14501a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: false
+            category: "fast-food",
+            image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian", "vegan"]
         },
         {
-            id: 'fast-6',
-            name: 'Chicken Wrap',
-            description: 'Grilled chicken with lettuce, tomatoes, and ranch dressing in a flour tortilla',
-            price: 11.99,
-            category: 'fast-food',
-            image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: false
+            id: 17,
+            name: "Hot Dog",
+            description: "All-beef hot dog with your choice of toppings",
+            price: 8.99,
+            category: "fast-food",
+            image: "https://images.unsplash.com/photo-1612392062798-2dbda12c2d3d?w=400&h=300&fit=crop&crop=center",
+            dietary: []
         },
         {
-            id: 'fast-7',
-            name: 'BBQ Bacon Burger',
-            description: 'Juicy beef patty with BBQ sauce, crispy bacon, and onion rings',
-            price: 15.99,
-            category: 'fast-food',
-            image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: [],
-            featured: true
+            id: 18,
+            name: "Onion Rings",
+            description: "Beer-battered onion rings served golden brown",
+            price: 7.99,
+            category: "fast-food",
+            image: "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
         },
-        {
-            id: 'fast-8',
-            name: 'Veggie Burger',
-            description: 'Plant-based patty with avocado, sprouts, and chipotle mayo',
-            price: 13.99,
-            category: 'fast-food',
-            image: 'https://images.unsplash.com/photo-1512152272829-e3139592d56f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian', 'vegan'],
-            featured: false
-        },
+
         // Desserts
         {
-            id: 'dessert-1',
-            name: 'Gulab Jamun',
-            description: 'Sweet milk dough balls soaked in rose-scented syrup',
-            price: 5.99,
-            category: 'desserts',
-            image: 'https://images.unsplash.com/photo-1589119908995-c6837fa14848?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
-        },
-        {
-            id: 'dessert-2',
-            name: 'Chocolate Lava Cake',
-            description: 'Warm chocolate cake with a molten center, served with vanilla ice cream',
-            price: 7.99,
-            category: 'desserts',
-            image: 'https://images.unsplash.com/photo-1624353365286-2e5e90d797a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: true
-        },
-        {
-            id: 'dessert-3',
-            name: 'Baklava',
-            description: 'Layers of phyllo pastry, filled with chopped nuts and sweetened with honey',
-            price: 6.99,
-            category: 'desserts',
-            image: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
-        },
-        {
-            id: 'dessert-4',
-            name: 'Fresh Fruit Tart',
-            description: 'Buttery pastry shell filled with custard and topped with fresh seasonal fruits',
+            id: 19,
+            name: "Chocolate Cake",
+            description: "Decadent chocolate cake with rich frosting",
             price: 8.99,
-            category: 'desserts',
-            image: 'https://images.unsplash.com/photo-1488477304112-4944851de03d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
+            category: "desserts",
+            image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
         },
         {
-            id: 'dessert-5',
-            name: 'Tiramisu',
-            description: 'Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream',
-            price: 7.99,
-            category: 'desserts',
-            image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
+            id: 20,
+            name: "Cheesecake",
+            description: "New York style cheesecake with berry compote",
+            price: 9.99,
+            category: "desserts",
+            image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
         },
         {
-            id: 'dessert-6',
-            name: 'Cheesecake',
-            description: 'New York style cheesecake with graham cracker crust and berry compote',
+            id: 21,
+            name: "Ice Cream Sundae",
+            description: "Vanilla ice cream with chocolate sauce and whipped cream",
             price: 6.99,
-            category: 'desserts',
-            image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: true
+            category: "desserts",
+            image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian", "gluten-free"]
         },
         {
-            id: 'dessert-7',
-            name: 'Ice Cream Sundae',
-            description: 'Three scoops of vanilla ice cream with chocolate sauce, nuts, and cherry',
-            price: 5.99,
-            category: 'desserts',
-            image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
+            id: 22,
+            name: "Apple Pie",
+            description: "Homemade apple pie with cinnamon and vanilla ice cream",
+            price: 7.99,
+            category: "desserts",
+            image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
         },
         {
-            id: 'dessert-8',
-            name: 'Kheer',
-            description: 'Traditional Pakistani rice pudding with cardamom, pistachios, and rose water',
-            price: 4.99,
-            category: 'desserts',
-            image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-            dietaryTags: ['vegetarian'],
-            featured: false
+            id: 23,
+            name: "Tiramisu",
+            description: "Classic Italian dessert with coffee and mascarpone",
+            price: 10.99,
+            category: "desserts",
+            image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian"]
         },
+        {
+            id: 24,
+            name: "Fruit Tart",
+            description: "Fresh seasonal fruits on vanilla custard",
+            price: 8.99,
+            category: "desserts",
+            image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=crop&crop=center",
+            dietary: ["vegetarian", "gluten-free"]
+        }
     ];
-    
+
     // Render the sample menu items
-    renderMenuItems(sampleItems);
+    renderMenuItems(menuItems);
 }
 
 /**
@@ -467,28 +368,28 @@ function createSampleMenuItems() {
 function renderMenuItems(menuItems) {
     const menuItemsContainer = document.getElementById('menu-items');
     if (!menuItemsContainer) return;
-    
+
     // Clear container
     menuItemsContainer.innerHTML = '';
-    
+
     // Create HTML for each menu item
     menuItems.forEach(item => {
         const menuItemElement = document.createElement('div');
         menuItemElement.className = 'menu-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300';
-        
+
         // Set data attributes
         menuItemElement.setAttribute('data-id', item.id);
         menuItemElement.setAttribute('data-category', item.category);
-        menuItemElement.setAttribute('data-dietary-tags', JSON.stringify(item.dietaryTags || []));
-        
+        menuItemElement.setAttribute('data-dietary-tags', JSON.stringify(item.dietary || []));
+
         // Create dietary tags HTML
         let dietaryTagsHtml = '';
-        if (item.dietaryTags && item.dietaryTags.length > 0) {
+        if (item.dietary && item.dietary.length > 0) {
             dietaryTagsHtml = '<div class="mt-2 flex flex-wrap gap-1">';
-            item.dietaryTags.forEach(tag => {
+            item.dietary.forEach(tag => {
                 let tagClass = '';
                 let tagIcon = '';
-                
+
                 switch(tag) {
                     case 'vegetarian':
                         tagClass = 'bg-green-100 text-green-800';
@@ -510,20 +411,20 @@ function renderMenuItems(menuItems) {
                         tagClass = 'bg-gray-100 text-gray-800';
                         break;
                 }
-                
+
                 dietaryTagsHtml += `<span class="inline-block px-2 py-1 text-xs rounded ${tagClass} mr-1">${tagIcon}${tag}</span>`;
             });
             dietaryTagsHtml += '</div>';
         } else {
             dietaryTagsHtml = '<div class="mt-2 flex flex-wrap gap-1">&nbsp;</div>';
         }
-        
+
         // Create featured badge if applicable
         let featuredBadge = '';
-        if (item.featured) {
+        if (item.popular) {
             featuredBadge = '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">Featured</div>';
         }
-        
+
         menuItemElement.innerHTML = `
             <div class="relative h-56 overflow-hidden">
                 <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500" loading="lazy" decoding="async">
@@ -546,16 +447,16 @@ function renderMenuItems(menuItems) {
                 </div>
             </div>
         `;
-        
+
         menuItemsContainer.appendChild(menuItemElement);
-        
+
         // Add animation
         animateMenuItemIn(menuItemElement);
     });
-    
+
     // Setup menu items after rendering
     setupMenuItems();
-    
+
     // Reinitialize filters after rendering
     setupCategoryFilters();
     setupDietaryFilters();
@@ -567,9 +468,9 @@ function renderMenuItems(menuItems) {
 function setupCategoryFilters() {
     const categoryButtons = document.querySelectorAll('.category-btn');
     const menuItems = document.querySelectorAll('.menu-item');
-    
+
     if (categoryButtons.length === 0 || menuItems.length === 0) return;
-    
+
     // Add click event to category buttons
     categoryButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -578,13 +479,13 @@ function setupCategoryFilters() {
                 btn.classList.remove('active', 'bg-red-500', 'text-white');
                 btn.classList.add('bg-gray-200', 'text-gray-800');
             });
-            
+
             // Add active class to clicked button
             this.classList.remove('bg-gray-200', 'text-gray-800');
             this.classList.add('active', 'bg-red-500', 'text-white');
-            
+
             const category = this.dataset.category;
-            
+
             // Show all items if "all" category is selected
             if (category === 'all') {
                 menuItems.forEach(item => {
@@ -593,12 +494,12 @@ function setupCategoryFilters() {
                 });
                 return;
             }
-            
+
             // Apply all filters
             applyAllFilters();
         });
     });
-    
+
     // Set "All" as active by default
     const allCategoryButton = document.querySelector('.category-btn[data-category="all"]');
     if (allCategoryButton) {
@@ -612,7 +513,7 @@ function setupCategoryFilters() {
  */
 function setupDietaryFilters() {
     const dietaryFilters = document.querySelectorAll('.dietary-filter');
-    
+
     dietaryFilters.forEach(filter => {
         filter.addEventListener('change', function() {
             applyAllFilters();
@@ -629,20 +530,20 @@ function applyAllFilters() {
     const selectedPriceRange = document.querySelector('input[name="price-range"]:checked')?.value || 'all';
     const activeCategory = document.querySelector('.category-btn.active')?.dataset.category || 'all';
     const searchTerm = document.getElementById('menu-search')?.value.toLowerCase().trim() || '';
-    
+
     let hasResults = false;
-    
+
     menuItems.forEach(item => {
         const itemTags = JSON.parse(item.getAttribute('data-dietary-tags') || '[]');
         const itemCategory = item.getAttribute('data-category');
         const itemPrice = parseFloat(item.querySelector('.price')?.textContent.replace('$', '') || '0');
         const itemName = item.querySelector('h3')?.textContent.toLowerCase() || '';
         const itemDescription = item.querySelector('.description')?.textContent.toLowerCase() || '';
-        
+
         // Check dietary filters
         const matchesDietary = selectedDietaryFilters.length === 0 || 
             selectedDietaryFilters.every(filter => itemTags.includes(filter));
-        
+
         // Check price range
         let matchesPrice = true;
         if (selectedPriceRange === 'budget') {
@@ -652,15 +553,15 @@ function applyAllFilters() {
         } else if (selectedPriceRange === 'luxury') {
             matchesPrice = itemPrice > 25;
         }
-        
+
         // Check category
         const matchesCategory = activeCategory === 'all' || itemCategory === activeCategory;
-        
+
         // Check search
         const matchesSearch = searchTerm === '' || 
             itemName.includes(searchTerm) || 
             itemDescription.includes(searchTerm);
-        
+
         if (matchesDietary && matchesPrice && matchesCategory && matchesSearch) {
             item.style.display = '';
             animateMenuItemIn(item);
@@ -669,7 +570,7 @@ function applyAllFilters() {
             item.style.display = 'none';
         }
     });
-    
+
     // Show/hide no results message
     const noResultsMessage = document.getElementById('no-results-message');
     if (noResultsMessage) {
@@ -687,17 +588,17 @@ function applyAllFilters() {
 function setupSorting() {
     const sortSelect = document.querySelector('.sort-select');
     if (!sortSelect) return;
-    
+
     sortSelect.addEventListener('change', function() {
         const menuItemsContainer = document.getElementById('menu-items');
         const menuItems = Array.from(menuItemsContainer.children);
-        
+
         menuItems.sort((a, b) => {
             const nameA = a.querySelector('h3').textContent;
             const nameB = b.querySelector('h3').textContent;
             const priceA = parseFloat(a.querySelector('.price').textContent.replace('$', ''));
             const priceB = parseFloat(b.querySelector('.price').textContent.replace('$', ''));
-            
+
             switch(this.value) {
                 case 'name-asc':
                     return nameA.localeCompare(nameB);
@@ -711,10 +612,10 @@ function setupSorting() {
                     return 0;
             }
         });
-        
+
         // Clear container
         menuItemsContainer.innerHTML = '';
-        
+
         // Re-append sorted items
         menuItems.forEach(item => {
             menuItemsContainer.appendChild(item);
@@ -730,44 +631,44 @@ function setupSearch() {
     const searchInput = document.getElementById('menu-search');
     const noResultsMessage = document.getElementById('no-results-message');
     const resetFiltersBtn = document.getElementById('reset-filters');
-    
+
     if (!searchInput) return;
-    
+
     searchInput.addEventListener('input', debounce(function() {
         applyAllFilters();
     }, 300));
-    
+
     // Reset filters button
     if (resetFiltersBtn) {
         resetFiltersBtn.addEventListener('click', function() {
             // Clear search input
             if (searchInput) searchInput.value = '';
-            
+
             // Reset category buttons
             const allCategoryBtn = document.querySelector('.category-btn[data-category="all"]');
             if (allCategoryBtn) {
                 allCategoryBtn.click();
             }
-            
+
             // Uncheck dietary filters
             const dietaryFilters = document.querySelectorAll('.dietary-filter');
             dietaryFilters.forEach(filter => {
                 filter.checked = false;
             });
-            
+
             // Reset sorting
             const sortSelect = document.querySelector('.sort-select');
             if (sortSelect) {
                 sortSelect.value = 'name-asc';
                 sortSelect.dispatchEvent(new Event('change'));
             }
-            
+
             // Show all menu items
             const menuItems = document.querySelectorAll('.menu-item');
             menuItems.forEach(item => {
                 item.style.display = '';
             });
-            
+
             // Hide the "no results" message
             if (noResultsMessage) noResultsMessage.classList.add('hidden');
         });
@@ -796,27 +697,27 @@ function debounce(func, delay) {
 function setupMenuItems() {
     const menuItems = document.querySelectorAll('.menu-item');
     const itemModal = document.getElementById('item-modal');
-    
+
     if (menuItems.length === 0) return;
-    
+
     // Add unique IDs to menu items if they don't have them
     menuItems.forEach((item, index) => {
         if (!item.dataset.id) {
             item.dataset.id = `menu-item-${index + 1}`;
         }
-        
+
         // Add click event to "Add to Cart" button
         const addToCartButton = item.querySelector('.add-to-cart');
         if (addToCartButton) {
             addToCartButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 const itemId = item.dataset.id;
                 const itemName = item.querySelector('h3').textContent;
                 const itemPrice = parseFloat(item.querySelector('.price').textContent.replace('$', ''));
                 const itemImage = item.querySelector('img')?.src || '';
                 const itemDescription = item.querySelector('.description')?.textContent || '';
-                
+
                 // Add to cart
                 addToCart({
                     id: itemId,
@@ -830,38 +731,38 @@ function setupMenuItems() {
                 window.dispatchEvent(new Event('storage'));
             });
         }
-        
+
         // Add click event to the item image and View Details button to open modal
         const itemImageContainer = item.querySelector('.relative');
         const viewDetailsButton = item.querySelector('.relative .absolute span');
-        
+
         if (itemImageContainer && itemModal) {
             itemImageContainer.style.cursor = 'pointer';
-            
+
             // Function to open modal with item details
             const openItemModal = function(e) {
                 // Prevent triggering if clicking on Add to Cart button
                 if (e.target.closest('.add-to-cart')) return;
-                
+
                 const itemName = item.querySelector('h3').textContent;
                 const itemPrice = item.querySelector('.price').textContent;
                 const itemImage = item.querySelector('img').src;
                 const itemDescription = item.querySelector('.description').textContent;
-                
+
                 // Populate modal with item details
                 document.getElementById('modal-title').textContent = itemName;
                 document.getElementById('modal-price').textContent = itemPrice;
                 document.getElementById('modal-main-image').src = itemImage;
                 document.getElementById('modal-description').textContent = itemDescription;
-                
+
                 // Show modal
                 itemModal.classList.remove('hidden');
                 document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
             };
-            
+
             // Add click event to image container
             itemImageContainer.addEventListener('click', openItemModal);
-            
+
             // Add click event to View Details button if it exists
             if (viewDetailsButton) {
                 viewDetailsButton.addEventListener('click', function(e) {
@@ -871,7 +772,7 @@ function setupMenuItems() {
             }
         }
     });
-    
+
     // Setup modal close button
     const closeModalButton = document.getElementById('close-modal');
     if (closeModalButton && itemModal) {
@@ -879,7 +780,7 @@ function setupMenuItems() {
             itemModal.classList.add('hidden');
             document.body.style.overflow = ''; // Re-enable scrolling
         });
-        
+
         // Close modal when clicking outside the content
         itemModal.addEventListener('click', function(e) {
             if (e.target === itemModal) {
@@ -906,7 +807,7 @@ function addToCart(item) {
     try {
         const cartData = localStorage.getItem('cart');
         cart = cartData ? JSON.parse(cartData) : [];
-        
+
     // Validate cart data structure
     if (!Array.isArray(cart)) {
         console.error('Invalid cart data structure');
@@ -926,12 +827,12 @@ let sanitizedItem = {
     image: item.image || '/images/menu/placeholder.jpg',
     quantity: parseInt(item.quantity) || 1,
     category: (item.category || '').trim(),
-    dietaryTags: Array.isArray(item.dietaryTags) ? item.dietaryTags : []
+    dietary: Array.isArray(item.dietary) ? item.dietary : []
 };
 
     // Check if item already exists in cart
     const existingItemIndex = cart.findIndex(cartItem => cartItem.id === sanitizedItem.id);
-    
+
     if (existingItemIndex !== -1) {
         // Update quantity if item exists
         cart[existingItemIndex].quantity += sanitizedItem.quantity;
@@ -939,11 +840,11 @@ let sanitizedItem = {
         // Add new item to cart
         cart.push(sanitizedItem);
     }
-    
+
     // Save updated cart to localStorage
     try {
         localStorage.setItem('cart', JSON.stringify(cart));
-        
+
         // Dispatch storage event for cross-page communication
         window.dispatchEvent(new Event('storage'));
     } catch (error) {
@@ -951,10 +852,10 @@ let sanitizedItem = {
         showNotification('Error saving to cart', 'error');
         return;
     }
-    
+
     // Update cart count with animation
     updateCartCount();
-    
+
     // Show success notification
     showNotification(`${sanitizedItem.name} added to cart!`, 'success');
 }
@@ -972,7 +873,7 @@ function showNotification(message, type = 'success') {
     notification.textContent = message;
 
     document.body.appendChild(notification);
-    
+
     // Trigger animation
     setTimeout(() => {
         notification.style.transform = 'translateX(120%)';
@@ -989,7 +890,7 @@ function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const count = cart.reduce((total, item) => total + (parseInt(item.quantity) || 0), 0);
     const cartCount = document.querySelectorAll('.cart-count');
-    
+
     cartCount.forEach(counter => {
         if (counter) {
             counter.textContent = count.toString();
@@ -1015,11 +916,11 @@ function updateCartCount() {
 function animateMenuItemIn(item) {
     item.style.opacity = '0';
     item.style.transform = 'translateY(20px)';
-    
+
     // Trigger animation after a small delay based on position
     const index = Array.from(item.parentNode.children).indexOf(item);
     const delay = 50 + (index * 50); // Staggered delay
-    
+
     setTimeout(() => {
         item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         item.style.opacity = '1';
