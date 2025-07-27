@@ -1,45 +1,36 @@
-// Simple 3D-like animations without Three.js dependency
+// Simple animations without 3D effects
 
 // Add CSS animations
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes logoSpin {
-        0% { transform: rotateY(0deg); }
-        100% { transform: rotateY(360deg); }
-    }
-
-    @keyframes float3D {
-        0%, 100% { transform: translateY(0px) rotateX(0deg); }
-        50% { transform: translateY(-10px) rotateX(5deg); }
-    }
-
-    @keyframes cardFloat {
+    @keyframes simpleFloat {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-5px); }
     }
 
     @keyframes fadeInUp {
-        0% { opacity: 0; transform: translateY(30px); }
+        0% { opacity: 0; transform: translateY(20px); }
         100% { opacity: 1; transform: translateY(0); }
     }
 `;
 document.head.appendChild(style);
 
-// Logo 3D rotation effect
+// Simple logo hover effect
 function initLogoAnimation() {
-    const logo = document.querySelector('.logo, h1, .text-2xl');
+    const logo = document.querySelector('.logo-container');
     if (logo) {
         logo.addEventListener('mouseenter', () => {
-            logo.style.animation = 'logoSpin 1s ease-in-out';
+            logo.style.transform = 'scale(1.05)';
+            logo.style.transition = 'transform 0.3s ease';
         });
 
-        logo.addEventListener('animationend', () => {
-            logo.style.animation = '';
+        logo.addEventListener('mouseleave', () => {
+            logo.style.transform = 'scale(1)';
         });
     }
 }
 
-// Hero section 3D effects
+// Hero section simple effects
 function initHero3D() {
     const heroElements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-text');
     heroElements.forEach((element, index) => {
@@ -47,12 +38,12 @@ function initHero3D() {
             element.style.animation = `fadeInUp 0.8s ease-out ${index * 0.2}s both`;
 
             element.addEventListener('mouseenter', () => {
-                element.style.transform = 'translateY(-5px) rotateX(5deg)';
+                element.style.transform = 'translateY(-5px)';
                 element.style.transition = 'transform 0.3s ease';
             });
 
             element.addEventListener('mouseleave', () => {
-                element.style.transform = 'translateY(0) rotateX(0)';
+                element.style.transform = 'translateY(0)';
             });
         }
     });
@@ -63,13 +54,13 @@ function initCardAnimations() {
     const cards = document.querySelectorAll('.menu-item, .card, .feature-card');
     cards.forEach(card => {
         card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-8px) rotateX(2deg)';
+            card.style.transform = 'translateY(-8px)';
             card.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
             card.style.transition = 'all 0.3s ease';
         });
 
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) rotateX(0)';
+            card.style.transform = 'translateY(0)';
             card.style.boxShadow = '';
         });
     });

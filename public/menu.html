@@ -167,7 +167,7 @@
     </div>
 
     <!-- Page Header -->
-    <header class="bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 h-96 relative fade-in overflow-hidden">
+    <header class="bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 h-96 relative fade-in overflow-hidden" style="margin-top: 80px;">
         <!-- Decorative Background Elements -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-10 left-10 w-32 h-32 bg-red-500 rounded-full blur-3xl"></div>
@@ -283,19 +283,19 @@
                             <div id="price-dropdown" class="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-20 hidden">
                                 <div class="p-3 space-y-2">
                                     <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                        <input type="radio" name="price-range" value="all" class="mr-3 text-red-500 focus:ring-red-500" checked>
+                                        <input type="radio" name="price-range" value="all" class="price-filter mr-3 text-red-500 focus:ring-red-500" checked>
                                         <span class="text-sm">All Prices</span>
                                     </label>
                                     <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                        <input type="radio" name="price-range" value="budget" class="mr-3 text-red-500 focus:ring-red-500">
+                                        <input type="radio" name="price-range" value="budget" class="price-filter mr-3 text-red-500 focus:ring-red-500">
                                         <span class="text-sm">Under $15</span>
                                     </label>
                                     <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                        <input type="radio" name="price-range" value="premium" class="mr-3 text-red-500 focus:ring-red-500">
+                                        <input type="radio" name="price-range" value="premium" class="price-filter mr-3 text-red-500 focus:ring-red-500">
                                         <span class="text-sm">$15 - $25</span>
                                     </label>
                                     <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                        <input type="radio" name="price-range" value="luxury" class="mr-3 text-red-500 focus:ring-red-500">
+                                        <input type="radio" name="price-range" value="luxury" class="price-filter mr-3 text-red-500 focus:ring-red-500">
                                         <span class="text-sm">$25+</span>
                                     </label>
                                 </div>
@@ -581,7 +581,12 @@
             });
             
             document.querySelectorAll('input[name="price-range"]').forEach(filter => {
-                filter.addEventListener('change', updateActiveFilters);
+                filter.addEventListener('change', function() {
+                    updateActiveFilters();
+                    if (typeof applyAllFilters === 'function') {
+                        applyAllFilters();
+                    }
+                });
             });
             
             // Reset filters
