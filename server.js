@@ -85,14 +85,37 @@ app.post('/api/orders', (req, res) => {
 });
 
 app.post('/api/contact', (req, res) => {
+  console.log('Contact form received:', req.body);
+  
   const contact = {
     id: contacts.length + 1,
-    ...req.body,
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    subject: req.body.subject,
+    message: req.body.message,
+    rating: req.body.rating,
     status: 'new',
     createdAt: new Date()
   };
+  
   contacts.push(contact);
-  res.status(201).json(contact);
+  console.log('Contact saved:', contact);
+  console.log('Total contacts:', contacts.length);
+  
+  res.status(201).json({
+    message: 'Contact form submitted successfully',
+    contact: contact
+  });
+});
+
+// Get all contacts (for debugging)
+app.get('/api/contacts', (req, res) => {
+  res.json({
+    message: 'All contact submissions',
+    contacts: contacts,
+    total: contacts.length
+  });
 });
 
 // Serve static files for any other route

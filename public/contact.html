@@ -353,20 +353,37 @@
             const reservationError = document.getElementById('reservation-error');
             
             if (reservationForm) {
-                reservationForm.addEventListener('submit', function(e) {
+                reservationForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
-                    // Simulate API call
-                    setTimeout(() => {
-                        // Hide the form
-                        reservationForm.style.display = 'none';
+                    const formData = new FormData(reservationForm);
+                    const reservationData = Object.fromEntries(formData);
+                    
+                    try {
+                        const response = await fetch('/api/reservations', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(reservationData)
+                        });
                         
-                        // Show confirmation
-                        reservationConfirmation.classList.remove('hidden');
-                        
-                        // Scroll to confirmation
-                        reservationConfirmation.scrollIntoView({ behavior: 'smooth' });
-                    }, 1500);
+                        if (response.ok) {
+                            // Hide the form
+                            reservationForm.style.display = 'none';
+                            
+                            // Show confirmation
+                            reservationConfirmation.classList.remove('hidden');
+                            
+                            // Scroll to confirmation
+                            reservationConfirmation.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            throw new Error('Reservation failed');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        reservationError.classList.remove('hidden');
+                    }
                 });
             }
             
@@ -375,20 +392,40 @@
             const feedbackConfirmation = document.getElementById('feedback-confirmation');
             
             if (feedbackForm) {
-                feedbackForm.addEventListener('submit', function(e) {
+                feedbackForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
-                    // Simulate API call
-                    setTimeout(() => {
-                        // Hide the form
-                        feedbackForm.style.display = 'none';
+                    const formData = new FormData(feedbackForm);
+                    const contactData = Object.fromEntries(formData);
+                    
+                    try {
+                        const response = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(contactData)
+                        });
                         
-                        // Show confirmation
-                        feedbackConfirmation.classList.remove('hidden');
-                        
-                        // Scroll to confirmation
-                        feedbackConfirmation.scrollIntoView({ behavior: 'smooth' });
-                    }, 1500);
+                        if (response.ok) {
+                            const result = await response.json();
+                            console.log('Contact form submitted successfully:', result);
+                            
+                            // Hide the form
+                            feedbackForm.style.display = 'none';
+                            
+                            // Show confirmation
+                            feedbackConfirmation.classList.remove('hidden');
+                            
+                            // Scroll to confirmation
+                            feedbackConfirmation.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            throw new Error('Contact form submission failed');
+                        }
+                    } catch (error) {
+                        console.error('Error submitting contact form:', error);
+                        alert('There was an error submitting your message. Please try again.');
+                    }
                 });
             }
             
