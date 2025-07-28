@@ -41,7 +41,7 @@
                 <div class="cart-icon mr-4 relative group">
                     <a href="checkout.html" class="text-white hover:text-red-400 transition duration-300">
                         <i class="fas fa-shopping-cart text-xl"></i>
-                        <span class="cart-count bg-red-500 text-white text-xs rounded-full px-2 py-1 absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">0</span>
+                        <span class="cart-count bg-red-500 text-white text-xs rounded-full px-2 py-1 absolute -top-2 -right-2 transform transition-all duration-300" style="display: none;">0</span>
                     </a>
                     
                     <!-- Cart Dropdown -->
@@ -524,30 +524,164 @@
         </section>
 
         <!-- Our Story Section -->
-        <section id="our-story" class="mb-16 reveal">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Story</h2>
-            <div class="flex flex-col md:flex-row items-center gap-8">
-                <div class="md:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
-                         alt="Our Story" 
-                         class="rounded-lg shadow-md w-full h-80 object-cover mb-4">
-                    <img src="https://images.unsplash.com/photo-1556911220-e15b30f6d83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
-                         alt="Our Team" 
-                         class="rounded-lg shadow-md w-full h-80 object-cover">
+        <section id="our-story" class="mb-16 reveal relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50 rounded-3xl transform -rotate-1"></div>
+            <div class="absolute top-10 right-10 w-32 h-32 bg-gradient-to-br from-red-400 to-orange-500 rounded-full opacity-10 animate-pulse"></div>
+            <div class="absolute bottom-10 left-10 w-24 h-24 bg-gradient-to-br from-yellow-400 to-red-400 rounded-full opacity-10 animate-bounce"></div>
+            
+            <div class="relative z-10 bg-white bg-opacity-90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-full mb-6 transform hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">Our</span>
+                        <span class="text-gray-800"> Story</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        A journey of passion, flavors, and unforgettable culinary experiences that started with a simple dream
+                    </p>
+                    <div class="w-32 h-1 bg-gradient-to-r from-red-500 to-orange-500 mx-auto mt-6 rounded-full"></div>
                 </div>
-                <div class="md:w-1/2">
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        Welcome to Flavor Heaven, where culinary artistry meets a passion for exceptional dining experiences. 
-                        Our journey began with a simple idea: to create a place where people can come together to enjoy delicious food, 
-                        warm hospitality, and unforgettable moments.
-                    </p>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        Every dish we serve is crafted with love and care, using the finest ingredients sourced from local farmers and suppliers. 
-                        From our signature dishes to our seasonal specials, we strive to bring you flavors that delight your palate and nourish your soul.
-                    </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        Thank you for being a part of our story. We look forward to welcoming you to Flavor Heaven and sharing our passion for food with you.
-                    </p>
+
+                <!-- Main Content -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                    <!-- Image Gallery -->
+                    <div class="relative">
+                        <!-- Main Image -->
+                        <div class="relative group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Restaurant Interior" 
+                                 class="w-full h-96 object-cover rounded-3xl shadow-2xl transform transition-all duration-500 group-hover:scale-105 group-hover:shadow-3xl">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <h4 class="text-2xl font-bold mb-2">Our Beautiful Space</h4>
+                                    <p class="text-lg">Where memories are made</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-white rounded-2xl shadow-xl flex items-center justify-center transform rotate-12 hover:rotate-0 transition-transform duration-300">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-red-500">2015</div>
+                                <div class="text-sm text-gray-600">Founded</div>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute -bottom-6 -left-6 w-28 h-28 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl shadow-xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-300">
+                            <div class="text-center text-white">
+                                <div class="text-2xl font-bold">50K+</div>
+                                <div class="text-sm">Happy Customers</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story Content -->
+                    <div class="space-y-8">
+                        <div class="bg-white rounded-2xl p-8 shadow-xl border-l-4 border-red-500 transform hover:scale-105 transition-transform duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-seedling text-white"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">Our Beginning</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed text-lg">
+                                Welcome to Flavor Heaven, where culinary artistry meets a passion for exceptional dining experiences. 
+                                Our journey began in 2015 with a simple idea: to create a place where people can come together to enjoy delicious food, 
+                                warm hospitality, and unforgettable moments.
+                            </p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-8 shadow-xl border-l-4 border-orange-500 transform hover:scale-105 transition-transform duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-utensils text-white"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">Our Philosophy</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed text-lg">
+                                Every dish we serve is crafted with love and care, using the finest ingredients sourced from local farmers and suppliers. 
+                                From our signature dishes to our seasonal specials, we strive to bring you flavors that delight your palate and nourish your soul.
+                            </p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-8 shadow-xl border-l-4 border-yellow-500 transform hover:scale-105 transition-transform duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-green-500 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-hands-helping text-white"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">Our Promise</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed text-lg">
+                                Thank you for being a part of our story. We look forward to welcoming you to Flavor Heaven and sharing our passion for food with you. 
+                                Every visit is a new chapter in our continuing story of culinary excellence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Section -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                    <div class="text-center bg-gradient-to-br from-red-500 to-orange-500 p-6 rounded-2xl text-white transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold mb-2">8+</div>
+                        <div class="text-sm uppercase tracking-wide">Years of Excellence</div>
+                    </div>
+                    <div class="text-center bg-gradient-to-br from-orange-500 to-yellow-500 p-6 rounded-2xl text-white transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold mb-2">50K+</div>
+                        <div class="text-sm uppercase tracking-wide">Happy Customers</div>
+                    </div>
+                    <div class="text-center bg-gradient-to-br from-yellow-500 to-green-500 p-6 rounded-2xl text-white transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold mb-2">100+</div>
+                        <div class="text-sm uppercase tracking-wide">Signature Dishes</div>
+                    </div>
+                    <div class="text-center bg-gradient-to-br from-green-500 to-blue-500 p-6 rounded-2xl text-white transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold mb-2">25+</div>
+                        <div class="text-sm uppercase tracking-wide">Expert Chefs</div>
+                    </div>
+                </div>
+
+                <!-- Team Showcase -->
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-8">Meet Our Amazing Team</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="group bg-white rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b30f6d83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Head Chef" 
+                                 class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-red-500 ring-offset-4 group-hover:ring-orange-500 transition-colors duration-300">
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Chef Marco Rodriguez</h4>
+                            <p class="text-red-500 font-semibold mb-2">Head Chef & Founder</p>
+                            <p class="text-gray-600 text-sm">30 years of culinary expertise from around the world</p>
+                        </div>
+                        
+                        <div class="group bg-white rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Pastry Chef" 
+                                 class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-orange-500 ring-offset-4 group-hover:ring-yellow-500 transition-colors duration-300">
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Chef Sarah Chen</h4>
+                            <p class="text-orange-500 font-semibold mb-2">Pastry Chef</p>
+                            <p class="text-gray-600 text-sm">Award-winning dessert specialist and food artist</p>
+                        </div>
+                        
+                        <div class="group bg-white rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Sous Chef" 
+                                 class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-yellow-500 ring-offset-4 group-hover:ring-green-500 transition-colors duration-300">
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Chef David Kim</h4>
+                            <p class="text-yellow-600 font-semibold mb-2">Sous Chef</p>
+                            <p class="text-gray-600 text-sm">Fusion cuisine expert with innovative cooking techniques</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center mt-12">
+                    <a href="about.html" class="inline-flex items-center bg-gradient-to-r from-red-500 to-orange-500 text-white px-8 py-4 rounded-full hover:from-red-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-lg font-semibold">
+                        <span>Learn More About Us</span>
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
                 </div>
             </div>
         </section>

@@ -17,7 +17,7 @@
     <nav class="bg-white shadow-md fixed w-full z-10">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-gray-800">Flavor Heaven</a>
-            
+
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-6">
                 <a href="index.html" class="text-white hover:text-red-400 font-medium transition duration-300">Home</a>
@@ -25,24 +25,25 @@
                 <a href="about.html" class="text-white hover:text-red-400 font-medium transition duration-300">About</a>
                 <a href="contact.html" class="text-white hover:text-red-400 font-medium transition duration-300">Contact</a>
             </div>
-            
+
             <div class="flex items-center">
                 <!-- Cart Icon -->
-                <div class="cart-icon mr-4 relative">
-                    <a href="checkout.html" class="text-gray-600 hover:text-gray-800">
+                <div class="cart-icon mr-4 relative group">
+                    <a href="checkout.html" class="text-white hover:text-red-400 transition duration-300">
                         <i class="fas fa-shopping-cart text-xl"></i>
-                        <span class="cart-count">0</span>
+                        <span class="cart-count bg-red-500 text-white text-xs rounded-full px-2 py-1 absolute -top-2 -right-2 transform transition-all duration-300" style="display: none;">0</span>
                     </a>
-                    
+
                     <!-- Cart Dropdown -->
-                    <div class="cart-dropdown">
-                        <h3 class="text-lg font-bold mb-4">Your Cart</h3>
-                        <div class="cart-items">
+                    <div class="cart-dropdown absolute right-0 mt-2 w-80 bg-white shadow-xl rounded-lg p-4 hidden group-hover:block z-50 border">
+                        <h3 class="text-lg font-bold mb-4 text-gray-800">Your Cart</h3>
+                        <div class="cart-items max-h-96 overflow-y-auto">
                             <!-- Cart items will be rendered here -->
+                            <p class="text-gray-600">Your cart is empty.</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Mobile Menu Toggle -->
                 <div class="mobile-menu-toggle md:hidden">
                     <i class="fas fa-bars text-xl text-gray-600"></i>
@@ -50,7 +51,7 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- Mobile Menu -->
     <div class="mobile-menu md:hidden">
         <div class="mobile-menu-close">
@@ -79,7 +80,7 @@
         <!-- Our Story Section -->
         <section id="our-story" class="mb-16">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Story</h2>
-            
+
             <div class="flex flex-col md:flex-row gap-8 items-center">
                 <div class="md:w-1/2">
                     <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Flavor Heaven History" class="rounded-lg shadow-md w-full hover:scale-105 transition-transform duration-300">
@@ -91,15 +92,15 @@
                     <p class="text-gray-600">Over the years, we've been honored to receive numerous accolades, including "Best Restaurant" by City Magazine for three consecutive years. But our greatest reward remains the satisfaction of our guests who return time and again to experience the magic of Flavor Heaven.</p>
                 </div>
             </div>
-            
+
             <!-- Timeline -->
             <div class="mt-16">
                 <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center">Our Journey</h3>
-                
+
                 <div class="relative">
                     <!-- Timeline Line -->
                     <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-red-500"></div>
-                    
+
                     <!-- Timeline Items -->
                     <div class="relative z-10">
                         <!-- 2005 -->
@@ -112,10 +113,10 @@
                                 <div class="bg-white rounded-full w-2 h-2"></div>
                             </div>
                             <div class="md:w-1/2 md:pl-12">
-                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2005" class="rounded-lg shadow-md mt-4 md:mt-0">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2005" class="rounded-lg shadow-md mt-4 md:mt-0">
                             </div>
                         </div>
-                        
+
                         <!-- 2010 -->
                         <div class="flex flex-col md:flex-row-reverse items-center mb-12">
                             <div class="md:w-1/2 md:pl-12">
@@ -126,10 +127,10 @@
                                 <div class="bg-white rounded-full w-2 h-2"></div>
                             </div>
                             <div class="md:w-1/2 md:pr-12 md:text-right">
-                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2010" class="rounded-lg shadow-md mt-4 md:mt-0">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2010" class="rounded-lg shadow-md mt-4 md:mt-0">
                             </div>
                         </div>
-                        
+
                         <!-- 2015 -->
                         <div class="flex flex-col md:flex-row items-center mb-12">
                             <div class="md:w-1/2 md:pr-12 md:text-right">
@@ -140,10 +141,10 @@
                                 <div class="bg-white rounded-full w-2 h-2"></div>
                             </div>
                             <div class="md:w-1/2 md:pl-12">
-                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2015" class="rounded-lg shadow-md mt-4 md:mt-0">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2015" class="rounded-lg shadow-md mt-4 md:mt-0">
                             </div>
                         </div>
-                        
+
                         <!-- 2020 -->
                         <div class="flex flex-col md:flex-row-reverse items-center">
                             <div class="md:w-1/2 md:pl-12">
@@ -154,7 +155,7 @@
                                 <div class="bg-white rounded-full w-2 h-2"></div>
                             </div>
                             <div class="md:w-1/2 md:pr-12 md:text-right">
-                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2020" class="rounded-lg shadow-md mt-4 md:mt-0">
+                                <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="2020" class="rounded-lg shadow-md mt-4 md:mt-0">
                             </div>
                         </div>
                     </div>
@@ -186,11 +187,11 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Cuisine and Specialities Section -->
         <section id="cuisine-specialities" class="mb-16">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Cuisine & Specialities</h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Asian Cuisine -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md">
@@ -206,7 +207,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <!-- Pakistani Cuisine -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md">
                     <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pakistani Cuisine" class="w-full h-64 object-cover">
@@ -221,10 +222,10 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <!-- Signature Dishes -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Signature Dishes" class="w-full h-64 object-cover">
+                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Signature Dishes" class="w-full h-64 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Signature Dishes</h3>
                         <p class="text-gray-600 mb-4">Our unique creations that combine the best of both worlds:</p>
@@ -238,7 +239,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Call to Action Section -->
         <section id="cta" class="mb-16 bg-red-500 rounded-lg overflow-hidden">
             <div class="container mx-auto px-4 py-12">
@@ -252,16 +253,16 @@
                         </div>
                     </div>
                     <div class="md:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurant Interior" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurant Interior" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- Gallery Section -->
         <section id="gallery" class="mb-16">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Gallery</h2>
-            
+
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="gallery-item group relative overflow-hidden rounded-lg">
                     <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3" alt="Modern Restaurant Interior" class="w-full h-48 md:h-64 object-cover transform transition duration-500 group-hover:scale-110">
@@ -313,11 +314,11 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Values Section -->
         <section id="values" class="mb-16">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Values</h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="text-red-500 text-4xl mb-4">
@@ -326,7 +327,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Sustainability</h3>
                     <p class="text-gray-600">We're committed to sustainable practices, from sourcing local ingredients to minimizing waste and reducing our environmental footprint.</p>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="text-red-500 text-4xl mb-4">
                         <i class="fas fa-utensils"></i>
@@ -334,7 +335,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Culinary Excellence</h3>
                     <p class="text-gray-600">We pursue perfection in every dish, combining traditional techniques with innovative approaches to create memorable dining experiences.</p>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="text-red-500 text-4xl mb-4">
                         <i class="fas fa-hands-helping"></i>
@@ -344,11 +345,11 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Testimonials -->
         <section id="testimonials">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">What People Say About Us</h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -366,7 +367,7 @@
                     </div>
                     <p class="text-gray-600">"I've been dining at Flavor Heaven for years, and it never disappoints. The attention to detail, the warm atmosphere, and of course, the incredible food keep me coming back. It's more than a restaurant; it's an experience."</p>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
                         <img src="images/customer2.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
@@ -433,7 +434,7 @@
             </div>
         </div>
     </footer>
-    
+
     <!-- Gallery Modal -->
     <div id="gallery-modal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black bg-opacity-90"></div>
@@ -444,7 +445,7 @@
             <img id="modal-image" src="" alt="" class="max-h-[80vh] max-w-[80vw]">
         </div>
     </div>
-    
+
     <script>
         // Gallery functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -454,9 +455,9 @@
             const closeButton = document.getElementById('close-gallery-modal');
             const prevButton = document.getElementById('prev-image');
             const nextButton = document.getElementById('next-image');
-            
+
             let currentIndex = 0;
-            
+
             galleryItems.forEach((item, index) => {
                 item.addEventListener('click', function() {
                     currentIndex = index;
@@ -465,34 +466,34 @@
                     modal.classList.remove('hidden');
                 });
             });
-            
+
             closeButton.addEventListener('click', function() {
                 modal.classList.add('hidden');
             });
-            
+
             prevButton.addEventListener('click', function() {
                 currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
                 modalImage.src = galleryItems[currentIndex].src;
                 modalImage.alt = galleryItems[currentIndex].alt;
             });
-            
+
             nextButton.addEventListener('click', function() {
                 currentIndex = (currentIndex + 1) % galleryItems.length;
                 modalImage.src = galleryItems[currentIndex].src;
                 modalImage.alt = galleryItems[currentIndex].alt;
             });
-            
+
             // Close modal when clicking outside the image
             modal.addEventListener('click', function(event) {
                 if (event.target === modal) {
                     modal.classList.add('hidden');
                 }
             });
-            
+
             // Keyboard navigation
             document.addEventListener('keydown', function(event) {
                 if (modal.classList.contains('hidden')) return;
-                
+
                 if (event.key === 'Escape') {
                     modal.classList.add('hidden');
                 } else if (event.key === 'ArrowLeft') {

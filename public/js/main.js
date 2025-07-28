@@ -274,13 +274,17 @@ function initCart() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const count = cart.reduce((total, item) => total + (item.quantity || 1), 0);
         
-        cartCount.textContent = count;
-        cartCount.style.display = count > 0 ? 'flex' : 'none';
-        
-        // Add animation effect
-        cartCount.classList.remove('pulse-animation');
-        void cartCount.offsetWidth; // Trigger reflow
-        cartCount.classList.add('pulse-animation');
+        // Update all cart count elements on the page
+        const cartCounts = document.querySelectorAll('.cart-count');
+        cartCounts.forEach(counter => {
+            counter.textContent = count;
+            counter.style.display = count > 0 ? 'flex' : 'none';
+            
+            // Add animation effect
+            counter.classList.remove('pulse-animation');
+            void counter.offsetWidth; // Trigger reflow
+            counter.classList.add('pulse-animation');
+        });
     };
 
     // Initial cart count update
