@@ -20,8 +20,10 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-white hover:text-red-400 transition duration-300 flex items-center">
                 <!-- 3D Spinning Logo Container -->
-                <div class="logo-container w-12 h-12 mr-2">
-                    
+                <div class="logo-container w-12 h-12 mr-2 flex items-center justify-center">
+                    <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-utensils text-white text-lg"></i>
+                    </div>
                 </div>
                 Flavor Heaven
             </a>
@@ -79,7 +81,7 @@
         <div id="hero3DContainer" class="absolute inset-0 pointer-events-none z-0"></div>
         
         <!-- Video Background (optional) -->
-        <video class="hero-video" autoplay muted loop>
+        <video class="hero-video" autoplay muted loop playsinline style="display: none;">
             <source src="https://assets.mixkit.co/videos/preview/mixkit-preparing-a-delicious-meal-in-a-restaurant-9027-large.mp4" type="video/mp4">
         </video>
         

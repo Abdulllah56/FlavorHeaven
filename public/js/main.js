@@ -233,7 +233,7 @@ function initMobileMenu() {
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        const isMenuOpen = mobileMenu.style.transform === 'translateX(0)';
+        const isMenuOpen = mobileMenu && mobileMenu.style.transform === 'translateX(0px)';
         if (isMenuOpen &&
             !mobileMenu.contains(e.target) && 
             !mobileMenuToggle.contains(e.target)) {
@@ -371,49 +371,64 @@ function initCart() {
     
     // Add to cart function - make it globally available
     window.addToCart = function(itemData) {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
-        // Handle both old and new parameter formats
-        let item;
-        if (typeof itemData === 'string') {
-            // Old format: addToCart(name, price, image)
-            item = {
-                id: Date.now().toString(),
-                name: arguments[0],
-                price: parseFloat(arguments[1]),
-                image: arguments[2] || 'https://via.placeholder.com/150',
-                description: '',
-                quantity: 1
-            };
-        } else {
-            // New format: addToCart(itemObject)
-            item = {
-                id: itemData.id || Date.now().toString(),
-                name: itemData.name,
-                price: parseFloat(itemData.price),
-                image: itemData.image || 'https://via.placeholder.com/150',
-                description: itemData.description || '',
-                quantity: itemData.quantity || 1
-            };
+        try {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Handle both old and new parameter formats
+            let item;
+            if (typeof itemData === 'string') {
+                // Old format: addToCart(name, price, image)
+                item = {
+                    id: Date.now().toString(),
+                    name: arguments[0],
+                    price: parseFloat(arguments[1]) || 0,
+                    image: arguments[2] || 'https://via.placeholder.com/150',
+                    description: '',
+                    quantity: 1
+                };
+            } else if (itemData && typeof itemData === 'object') {
+                // New format: addToCart(itemObject)
+                item = {
+                    id: itemData.id || Date.now().toString(),
+                    name: itemData.name || 'Unknown Item',
+                    price: parseFloat(itemData.price) || 0,
+                    image: itemData.image || 'https://via.placeholder.com/150',
+                    description: itemData.description || '',
+                    quantity: itemData.quantity || 1
+                };
+            } else {
+                console.error('Invalid item data provided to addToCart');
+                return;
+            }
+            
+            // Check if item already exists in cart
+            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+            
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity += item.quantity;
+            } else {
+                cart.push(item);
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            loadCartItems();
+            
+            // Show visual feedback
+            showNotification(`Added ${item.name} to cart!`, 'success');
+            
+        } catch (error) {
+            console.error('Error adding item to cart:', error);
+            showNotification('Error adding item to cart', 'error');
         }
-        
-        // Check if item already exists in cart
-        const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
-        
-        if (existingItemIndex > -1) {
-            cart[existingItemIndex].quantity += item.quantity;
-        } else {
-            cart.push(item);
-        }
-        
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        loadCartItems();
-        
-        // Show visual feedback
+    }
+    
+    // Helper function for notifications
+    function showNotification(message, type = 'success') {
         const notification = document.createElement('div');
-        notification.className = 'fixed top-20 right-5 bg-green-500 text-white p-3 rounded-lg shadow-lg z-50 fade-in';
-        notification.innerHTML = `<p>Added ${item.name} to cart!</p>`;
+        const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+        notification.className = `fixed top-20 right-5 ${bgColor} text-white p-3 rounded-lg shadow-lg z-50 fade-in`;
+        notification.innerHTML = `<p>${message}</p>`;
         document.body.appendChild(notification);
         
         setTimeout(() => {
