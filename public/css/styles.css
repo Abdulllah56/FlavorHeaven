@@ -950,3 +950,29 @@ nav a.active::after {
     font-size: 0.75rem;
     font-weight: bold;
 }
+
+/* Trending Dishes Section */
+#trending-dishes .group img {
+    display: block !important;
+    width: 100% !important;
+    height: 192px !important;
+    object-fit: cover !important;
+}
+
+#trending-dishes .group button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    min-width: 130px !important;
+}
+
+#trending-dishes .group .p-6 {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+#trending-dishes .group .flex.justify-between.items-center {
+    margin-top: auto !important;
+}
