@@ -62,14 +62,38 @@ app.get('/api/menu/category/:category', (req, res) => {
 });
 
 app.post('/api/reservations', (req, res) => {
+  console.log('Reservation form received:', req.body);
+  
   const reservation = {
     id: reservations.length + 1,
-    ...req.body,
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    date: req.body.date,
+    time: req.body.time,
+    guests: req.body.guests,
+    specialRequests: req.body['special-requests'],
     status: 'confirmed',
     createdAt: new Date()
   };
+  
   reservations.push(reservation);
-  res.status(201).json(reservation);
+  console.log('Reservation saved:', reservation);
+  console.log('Total reservations:', reservations.length);
+  
+  res.status(201).json({
+    message: 'Reservation confirmed successfully',
+    reservation: reservation
+  });
+});
+
+// Get all reservations (for debugging)
+app.get('/api/reservations', (req, res) => {
+  res.json({
+    message: 'All reservation submissions',
+    reservations: reservations,
+    total: reservations.length
+  });
 });
 
 app.post('/api/orders', (req, res) => {
