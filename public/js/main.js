@@ -201,39 +201,77 @@ function initMobileMenu() {
 
     if (!mobileMenuToggle || !mobileMenu) return;
 
+    // Ensure menu starts hidden
+    mobileMenu.classList.add('-translate-x-full');
+    body.classList.remove('menu-open');
+
     const toggleMenu = (show) => {
         if (show) {
-            mobileMenu.style.transform = 'translateX(0)';
-            body.style.overflow = 'hidden';
+            mobileMenu.classList.remove('-translate-x-full');
+            body.classList.add('menu-open');
+            
+            // Create overlay
+            let overlay = document.querySelector('.mobile-menu-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'mobile-menu-overlay';
+                document.body.appendChild(overlay);
+            }
+            overlay.classList.add('active');
             
             // Animate menu items with staggered delay
             mobileMenuItems.forEach((item, index) => {
+                item.style.transform = 'translateY(20px)';
+                item.style.opacity = '0';
                 setTimeout(() => {
-                    item.style.transform = 'translateX(0)';
+                    item.style.transform = 'translateY(0)';
                     item.style.opacity = '1';
                 }, 100 + index * 100);
             });
         } else {
-            mobileMenu.style.transform = 'translateX(-100%)';
-            body.style.overflow = '';
+            mobileMenu.classList.add('-translate-x-full');
+            body.classList.remove('menu-open');
+            
+            // Remove overlay
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+            }
             
             // Reset menu items
             mobileMenuItems.forEach(item => {
-                item.style.transform = 'translateX(-2rem)';
+                item.style.transform = 'translateY(20px)';
                 item.style.opacity = '0';
             });
         }
     };
 
-    mobileMenuToggle.addEventListener('click', () => toggleMenu(true));
+    // Toggle menu on button click
+    mobileMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !mobileMenu.classList.contains('-translate-x-full');
+        toggleMenu(!isOpen);
+    });
     
+    // Close menu on close button click
     if (mobileMenuClose) {
-        mobileMenuClose.addEventListener('click', () => toggleMenu(false));
+        mobileMenuClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu(false);
+        });
     }
+
+    // Close menu when clicking overlay
+    document.addEventListener('click', (e) => {
+        const overlay = document.querySelector('.mobile-menu-overlay');
+        if (overlay && overlay.classList.contains('active') && e.target === overlay) {
+            toggleMenu(false);
+        }
+    });
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        const isMenuOpen = mobileMenu && mobileMenu.style.transform === 'translateX(0px)';
+        const isMenuOpen = !mobileMenu.classList.contains('-translate-x-full');
         if (isMenuOpen &&
             !mobileMenu.contains(e.target) && 
             !mobileMenuToggle.contains(e.target)) {
@@ -243,7 +281,7 @@ function initMobileMenu() {
 
     // Handle escape key
     document.addEventListener('keydown', (e) => {
-        const isMenuOpen = mobileMenu.style.transform === 'translateX(0)';
+        const isMenuOpen = !mobileMenu.classList.contains('-translate-x-full');
         if (e.key === 'Escape' && isMenuOpen) {
             toggleMenu(false);
         }
@@ -251,13 +289,18 @@ function initMobileMenu() {
     
     // Close menu when a menu item is clicked
     mobileMenuItems.forEach(item => {
-        item.style.transform = 'translateX(-2rem)';
-        item.style.opacity = '0';
-        item.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+        item.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out, all 0.3s ease';
         
         item.addEventListener('click', () => {
             toggleMenu(false);
         });
+    });
+
+    // Ensure menu is closed on window resize to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            toggleMenu(false);
+        }
     });
 }
 
