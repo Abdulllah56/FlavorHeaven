@@ -952,11 +952,18 @@ nav a.active::after {
 }
 
 /* Trending Dishes Section */
+#trending-dishes .group {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
 #trending-dishes .group img {
     display: block !important;
     width: 100% !important;
     height: 192px !important;
     object-fit: cover !important;
+    flex-shrink: 0;
 }
 
 #trending-dishes .group button {
@@ -964,15 +971,135 @@ nav a.active::after {
     align-items: center !important;
     justify-content: center !important;
     white-space: nowrap !important;
-    min-width: 130px !important;
+    min-width: 120px !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1rem !important;
 }
 
 #trending-dishes .group .p-6 {
     display: flex !important;
     flex-direction: column !important;
-    height: 100% !important;
+    flex-grow: 1 !important;
+    padding: 1.5rem !important;
 }
 
 #trending-dishes .group .flex.justify-between.items-center {
     margin-top: auto !important;
+}
+
+#trending-dishes .group p {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    flex-grow: 1 !important;
+}
+
+/* Carousel improvements */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 450px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+}
+
+.carousel-item > div {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 32rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-item h3 {
+    line-height: 1.2;
+}
+
+.carousel-item p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Newsletter section improvements */
+#newsletter {
+    position: relative;
+    background: linear-gradient(135deg, #f3f4f6 0%, #fef3c7 25%, #fed7aa 75%, #fecaca 100%);
+    border: 2px solid #fed7aa;
+}
+
+#newsletter input[type="email"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#newsletter input[type="email"]:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+#newsletter button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#newsletter button:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Our Story section responsive improvements */
+@media (max-width: 1024px) {
+    #our-story .grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    #our-story .order-2 {
+        order: 1;
+    }
+    
+    #our-story .order-1 {
+        order: 2;
+    }
+    
+    #our-story img {
+        height: 20rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #our-story img {
+        height: 16rem;
+    }
+    
+    #our-story .space-y-8 {
+        gap: 1.5rem;
+    }
+    
+    .carousel {
+        height: 350px;
+    }
+    
+    .carousel-item > div {
+        padding: 1.5rem;
+        max-width: 28rem;
+    }
+    
+    #newsletter {
+        padding: 2rem;
+    }
+    
+    #newsletter h2 {
+        font-size: 1.875rem;
+    }
+}
+
+/* Text overflow handling */
+.text-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
 }
