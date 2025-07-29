@@ -278,7 +278,8 @@ function initCart() {
         const cartCounts = document.querySelectorAll('.cart-count');
         cartCounts.forEach(counter => {
             counter.textContent = count;
-            counter.style.display = count > 0 ? 'flex' : 'none';
+            counter.style.display = 'flex';
+            counter.style.opacity = count > 0 ? '1' : '0.7';
             
             // Add animation effect
             counter.classList.remove('pulse-animation');
