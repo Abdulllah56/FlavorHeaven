@@ -194,7 +194,7 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
                     Today's Specials
                 </h2>
-                <div class="carousel">
+                <div class="carousel relative">
                     <div class="carousel-inner">
                         <div
                             class="carousel-item"
@@ -283,6 +283,21 @@
                                 >
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- Carousel Navigation Arrows -->
+                    <button class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 p-3 rounded-full shadow-lg text-gray-800 hover:text-gray-900 transition-all duration-300 z-10">
+                        <i class="fas fa-chevron-left text-xl"></i>
+                    </button>
+                    <button class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 p-3 rounded-full shadow-lg text-gray-800 hover:text-gray-900 transition-all duration-300 z-10">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </button>
+                    
+                    <!-- Carousel Dots -->
+                    <div class="carousel-controls absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-10">
+                        <div class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-50 cursor-pointer transition-all duration-300 hover:bg-opacity-80 active"></div>
+                        <div class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-50 cursor-pointer transition-all duration-300 hover:bg-opacity-80"></div>
+                        <div class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-50 cursor-pointer transition-all duration-300 hover:bg-opacity-80"></div>
                     </div>
                 </div>
             </section>
@@ -1568,61 +1583,231 @@
                 </div>
             </section>
 
-            <!-- Testimonials -->
+            <!-- Customer Reviews Infinite Carousel -->
             <section id="testimonials" class="mb-16 reveal">
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
                     What Our Customers Say
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <div class="flex items-center mb-4">
-                            <img
-                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                                alt="Customer"
-                                class="w-12 h-12 rounded-full mr-4 object-cover"
-                            />
-                            <div>
-                                <h4 class="font-bold">Sarah Johnson</h4>
-                                <div class="text-yellow-400">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                <div class="reviews-carousel-container relative overflow-hidden bg-gradient-to-r from-gray-50 to-white py-8 rounded-2xl">
+                    <div class="reviews-carousel flex transition-transform duration-500 ease-linear">
+                        <!-- Review 1 -->
+                        <div class="review-item flex-shrink-0 w-80 mx-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                                <div class="flex items-center mb-4">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                        alt="Customer"
+                                        class="w-12 h-12 rounded-full mr-4 object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="font-bold">Sarah Johnson</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
                                 </div>
+                                <p class="text-gray-600">
+                                    "The food was absolutely amazing! The flavors were
+                                    so rich and authentic. The service was impeccable,
+                                    and the ambiance was perfect for our anniversary
+                                    dinner."
+                                </p>
                             </div>
                         </div>
-                        <p class="text-gray-600">
-                            "The food was absolutely amazing! The flavors were
-                            so rich and authentic. The service was impeccable,
-                            and the ambiance was perfect for our anniversary
-                            dinner."
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <div class="flex items-center mb-4">
-                            <img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                                alt="Customer"
-                                class="w-12 h-12 rounded-full mr-4 object-cover"
-                            />
-                            <div>
-                                <h4 class="font-bold">Michael Chen</h4>
-                                <div class="text-yellow-400">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
+
+                        <!-- Review 2 -->
+                        <div class="review-item flex-shrink-0 w-80 mx-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                                <div class="flex items-center mb-4">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                        alt="Customer"
+                                        class="w-12 h-12 rounded-full mr-4 object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="font-bold">Michael Chen</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
                                 </div>
+                                <p class="text-gray-600">
+                                    "I've been to many restaurants, but Flavor Heaven
+                                    stands out with its unique dishes and attention to
+                                    detail. The truffle pasta is to die for! Will
+                                    definitely be coming back."
+                                </p>
                             </div>
                         </div>
-                        <p class="text-gray-600">
-                            "I've been to many restaurants, but Flavor Heaven
-                            stands out with its unique dishes and attention to
-                            detail. The truffle pasta is to die for! Will
-                            definitely be coming back."
-                        </p>
+
+                        <!-- Review 3 -->
+                        <div class="review-item flex-shrink-0 w-80 mx-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                                <div class="flex items-center mb-4">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80"
+                                        alt="Customer"
+                                        class="w-12 h-12 rounded-full mr-4 object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="font-bold">Emily Rodriguez</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">
+                                    "Absolutely phenomenal dining experience! Every dish was a work of art. The chef's creativity and attention to detail is unmatched. This place has become our go-to for special occasions."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Review 4 -->
+                        <div class="review-item flex-shrink-0 w-80 mx-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                                <div class="flex items-center mb-4">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                        alt="Customer"
+                                        class="w-12 h-12 rounded-full mr-4 object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="font-bold">David Thompson</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">
+                                    "The wagyu steak was cooked to perfection! The atmosphere is elegant yet comfortable, and the staff went above and beyond to make our evening memorable. Highly recommended!"
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Review 5 -->
+                        <div class="review-item flex-shrink-0 w-80 mx-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                                <div class="flex items-center mb-4">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                        alt="Customer"
+                                        class="w-12 h-12 rounded-full mr-4 object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="font-bold">Lisa Park</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">
+                                    "Amazing vegetarian options! As someone with dietary restrictions, I was thrilled to find such creative and delicious plant-based dishes. The chocolate cake for dessert was divine!"
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Review 6 -->
+                        <div class="review-item flex-shrink-0 w-80 mx-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                                <div class="flex items-center mb-4">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80"
+                                        alt="Customer"
+                                        class="w-12 h-12 rounded-full mr-4 object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="font-bold">James Wilson</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">
+                                    "The biryani here is authentic and reminds me of home. The spices are perfectly balanced, and the portions are generous. Great value for money and exceptional taste!"
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Duplicate reviews for infinite scroll effect -->
+                        <div class="review-item flex-shrink-0 w-80 mx-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                                <div class="flex items-center mb-4">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                        alt="Customer"
+                                        class="w-12 h-12 rounded-full mr-4 object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="font-bold">Sarah Johnson</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">
+                                    "The food was absolutely amazing! The flavors were
+                                    so rich and authentic. The service was impeccable,
+                                    and the ambiance was perfect for our anniversary
+                                    dinner."
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="review-item flex-shrink-0 w-80 mx-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                                <div class="flex items-center mb-4">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                        alt="Customer"
+                                        class="w-12 h-12 rounded-full mr-4 object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="font-bold">Michael Chen</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">
+                                    "I've been to many restaurants, but Flavor Heaven
+                                    stands out with its unique dishes and attention to
+                                    detail. The truffle pasta is to die for! Will
+                                    definitely be coming back."
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

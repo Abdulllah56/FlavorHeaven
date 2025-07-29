@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initNewsletterPopup();
     loadFeaturedItems();
     initCarousel();
+    initReviewsCarousel();
     init3DAnimations();
     initFormValidation();
     
@@ -529,41 +530,10 @@ function initCarousel() {
     let currentSlide = 0;
     let autoPlayTimer;
     
-    // Create dots if they don't exist
-    if (!carousel.querySelector('.carousel-controls')) {
-        const controls = document.createElement('div');
-        controls.className = 'carousel-controls';
-        
-        for (let i = 0; i < slideCount; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'carousel-dot';
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(i));
-            controls.appendChild(dot);
-        }
-        
-        carousel.appendChild(controls);
-    }
-    
-    // Create prev/next buttons
-    if (!carousel.querySelector('.carousel-arrows')) {
-        const arrowsContainer = document.createElement('div');
-        arrowsContainer.className = 'carousel-arrows absolute inset-x-0 top-1/2 flex justify-between items-center px-4 transform -translate-y-1/2';
-        
-        const prevButton = document.createElement('button');
-        prevButton.className = 'bg-white bg-opacity-50 hover:bg-opacity-75 p-2 rounded-full shadow-md text-gray-800 hover:text-gray-900 transition-all transform hover:scale-110';
-        prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
-        prevButton.addEventListener('click', prevSlide);
-        
-        const nextButton = document.createElement('button');
-        nextButton.className = 'bg-white bg-opacity-50 hover:bg-opacity-75 p-2 rounded-full shadow-md text-gray-800 hover:text-gray-900 transition-all transform hover:scale-110';
-        nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
-        nextButton.addEventListener('click', nextSlide);
-        
-        arrowsContainer.appendChild(prevButton);
-        arrowsContainer.appendChild(nextButton);
-        carousel.appendChild(arrowsContainer);
-    }
+    // Get existing navigation buttons
+    const prevButton = carousel.querySelector('.carousel-prev');
+    const nextButton = carousel.querySelector('.carousel-next');
+    const dots = carousel.querySelectorAll('.carousel-dot');
     
     function goToSlide(index) {
         currentSlide = index;
@@ -572,7 +542,6 @@ function initCarousel() {
         carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
         
         // Update dots
-        const dots = carousel.querySelectorAll('.carousel-dot');
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === currentSlide);
         });
@@ -603,6 +572,20 @@ function initCarousel() {
         clearTimeout(autoPlayTimer);
     }
     
+    // Add event listeners to navigation buttons
+    if (prevButton) {
+        prevButton.addEventListener('click', prevSlide);
+    }
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', nextSlide);
+    }
+    
+    // Add event listeners to dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
+    
     // Initialize autoplay
     startAutoPlay();
     
@@ -631,6 +614,62 @@ function initCarousel() {
             prevSlide(); // Swipe right -> previous slide
         }
     }
+}
+
+// Initialize infinite reviews carousel
+function initReviewsCarousel() {
+    const reviewsCarousel = document.querySelector('.reviews-carousel');
+    if (!reviewsCarousel) return;
+    
+    const reviewItems = reviewsCarousel.querySelectorAll('.review-item');
+    const totalItems = reviewItems.length / 2; // Since we duplicated items
+    let currentPosition = 0;
+    const itemWidth = 336; // 320px width + 16px margin
+    const speed = 1; // Pixels per frame
+    let animationId;
+    let isPaused = false;
+    
+    function animate() {
+        if (!isPaused) {
+            currentPosition -= speed;
+            
+            // Reset position when we've scrolled through all original items
+            if (Math.abs(currentPosition) >= itemWidth * totalItems) {
+                currentPosition = 0;
+            }
+            
+            reviewsCarousel.style.transform = `translateX(${currentPosition}px)`;
+        }
+        
+        animationId = requestAnimationFrame(animate);
+    }
+    
+    function pauseAnimation() {
+        isPaused = true;
+    }
+    
+    function resumeAnimation() {
+        isPaused = false;
+    }
+    
+    // Start the animation
+    animate();
+    
+    // Pause on hover
+    const container = document.querySelector('.reviews-carousel-container');
+    if (container) {
+        container.addEventListener('mouseenter', pauseAnimation);
+        container.addEventListener('mouseleave', resumeAnimation);
+    }
+    
+    // Pause when tab is not visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            pauseAnimation();
+        } else {
+            resumeAnimation();
+        }
+    });
 }
 
 // Enhanced Newsletter Popup functionality
