@@ -12,6 +12,8 @@ if (process.env.NODE_ENV === 'production') {
   if (missingVars.length > 0) {
     console.warn(`⚠️  Warning: Missing environment variables: ${missingVars.join(', ')}`);
     console.warn('📧 Email functionality may not work properly');
+  } else {
+    console.log(`📧 Restaurant will receive contact forms at: ${process.env.RESTAURANT_EMAIL}`);
   }
 }
 
@@ -140,7 +142,7 @@ app.post('/api/orders', (req, res) => {
   res.status(201).json(order);
 });
 
-app.post('/api/contact', (req, res) => {
+app.post('/api/contact', async (req, res) => {
   console.log('Contact form received:', req.body);
   
   const contact = {
@@ -157,6 +159,85 @@ app.post('/api/contact', (req, res) => {
   
   contacts.push(contact);
   console.log('Contact saved:', contact);
+  
+  // Send email if email configuration is available
+  if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD && process.env.RESTAURANT_EMAIL) {
+    try {
+      const nodemailer = require('nodemailer');
+      
+      const transporter = nodemailer.createTransporter({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD
+        }
+      });
+
+      // Send notification to restaurant
+      const restaurantEmailHtml = `
+        <h2>New Contact Form Submission - Flavor Heaven</h2>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h3>Contact Details:</h3>
+          <p><strong>Name:</strong> ${contact.name}</p>
+          <p><strong>Email:</strong> ${contact.email}</p>
+          <p><strong>Phone:</strong> ${contact.phone || 'Not provided'}</p>
+          <p><strong>Subject:</strong> ${contact.subject}</p>
+          <p><strong>Rating:</strong> ${contact.rating ? '⭐'.repeat(contact.rating) + ` (${contact.rating}/5)` : 'Not provided'}</p>
+          
+          <h3>Message:</h3>
+          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #e53e3e;">
+            <p>${contact.message}</p>
+          </div>
+          
+          <p><small>Submitted on: ${contact.createdAt.toLocaleString()}</small></p>
+        </div>
+      `;
+
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: process.env.RESTAURANT_EMAIL,
+        subject: `New Contact Form: ${contact.subject} - ${contact.name}`,
+        html: restaurantEmailHtml
+      });
+
+      // Send confirmation to customer
+      const customerEmailHtml = `
+        <h2>Thank you for contacting Flavor Heaven!</h2>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <p>Dear ${contact.name},</p>
+          
+          <p>We have received your message and will get back to you shortly.</p>
+          
+          <h3>Your Message Summary:</h3>
+          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #e53e3e;">
+            <p><strong>Subject:</strong> ${contact.subject}</p>
+            <p><strong>Message:</strong> ${contact.message}</p>
+            ${contact.rating ? `<p><strong>Rating:</strong> ${'⭐'.repeat(contact.rating)} (${contact.rating}/5)</p>` : ''}
+          </div>
+          
+          <p>We appreciate your feedback and will respond as soon as possible.</p>
+          
+          <p>Best regards,<br>The Flavor Heaven Team</p>
+        </div>
+      `;
+
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: contact.email,
+        subject: 'Thank you for contacting Flavor Heaven!',
+        html: customerEmailHtml
+      });
+
+      console.log('📧 Contact form emails sent successfully');
+      
+    } catch (emailError) {
+      console.error('❌ Email sending failed:', emailError);
+      // Don't fail the entire request if email fails
+    }
+  } else {
+    console.log('📧 Email not configured - contact form saved without sending emails');
+  }
+  
   console.log('Total contacts:', contacts.length);
   
   res.status(201).json({
