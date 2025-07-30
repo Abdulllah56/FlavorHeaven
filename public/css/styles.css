@@ -668,24 +668,20 @@ button.rounded-full:active::after {
     .mobile-menu {
         position: fixed;
         top: 0;
-        left: -100%;
+        left: 0;
         width: 100%;
         height: 100vh;
         background-color: rgba(26, 32, 44, 0.98);
         z-index: 1000;
-        transition: left 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
         padding: 0;
-        transform: translateX(0);
         backdrop-filter: blur(10px);
+        transform: translateX(-100%);
     }
 
     /* When mobile menu is active/shown */
-    .mobile-menu:not(.-translate-x-full) {
-        left: 0;
-    }
-
-    .mobile-menu.-translate-x-full {
-        left: -100%;
+    .mobile-menu.active {
+        transform: translateX(0);
     }
 
     .mobile-menu-close {
@@ -734,25 +730,6 @@ button.rounded-full:active::after {
         background-color: rgba(255, 255, 255, 0.1);
         border-color: #e53e3e;
         transform: scale(1.05);
-    }
-
-    /* Overlay when mobile menu is open */
-    .mobile-menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-        display: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .mobile-menu-overlay.active {
-        display: block;
-        opacity: 1;
     }
 
     /* Prevent body scroll when menu is open */
