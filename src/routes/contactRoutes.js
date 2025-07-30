@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Contact = require('../models/Contact');
-const { sendEmail } = require('../config/email');
+const Contact = require("../models/Contact");
+const { sendEmail } = require("../config/email");
 
 // Get all contact submissions
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const contacts = await Contact.find();
     res.json(contacts);
@@ -14,24 +14,24 @@ router.get('/', async (req, res) => {
 });
 
 // Get a specific contact submission
-router.get('/:id', getContact, (req, res) => {
+router.get("/:id", getContact, (req, res) => {
   res.json(res.contact);
 });
 
 // Create a new contact submission
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const contact = new Contact({
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
     subject: req.body.subject,
     message: req.body.message,
-    rating: req.body.rating
+    rating: req.body.rating,
   });
 
   try {
     const newContact = await contact.save();
-    
+
     // Send confirmation email to customer
     const customerEmailHtml = `
       <h1>Thank you for contacting us!</h1>
@@ -39,7 +39,11 @@ router.post('/', async (req, res) => {
       <p>We have received your message and will get back to you shortly.</p>
       <p>Your message: ${req.body.message}</p>
     `;
-    await sendEmail(req.body.email, 'Contact Confirmation - Flavor Heaven', customerEmailHtml);
+    await sendEmail(
+      req.body.email,
+      "Contact Confirmation - Flavor Heaven",
+      customerEmailHtml,
+    );
 
     // Send notification to restaurant
     const restaurantEmailHtml = `
@@ -51,7 +55,11 @@ router.post('/', async (req, res) => {
       <p>Message: ${req.body.message}</p>
       <p>Rating: ${req.body.rating}</p>
     `;
-    await sendEmail(process.env.RESTAURANT_EMAIL, 'New Contact Form Submission - Flavor Heaven', restaurantEmailHtml);
+    await sendEmail(
+      process.env.EMAIL_USER,
+      "New Contact Form Submission - Flavor Heaven",
+      restaurantEmailHtml,
+    );
 
     res.status(201).json(newContact);
   } catch (err) {
@@ -60,7 +68,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update a contact submission status
-router.patch('/:id', getContact, async (req, res) => {
+router.patch("/:id", getContact, async (req, res) => {
   if (req.body.status != null) {
     res.contact.status = req.body.status;
   }
@@ -74,17 +82,17 @@ router.patch('/:id', getContact, async (req, res) => {
 });
 
 // Delete a contact submission
-router.delete('/:id', getContact, async (req, res) => {
+router.delete("/:id", getContact, async (req, res) => {
   try {
     await res.contact.remove();
-    res.json({ message: 'Contact submission deleted' });
+    res.json({ message: "Contact submission deleted" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
 // Get contact submissions by status
-router.get('/status/:status', async (req, res) => {
+router.get("/status/:status", async (req, res) => {
   try {
     const contacts = await Contact.find({ status: req.params.status });
     res.json(contacts);
@@ -99,7 +107,7 @@ async function getContact(req, res, next) {
   try {
     contact = await Contact.findById(req.params.id);
     if (contact == null) {
-      return res.status(404).json({ message: 'Contact submission not found' });
+      return res.status(404).json({ message: "Contact submission not found" });
     }
   } catch (err) {
     return res.status(500).json({ message: err.message });
