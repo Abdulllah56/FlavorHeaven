@@ -203,22 +203,13 @@ function initMobileMenu() {
     if (!mobileMenuToggle || !mobileMenu) return;
 
     // Ensure menu starts hidden
-    mobileMenu.classList.add('-translate-x-full');
+    mobileMenu.classList.remove('active');
     body.classList.remove('menu-open');
 
     const toggleMenu = (show) => {
         if (show) {
-            mobileMenu.classList.remove('-translate-x-full');
+            mobileMenu.classList.add('active');
             body.classList.add('menu-open');
-            
-            // Create overlay
-            let overlay = document.querySelector('.mobile-menu-overlay');
-            if (!overlay) {
-                overlay = document.createElement('div');
-                overlay.className = 'mobile-menu-overlay';
-                document.body.appendChild(overlay);
-            }
-            overlay.classList.add('active');
             
             // Animate menu items with staggered delay
             mobileMenuItems.forEach((item, index) => {
@@ -230,14 +221,8 @@ function initMobileMenu() {
                 }, 100 + index * 100);
             });
         } else {
-            mobileMenu.classList.add('-translate-x-full');
+            mobileMenu.classList.remove('active');
             body.classList.remove('menu-open');
-            
-            // Remove overlay
-            const overlay = document.querySelector('.mobile-menu-overlay');
-            if (overlay) {
-                overlay.classList.remove('active');
-            }
             
             // Reset menu items
             mobileMenuItems.forEach(item => {
@@ -250,7 +235,7 @@ function initMobileMenu() {
     // Toggle menu on button click
     mobileMenuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isOpen = !mobileMenu.classList.contains('-translate-x-full');
+        const isOpen = mobileMenu.classList.contains('active');
         toggleMenu(!isOpen);
     });
     
@@ -262,17 +247,9 @@ function initMobileMenu() {
         });
     }
 
-    // Close menu when clicking overlay
-    document.addEventListener('click', (e) => {
-        const overlay = document.querySelector('.mobile-menu-overlay');
-        if (overlay && overlay.classList.contains('active') && e.target === overlay) {
-            toggleMenu(false);
-        }
-    });
-
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        const isMenuOpen = !mobileMenu.classList.contains('-translate-x-full');
+        const isMenuOpen = mobileMenu.classList.contains('active');
         if (isMenuOpen &&
             !mobileMenu.contains(e.target) && 
             !mobileMenuToggle.contains(e.target)) {
@@ -282,7 +259,7 @@ function initMobileMenu() {
 
     // Handle escape key
     document.addEventListener('keydown', (e) => {
-        const isMenuOpen = !mobileMenu.classList.contains('-translate-x-full');
+        const isMenuOpen = mobileMenu.classList.contains('active');
         if (e.key === 'Escape' && isMenuOpen) {
             toggleMenu(false);
         }
