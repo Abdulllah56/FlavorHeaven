@@ -209,10 +209,12 @@ function initMobileMenu() {
     const toggleMenu = (show) => {
         if (show) {
             mobileMenu.classList.add('active');
+            mobileMenu.style.display = 'block';
             body.classList.add('menu-open');
             
             // Animate menu items with staggered delay
             mobileMenuItems.forEach((item, index) => {
+                item.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
                 item.style.transform = 'translateY(20px)';
                 item.style.opacity = '0';
                 setTimeout(() => {
@@ -224,11 +226,17 @@ function initMobileMenu() {
             mobileMenu.classList.remove('active');
             body.classList.remove('menu-open');
             
-            // Reset menu items
+            // Reset menu items and hide menu after animation
             mobileMenuItems.forEach(item => {
                 item.style.transform = 'translateY(20px)';
                 item.style.opacity = '0';
             });
+            
+            setTimeout(() => {
+                if (!mobileMenu.classList.contains('active')) {
+                    mobileMenu.style.display = 'none';
+                }
+            }, 300);
         }
     };
 
@@ -247,12 +255,9 @@ function initMobileMenu() {
         });
     }
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        const isMenuOpen = mobileMenu.classList.contains('active');
-        if (isMenuOpen &&
-            !mobileMenu.contains(e.target) && 
-            !mobileMenuToggle.contains(e.target)) {
+    // Close menu when clicking on the overlay
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
             toggleMenu(false);
         }
     });
@@ -267,8 +272,6 @@ function initMobileMenu() {
     
     // Close menu when a menu item is clicked
     mobileMenuItems.forEach(item => {
-        item.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out, all 0.3s ease';
-        
         item.addEventListener('click', () => {
             toggleMenu(false);
         });
