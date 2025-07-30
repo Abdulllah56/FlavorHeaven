@@ -364,8 +364,8 @@ function initCart() {
                 cartItems.innerHTML = '<p class="text-gray-600">Your cart is empty</p>';
             } else {
                 cartItems.innerHTML = cart.map(item => `
-                    <div class="cart-item flex items-center gap-4 mb-4 fade-in">
-                        <img src="${item.image || 'https://via.placeholder.com/150'}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+                    <div class="cart-item flex items-center gap-3 mb-3 fade-in">
+                        <img src="${item.image || 'https://via.placeholder.com/150'}" alt="${item.name}" class="w-12 h-12 object-cover rounded">
                         <div class="flex-1">
                             <h4 class="font-bold text-sm">${item.name}</h4>
                             <p class="text-gray-600 text-xs">$${parseFloat(item.price).toFixed(2)} × ${item.quantity || 1}</p>
