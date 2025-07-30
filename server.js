@@ -4,17 +4,49 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 
+// Environment validation for production
+if (process.env.NODE_ENV === 'production') {
+  const requiredEnvVars = ['EMAIL_USER', 'EMAIL_PASSWORD', 'RESTAURANT_EMAIL'];
+  const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+  
+  if (missingVars.length > 0) {
+    console.warn(`⚠️  Warning: Missing environment variables: ${missingVars.join(', ')}`);
+    console.warn('📧 Email functionality may not work properly');
+  }
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust proxy for deployment
+app.set('trust proxy', 1);
+
 // Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? [process.env.FRONTEND_URL, /\.replit\.dev$/, /\.repl\.co$/]
+    : true,
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve CSS files from src directory
 app.use('/src', express.static('src'));
+
+// Health check endpoint for deployment
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    version: '1.0.0'
+  });
+});
 
 // Simple in-memory data storage (for demonstration)
 let menuItems = [
@@ -154,6 +186,14 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log('Database functionality removed - using in-memory storage');
+  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`📧 Email configured: ${process.env.EMAIL_USER ? 'Yes' : 'No'}`);
+  console.log('💾 Database functionality removed - using in-memory storage');
+  
+  if (process.env.NODE_ENV === 'production') {
+    console.log('🎯 Production mode - Server ready for deployment');
+  } else {
+    console.log('🔧 Development mode - Local development server');
+  }
 });
