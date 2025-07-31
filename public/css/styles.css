@@ -1761,3 +1761,313 @@ nav a.active::after {
 .magnetic-btn:hover {
     transform: translateY(-2px);
 }
+
+/* Enhanced Values Section Styles */
+.values-card {
+    position: relative;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.values-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: -1;
+}
+
+.values-card:hover::before {
+    opacity: 1;
+    animation: shimmer-border 2s ease-in-out infinite;
+}
+
+@keyframes shimmer-border {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.values-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 
+        0 35px 60px rgba(0, 0, 0, 0.15),
+        0 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced CTA Button Styles */
+.enhanced-cta-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enhanced-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.8s ease;
+    z-index: 1;
+}
+
+.enhanced-cta-btn:hover::before {
+    left: 100%;
+}
+
+.enhanced-cta-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Newsletter Section Enhanced Styles */
+.newsletter-btn {
+    position: relative;
+    background-size: 300% 300%;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+.newsletter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.newsletter-btn:hover::before {
+    left: 100%;
+}
+
+.newsletter-btn:hover {
+    background-position: right center;
+    box-shadow: 
+        0 15px 40px rgba(139, 92, 246, 0.4),
+        0 5px 15px rgba(236, 72, 153, 0.3);
+    transform: translateY(-3px) scale(1.02);
+}
+
+.newsletter-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Enhanced Form Input Styles */
+.newsletter-form input[type="email"] {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.newsletter-form input[type="email"]:focus {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 15px 30px rgba(139, 92, 246, 0.2),
+        0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter-form input[type="email"]:valid {
+    border-color: #10b981;
+}
+
+.newsletter-form input[type="email"]:valid + div .fa-check-circle {
+    opacity: 1;
+}
+
+/* App Download Button Styles */
+.app-download-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    color: white;
+}
+
+.app-download-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.app-download-btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Shimmer Animation for Newsletter */
+@keyframes shimmer {
+    0% { transform: translateX(-100%) skewX(-15deg); }
+    100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.animate-shimmer {
+    animation: shimmer 1.5s ease-in-out;
+}
+
+/* Checkbox Enhancement */
+.form-checkbox {
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #d1d5db;
+    border-radius: 0.375rem;
+    display: inline-block;
+    vertical-align: top;
+    background-origin: border-box;
+    user-select: none;
+    flex-shrink: 0;
+    height: 1.25rem;
+    width: 1.25rem;
+    color: currentColor;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.form-checkbox:checked {
+    background-color: currentColor;
+    border-color: currentColor;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+}
+
+.form-checkbox:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+/* Enhanced Floating Animation */
+@keyframes enhanced-float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+    66% {
+        transform: translateY(-5px) rotate(-1deg);
+    }
+}
+
+.animate-float {
+    animation: enhanced-float 6s ease-in-out infinite;
+}
+
+/* Gradient Background Animation */
+.bg-300\% {
+    background-size: 300% 300%;
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-gradient-x {
+    animation: gradient-shift 4s ease infinite;
+}
+
+/* Enhanced Shadow Effects */
+.shadow-3xl {
+    box-shadow: 
+        0 35px 60px -12px rgba(0, 0, 0, 0.25),
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Pulse Glow Animation for Icons */
+@keyframes pulse-glow-multi {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(139, 92, 246, 0.4),
+            0 0 40px rgba(236, 72, 153, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 30px rgba(139, 92, 246, 0.6),
+            0 0 60px rgba(236, 72, 153, 0.4);
+    }
+}
+
+.pulse-glow-multi {
+    animation: pulse-glow-multi 2s ease-in-out infinite;
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+    .values-card {
+        min-height: 280px;
+    }
+    
+    .values-card:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+    
+    .newsletter-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .app-download-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .enhanced-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Loading State for Newsletter Form */
+.newsletter-form.loading input {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.newsletter-form.loading button {
+    background: linear-gradient(135deg, #9ca3af, #6b7280);
+    cursor: not-allowed;
+}
+
+.newsletter-form.loading button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
