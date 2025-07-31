@@ -36,6 +36,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -47,6 +48,7 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+
     to {
         opacity: 0;
         transform: translateY(-10px);
@@ -63,6 +65,7 @@ body {
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -78,6 +81,7 @@ body {
         transform: translateY(50px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -101,13 +105,11 @@ header .bg-gradient-to-r {
 
 /* Better background overlay for hero section */
 .hero-overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.75) 0%,
-        rgba(0, 0, 0, 0.6) 25%,
-        rgba(0, 0, 0, 0.7) 75%,
-        rgba(0, 0, 0, 0.8) 100%
-    );
+    background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0.75) 0%,
+            rgba(0, 0, 0, 0.6) 25%,
+            rgba(0, 0, 0, 0.7) 75%,
+            rgba(0, 0, 0, 0.8) 100%);
 }
 
 /* Enhanced text contrast for hero subtitle */
@@ -125,9 +127,12 @@ header .bg-gradient-to-r {
 }
 
 @keyframes gradientShift {
-    0%, 100% {
+
+    0%,
+    100% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
@@ -141,9 +146,12 @@ header .bg-gradient-to-r {
 }
 
 @keyframes floatUp {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-20px);
     }
@@ -155,9 +163,12 @@ header .bg-gradient-to-r {
 }
 
 @keyframes iconBounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.2);
     }
@@ -165,12 +176,19 @@ header .bg-gradient-to-r {
 
 /* Enhanced Scroll Indicator */
 @keyframes scrollBounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0) translateX(-50%);
     }
+
     40% {
         transform: translateY(-10px) translateX(-50%);
     }
+
     60% {
         transform: translateY(-5px) translateX(-50%);
     }
@@ -911,7 +929,7 @@ body.menu-open {
     .desktop-menu {
         gap: 1rem;
     }
-    
+
     .desktop-menu a {
         font-size: 0.9rem;
         padding: 0.5rem 0.75rem;
@@ -1351,4 +1369,105 @@ nav a.active::after {
 .trending-dishes-button {
 
     background: linear-gradient(143deg, #e91919, #18182d);
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(232, 90, 79, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(232, 90, 79, 0.8);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-particle {
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-particle:nth-child(2) {
+    animation-delay: -1s;
+}
+
+.floating-particle:nth-child(3) {
+    animation-delay: -2s;
+}
+
+.floating-particle:nth-child(4) {
+    animation-delay: -3s;
+}
+
+.floating-particle:nth-child(5) {
+    animation-delay: -4s;
+}
+
+.scroll-indicator {
+    animation: float 3s ease-in-out infinite;
+}
+
+.btn-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-shimmer:hover::before {
+    left: 100%;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
 }

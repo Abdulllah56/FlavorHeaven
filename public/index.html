@@ -86,111 +86,126 @@
     </div>
 
     <!-- Hero Section -->
-    <header class="relative h-screen overflow-hidden fade-in">
-        <!-- Background Image with Parallax Effect -->
-        <div class="absolute inset-0 bg-cover bg-center bg-fixed transform scale-105 transition-transform duration-[20s] ease-out" style="
-                background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            "></div>
+    <header class="relative h-screen overflow-hidden bg-slate-900">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 bg-cover bg-center bg-fixed transform scale-105 transition-transform duration-[20s] ease-out" 
+             style="background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+        </div>
 
-        <!-- Enhanced Gradient Overlay for Better Text Contrast -->
-        <div class="absolute inset-0 hero-overlay"></div>
-        
+        <!-- Enhanced Gradient Overlay using logo colors -->
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-slate-900/95"></div>
+
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden">
-            <!-- Floating Particles -->
-            <div class="floating-particle absolute top-1/4 left-1/4 w-3 h-3 bg-white/20 rounded-full animate-pulse"></div>
-            <div class="floating-particle absolute top-1/3 right-1/3 w-4 h-4 bg-yellow-400/30 rounded-full animate-bounce" style="animation-delay: 0.5s;"></div>
-            <div class="floating-particle absolute bottom-1/4 left-1/3 w-2 h-2 bg-red-400/40 rounded-full animate-ping" style="animation-delay: 1s;"></div>
-            <div class="floating-particle absolute top-1/2 right-1/4 w-2 h-2 bg-white/30 rounded-full animate-pulse" style="animation-delay: 1.5s;"></div>
-            <div class="floating-particle absolute bottom-1/3 right-1/2 w-3 h-3 bg-orange-400/30 rounded-full animate-bounce" style="animation-delay: 2s;"></div>
-            
+            <!-- Floating Particles with coral theme -->
+            <div class="floating-particle absolute top-1/4 left-1/4 w-3 h-3 bg-orange-400/30 rounded-full"></div>
+            <div class="floating-particle absolute top-1/3 right-1/3 w-4 h-4 bg-red-400/40 rounded-full"></div>
+            <div class="floating-particle absolute bottom-1/4 left-1/3 w-2 h-2 bg-orange-500/50 rounded-full"></div>
+            <div class="floating-particle absolute top-1/2 right-1/4 w-2 h-2 bg-red-500/40 rounded-full"></div>
+            <div class="floating-particle absolute bottom-1/3 right-1/2 w-3 h-3 bg-orange-400/40 rounded-full"></div>
+
             <!-- Geometric Shapes -->
-            <div class="absolute top-20 right-20 w-16 h-16 border border-white/10 rotate-45 animate-spin" style="animation-duration: 20s;"></div>
+            <div class="absolute top-20 right-20 w-16 h-16 border border-orange-400/20 rotate-45 animate-spin" style="animation-duration: 20s;"></div>
             <div class="absolute bottom-32 left-16 w-8 h-8 bg-gradient-to-r from-red-400/20 to-orange-400/20 rounded-full animate-pulse"></div>
+            <div class="absolute top-1/2 left-20 w-6 h-6 border-2 border-orange-300/30 rounded-full animate-ping" style="animation-duration: 3s;"></div>
+        </div>
+
+        <!-- Logo Section -->
+        <div class="absolute top-8 left-8 z-20">
+            <div class="flex items-center space-x-3">
+                <!-- Logo Icon -->
+                <div class="relative">
+                    <div class="w-12 h-8 bg-red-500 rounded-t-full relative overflow-hidden">
+                        <div class="absolute inset-x-2 top-1 h-6 bg-red-600 rounded-t-full"></div>
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-red-600 rounded-full"></div>
+                    </div>
+                    <div class="w-14 h-2 bg-red-500 rounded-full mt-0"></div>
+                    <!-- Steam -->
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                        <div class="w-1 h-4 bg-gray-300 rounded-full opacity-60 animate-pulse"></div>
+                        <div class="w-1 h-3 bg-gray-400 rounded-full opacity-40 animate-pulse ml-1 -mt-2" style="animation-delay: 0.3s;"></div>
+                    </div>
+                </div>
+                <div class="text-stone-100 font-bold text-xl tracking-wide">FLAVOR HEAVEN</div>
+            </div>
         </div>
 
         <!-- Main Content Container -->
         <div class="relative z-10 h-full flex items-center justify-center px-6">
             <div class="text-center max-w-5xl mx-auto">
                 <!-- Premium Badge -->
-                <div class="inline-flex items-center bg-black/40 backdrop-blur-md border border-white/30 rounded-full px-6 py-3 mb-8 transform hover:scale-105 transition-all duration-300 animate-fade-in-up" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);">
+                <div class="inline-flex items-center bg-slate-800/60 backdrop-blur-lg border border-stone-300/20 rounded-full px-8 py-4 mb-8 transform hover:scale-105 transition-all duration-300 fade-in-up shadow-xl">
                     <span class="w-3 h-3 bg-gradient-to-r from-red-400 to-orange-400 rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-sm font-semibold tracking-wide text-white" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">✨ PREMIUM DINING EXPERIENCE ✨</span>
+                    <span class="text-sm font-semibold tracking-widest text-stone-100">✨ PREMIUM DINING EXPERIENCE ✨</span>
                 </div>
 
-                <!-- Main Heading with Better Contrast -->
-                <div class="hero-heading mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <!-- Main Heading -->
+                <div class="mb-8 fade-in-up" style="animation-delay: 0.2s;">
                     <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 leading-tight">
-                        <span class="block text-white font-extrabold" style="text-shadow: 4px 8px 16px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.8); -webkit-text-stroke: 2px rgba(0, 0, 0, 0.5);">Welcome to</span>
-                        <span class="block bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent font-extrabold tracking-tight" style="text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8); -webkit-text-stroke: 2px rgba(0, 0, 0, 0.4); filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.7));">
+                        <span class="block text-stone-100 font-extrabold mb-2 drop-shadow-2xl">Welcome to</span>
+                        <span class="block bg-gradient-to-r from-red-400 via-orange-400 to-red-500 bg-clip-text text-transparent font-extrabold tracking-tight float-animation drop-shadow-xl">
                             Flavor Heaven
                         </span>
                     </h1>
                 </div>
 
-                <!-- Enhanced Subtitle with Better Readability -->
-                <div class="hero-subtitle text-white text-xl md:text-2xl lg:text-3xl mb-12 max-w-3xl mx-auto leading-relaxed font-light animate-fade-in-up" style="animation-delay: 0.4s;">
+                <!-- Enhanced Subtitle -->
+                <div class="text-stone-200 text-xl md:text-2xl lg:text-3xl mb-12 max-w-3xl mx-auto leading-relaxed font-light bg-slate-800/40 backdrop-blur-xl border border-stone-300/10 rounded-2xl px-8 py-6 fade-in-up shadow-2xl" style="animation-delay: 0.4s;">
                     Where culinary artistry meets exceptional taste in every bite
                 </div>
 
                 <!-- Enhanced Call-to-Action Buttons -->
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16 animate-fade-in-up" style="animation-delay: 0.6s;">
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16 fade-in-up" style="animation-delay: 0.6s;">
                     <!-- Primary Button -->
-                    <a href="menu.html" class="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-110 hover:shadow-red-500/25 focus:outline-none focus:ring-4 focus:ring-red-500/50 overflow-hidden">
-                        <!-- Button Background Animation -->
-                        <div class="absolute inset-0 bg-gradient-to-r from-red-600 via-red-700 to-red-800 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-500"></div>
-                        
-                        <!-- Button Content -->
+                    <button class="btn-shimmer group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white bg-gradient-to-r from-red-500 via-red-600 to-orange-500 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-110 hover:shadow-red-500/50 focus:outline-none focus:ring-4 focus:ring-red-400/50 overflow-hidden">
                         <span class="relative z-10 flex items-center">
                             <i class="fas fa-utensils mr-3 text-xl group-hover:rotate-12 transition-transform duration-300"></i>
                             Explore Menu
                             <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform duration-300"></i>
                         </span>
-                        
-                        <!-- Ripple Effect -->
-                        <div class="absolute inset-0 rounded-full bg-white/20 transform scale-0 group-active:scale-100 transition-transform duration-200"></div>
-                    </a>
+                    </button>
 
                     <!-- Secondary Button -->
-                    <a href="contact.html#reservation" class="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white border-2 border-white/80 rounded-full backdrop-blur-sm transform transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/50 overflow-hidden">
-                        <!-- Button Background Animation -->
-                        <div class="absolute inset-0 bg-white transform scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full"></div>
-                        
-                        <!-- Button Content -->
-                        <span class="relative z-10 flex items-center group-hover:text-gray-900">
+                    <button class="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-stone-100 bg-slate-700/30 backdrop-blur-lg border-2 border-stone-300/30 rounded-full transform transition-all duration-300 hover:bg-stone-100 hover:text-slate-800 hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-stone-300/50 overflow-hidden">
+                        <span class="relative z-10 flex items-center transition-colors duration-300">
                             <i class="fas fa-calendar-alt mr-3 text-xl group-hover:scale-110 transition-transform duration-300"></i>
                             Reserve Table
                             <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform duration-300"></i>
                         </span>
-                    </a>
+                    </button>
                 </div>
 
-                <!-- Additional Features Row -->
-                <div class="flex flex-wrap justify-center items-center gap-8 text-white/80 text-sm font-medium animate-fade-in-up" style="animation-delay: 0.8s;">
-                    <div class="flex items-center hover:text-white transition-colors duration-300">
-                        <i class="fas fa-star text-yellow-400 mr-2"></i>
+                <!-- Enhanced Features Row -->
+                <div class="flex flex-wrap justify-center items-center gap-6 text-stone-200 text-sm font-medium fade-in-up" style="animation-delay: 0.8s;">
+                    <div class="flex items-center bg-slate-700/20 backdrop-blur-sm border border-stone-300/10 rounded-full px-4 py-2 hover:bg-slate-600/30 hover:text-stone-100 transition-all duration-300 cursor-pointer transform hover:scale-105">
+                        <i class="fas fa-star text-yellow-400 mr-2 text-lg"></i>
                         <span>5-Star Rated</span>
                     </div>
-                    <div class="flex items-center hover:text-white transition-colors duration-300">
-                        <i class="fas fa-clock text-green-400 mr-2"></i>
+                    <div class="flex items-center bg-slate-700/20 backdrop-blur-sm border border-stone-300/10 rounded-full px-4 py-2 hover:bg-slate-600/30 hover:text-stone-100 transition-all duration-300 cursor-pointer transform hover:scale-105">
+                        <i class="fas fa-clock text-green-400 mr-2 text-lg"></i>
                         <span>Fast Delivery</span>
                     </div>
-                    <div class="flex items-center hover:text-white transition-colors duration-300">
-                        <i class="fas fa-leaf text-green-400 mr-2"></i>
+                    <div class="flex items-center bg-slate-700/20 backdrop-blur-sm border border-stone-300/10 rounded-full px-4 py-2 hover:bg-slate-600/30 hover:text-stone-100 transition-all duration-300 cursor-pointer transform hover:scale-105">
+                        <i class="fas fa-leaf text-emerald-400 mr-2 text-lg"></i>
                         <span>Fresh Ingredients</span>
+                    </div>
+                    <div class="flex items-center bg-slate-700/20 backdrop-blur-sm border border-stone-300/10 rounded-full px-4 py-2 hover:bg-slate-600/30 hover:text-stone-100 transition-all duration-300 cursor-pointer transform hover:scale-105">
+                        <i class="fas fa-award text-orange-400 mr-2 text-lg"></i>
+                        <span>Award Winning</span>
                     </div>
                 </div>
 
-                <!-- Animated Scroll Indicator -->
-                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer" onclick="document.querySelector('main').scrollIntoView({behavior: 'smooth'})">
-                    <div class="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center hover:border-white/70 transition-colors duration-300">
-                        <div class="w-1 h-4 bg-white/70 rounded-full mt-3 animate-pulse"></div>
+                <!-- Enhanced Scroll Indicator -->
+                <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer group" onclick="scrollToContent()">
+                    <div class="w-8 h-12 border-2 border-stone-300/50 rounded-full flex justify-center group-hover:border-stone-200/80 transition-colors duration-300 bg-slate-700/20 backdrop-blur-sm">
+                        <div class="w-1 h-4 bg-stone-200/70 rounded-full mt-3 animate-pulse group-hover:bg-stone-100 transition-colors duration-300"></div>
                     </div>
-                    <p class="text-white/60 text-xs mt-3 font-medium tracking-wide">SCROLL TO EXPLORE</p>
+                    <p class="text-stone-300/60 text-xs mt-3 font-medium tracking-widest group-hover:text-stone-200/80 transition-colors duration-300">SCROLL TO EXPLORE</p>
                 </div>
             </div>
         </div>
     </header>
+
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-16">

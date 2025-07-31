@@ -1,5 +1,5 @@
 // Navigation and UI Functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Initialize components
     initNavigation();
     initMobileMenu();
@@ -10,123 +10,126 @@ document.addEventListener('DOMContentLoaded', function() {
     initReviewsCarousel();
     init3DAnimations();
     initFormValidation();
-    
+
     // Add enhanced parallax scrolling effect
-    window.addEventListener('scroll', function() {
-        const parallaxElements = document.querySelectorAll('.parallax');
-        parallaxElements.forEach(element => {
+    window.addEventListener("scroll", function () {
+        const parallaxElements = document.querySelectorAll(".parallax");
+        parallaxElements.forEach((element) => {
             const scrollPosition = window.pageYOffset;
-            const speed = element.getAttribute('data-speed') || 0.5;
+            const speed = element.getAttribute("data-speed") || 0.5;
             element.style.transform = `translateY(${scrollPosition * speed}px)`;
         });
     });
 
     // Add scroll event listener for navbar with enhanced effects
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('nav');
+    window.addEventListener("scroll", function () {
+        const navbar = document.querySelector("nav");
         if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-            navbar.classList.remove('transparent');
+            navbar.classList.add("scrolled");
+            navbar.classList.remove("transparent");
         } else {
-            navbar.classList.remove('scrolled');
+            navbar.classList.remove("scrolled");
             if (window.innerWidth > 768) {
-                navbar.classList.add('transparent');
+                navbar.classList.add("transparent");
             }
         }
     });
 
     // Highlight the active nav link based on current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('nav a').forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
+    const currentPage =
+        window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll("nav a").forEach((link) => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
         }
     });
 
     // Add reveal class to sections
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.classList.add('reveal');
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+        section.classList.add("reveal");
     });
 
     // Add reveal class to menu items with staggered delay
-    const menuItems = document.querySelectorAll('.menu-item');
+    const menuItems = document.querySelectorAll(".menu-item");
     menuItems.forEach((item, index) => {
-        item.classList.add('reveal');
+        item.classList.add("reveal");
         item.style.transitionDelay = `${index * 0.1}s`;
     });
 
     // Add reveal class to gallery items with staggered delay
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryItems = document.querySelectorAll(".gallery-item");
     galleryItems.forEach((item, index) => {
-        item.classList.add('reveal');
+        item.classList.add("reveal");
         item.style.transitionDelay = `${index * 0.05}s`;
     });
 
     // Initial check for elements in viewport
     revealOnScroll();
-    
+
     // Apply floating animation to selected elements
-    document.querySelectorAll('.float-element').forEach(element => {
-        element.classList.add('float-animation');
+    document.querySelectorAll(".float-element").forEach((element) => {
+        element.classList.add("float-animation");
     });
-    
+
     // Apply 3D rotation to elements
-    document.querySelectorAll('.rotate-element').forEach(element => {
-        element.classList.add('rotate-3d');
+    document.querySelectorAll(".rotate-element").forEach((element) => {
+        element.classList.add("rotate-3d");
     });
 });
 
 // Initialize 3D animations and transitions
 function init3DAnimations() {
     // Apply 3D hover effects to cards
-    const cards = document.querySelectorAll('.bg-white.rounded-lg');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', function(e) {
+    const cards = document.querySelectorAll(".bg-white.rounded-lg");
+    cards.forEach((card) => {
+        card.addEventListener("mousemove", function (e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left; // x position within the element
-            const y = e.clientY - rect.top;  // y position within the element
-            
+            const y = e.clientY - rect.top; // y position within the element
+
             // Calculate rotation based on mouse position
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             const rotateY = ((x - centerX) / centerX) * 5; // Max 5 degree rotation
             const rotateX = ((centerY - y) / centerY) * 5;
-            
+
             // Apply the transform
             this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            this.style.transition = 'none'; // Remove transition during mouse move for smooth tracking
-            
+            this.style.transition = "none"; // Remove transition during mouse move for smooth tracking
+
             // Add highlight effect
             this.style.boxShadow = `0 10px 30px rgba(0, 0, 0, 0.15), 
                                    ${rotateY * -0.5}px ${rotateX * -0.5}px 20px rgba(255, 255, 255, 0.1) inset, 
                                    ${rotateY * 0.5}px ${rotateX * 0.5}px 20px rgba(0, 0, 0, 0.1) inset`;
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener("mouseleave", function () {
             // Reset transform and restore transition
-            this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-            this.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            this.style.transform =
+                "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)";
+            this.style.transition =
+                "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            this.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
         });
     });
-    
+
     // Add parallax depth effect to scrolling
-    document.addEventListener('scroll', function() {
+    document.addEventListener("scroll", function () {
         const scrollY = window.scrollY;
-        
+
         // Parallax scroll on hero section
-        const heroSection = document.querySelector('header');
+        const heroSection = document.querySelector("header");
         if (heroSection) {
-            const heroContent = heroSection.querySelector('.text-center');
+            const heroContent = heroSection.querySelector(".text-center");
             if (heroContent) {
                 heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
             }
         }
-        
+
         // Parallax scroll for gallery and other elements
-        document.querySelectorAll('.parallax-item').forEach(item => {
-            const speedFactor = item.getAttribute('data-speed') || 0.1;
+        document.querySelectorAll(".parallax-item").forEach((item) => {
+            const speedFactor = item.getAttribute("data-speed") || 0.1;
             const yPos = -(scrollY * speedFactor);
             item.style.transform = `translateY(${yPos}px)`;
         });
@@ -135,150 +138,154 @@ function init3DAnimations() {
 
 // Enhanced Navigation functionality
 function initNavigation() {
-    const nav = document.querySelector('nav');
-    const links = document.querySelectorAll('.nav-link');
+    const nav = document.querySelector("nav");
+    const links = document.querySelectorAll(".nav-link");
     let lastScroll = 0;
     let scrollTimer;
-    
+
     // Always apply a style class, even at the top - don't leave it unstyled
     if (window.scrollY <= 50) {
-        nav.classList.add('transparent');
+        nav.classList.add("transparent");
     } else {
-        nav.classList.add('scrolled');
+        nav.classList.add("scrolled");
     }
-    
+
     // Handle scroll behavior with debouncing
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
         const currentScroll = window.pageYOffset;
-        
+
         clearTimeout(scrollTimer);
-        
-        if (!nav.classList.contains('nav-scrolling')) {
-            nav.classList.add('nav-scrolling');
+
+        if (!nav.classList.contains("nav-scrolling")) {
+            nav.classList.add("nav-scrolling");
         }
-        
+
         // Add/remove nav-scrolled class
         if (currentScroll > 50) {
-            nav.classList.add('scrolled');
-            nav.classList.remove('transparent');
+            nav.classList.add("scrolled");
+            nav.classList.remove("transparent");
         } else {
-            nav.classList.remove('scrolled');
-            nav.classList.add('transparent');
+            nav.classList.remove("scrolled");
+            nav.classList.add("transparent");
         }
-        
+
         // Hide/show nav on scroll direction, but only when we're further down the page
         if (currentScroll > lastScroll && currentScroll > 300) {
-            nav.classList.add('nav-hidden');
+            nav.classList.add("nav-hidden");
         } else {
-            nav.classList.remove('nav-hidden');
+            nav.classList.remove("nav-hidden");
         }
-        
+
         lastScroll = currentScroll;
-        
+
         // Remove transition class after scroll ends
         scrollTimer = setTimeout(() => {
-            nav.classList.remove('nav-scrolling');
+            nav.classList.remove("nav-scrolling");
         }, 150);
     });
 
     // Add smooth animation to links
-    links.forEach(link => {
-        link.addEventListener('mouseenter', function() {
-            this.classList.add('pulse-animation');
+    links.forEach((link) => {
+        link.addEventListener("mouseenter", function () {
+            this.classList.add("pulse-animation");
         });
-        link.addEventListener('mouseleave', function() {
-            this.classList.remove('pulse-animation');
+        link.addEventListener("mouseleave", function () {
+            this.classList.remove("pulse-animation");
         });
     });
 }
 
 // Enhanced Mobile Menu functionality
 function initMobileMenu() {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileMenuClose = document.querySelector('.mobile-menu-close');
-    const mobileMenuItems = document.querySelectorAll('.mobile-menu-items a');
+    const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const mobileMenuClose = document.querySelector(".mobile-menu-close");
+    const mobileMenuItems = document.querySelectorAll(".mobile-menu-items a");
     const body = document.body;
 
     if (!mobileMenuToggle || !mobileMenu) return;
 
     // Ensure menu starts hidden
-    mobileMenu.classList.remove('active');
-    body.classList.remove('menu-open');
+    mobileMenu.classList.remove("active");
+    body.classList.remove("menu-open");
 
     const toggleMenu = (show) => {
         if (show) {
-            mobileMenu.classList.add('active');
-            mobileMenu.style.display = 'block';
-            body.classList.add('menu-open');
-            
+            mobileMenu.classList.add("active");
+            mobileMenu.style.display = "block";
+            body.classList.add("menu-open");
+
             // Animate menu items with staggered delay
             mobileMenuItems.forEach((item, index) => {
-                item.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
-                item.style.transform = 'translateY(20px)';
-                item.style.opacity = '0';
-                setTimeout(() => {
-                    item.style.transform = 'translateY(0)';
-                    item.style.opacity = '1';
-                }, 100 + index * 100);
+                item.style.transition =
+                    "transform 0.3s ease-out, opacity 0.3s ease-out";
+                item.style.transform = "translateY(20px)";
+                item.style.opacity = "0";
+                setTimeout(
+                    () => {
+                        item.style.transform = "translateY(0)";
+                        item.style.opacity = "1";
+                    },
+                    100 + index * 100,
+                );
             });
         } else {
-            mobileMenu.classList.remove('active');
-            body.classList.remove('menu-open');
-            
+            mobileMenu.classList.remove("active");
+            body.classList.remove("menu-open");
+
             // Reset menu items and hide menu after animation
-            mobileMenuItems.forEach(item => {
-                item.style.transform = 'translateY(20px)';
-                item.style.opacity = '0';
+            mobileMenuItems.forEach((item) => {
+                item.style.transform = "translateY(20px)";
+                item.style.opacity = "0";
             });
-            
+
             setTimeout(() => {
-                if (!mobileMenu.classList.contains('active')) {
-                    mobileMenu.style.display = 'none';
+                if (!mobileMenu.classList.contains("active")) {
+                    mobileMenu.style.display = "none";
                 }
             }, 300);
         }
     };
 
     // Toggle menu on button click
-    mobileMenuToggle.addEventListener('click', (e) => {
+    mobileMenuToggle.addEventListener("click", (e) => {
         e.stopPropagation();
-        const isOpen = mobileMenu.classList.contains('active');
+        const isOpen = mobileMenu.classList.contains("active");
         toggleMenu(!isOpen);
     });
-    
+
     // Close menu on close button click
     if (mobileMenuClose) {
-        mobileMenuClose.addEventListener('click', (e) => {
+        mobileMenuClose.addEventListener("click", (e) => {
             e.stopPropagation();
             toggleMenu(false);
         });
     }
 
     // Close menu when clicking on the overlay
-    mobileMenu.addEventListener('click', (e) => {
+    mobileMenu.addEventListener("click", (e) => {
         if (e.target === mobileMenu) {
             toggleMenu(false);
         }
     });
 
     // Handle escape key
-    document.addEventListener('keydown', (e) => {
-        const isMenuOpen = mobileMenu.classList.contains('active');
-        if (e.key === 'Escape' && isMenuOpen) {
+    document.addEventListener("keydown", (e) => {
+        const isMenuOpen = mobileMenu.classList.contains("active");
+        if (e.key === "Escape" && isMenuOpen) {
             toggleMenu(false);
         }
     });
-    
+
     // Close menu when a menu item is clicked
-    mobileMenuItems.forEach(item => {
-        item.addEventListener('click', () => {
+    mobileMenuItems.forEach((item) => {
+        item.addEventListener("click", () => {
             toggleMenu(false);
         });
     });
 
     // Ensure menu is closed on window resize to desktop
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
         if (window.innerWidth > 768) {
             toggleMenu(false);
         }
@@ -287,28 +294,31 @@ function initMobileMenu() {
 
 // Enhanced Cart functionality
 function initCart() {
-    const cartIcon = document.querySelector('.cart-icon');
-    const cartCount = document.querySelector('.cart-count');
-    const cartDropdown = document.querySelector('.cart-dropdown');
-    
+    const cartIcon = document.querySelector(".cart-icon");
+    const cartCount = document.querySelector(".cart-count");
+    const cartDropdown = document.querySelector(".cart-dropdown");
+
     if (!cartIcon || !cartCount || !cartDropdown) return;
 
     // Update cart count with animation
     const updateCartCount = () => {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const count = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-        
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const count = cart.reduce(
+            (total, item) => total + (item.quantity || 1),
+            0,
+        );
+
         // Update all cart count elements on the page
-        const cartCounts = document.querySelectorAll('.cart-count');
-        cartCounts.forEach(counter => {
+        const cartCounts = document.querySelectorAll(".cart-count");
+        cartCounts.forEach((counter) => {
             counter.textContent = count;
-            counter.style.display = 'flex';
-            counter.style.opacity = count > 0 ? '1' : '0.7';
-            
+            counter.style.display = "flex";
+            counter.style.opacity = count > 0 ? "1" : "0.7";
+
             // Add animation effect
-            counter.classList.remove('pulse-animation');
+            counter.classList.remove("pulse-animation");
             void counter.offsetWidth; // Trigger reflow
-            counter.classList.add('pulse-animation');
+            counter.classList.add("pulse-animation");
         });
     };
 
@@ -317,36 +327,36 @@ function initCart() {
 
     // Handle cart hover with delay and animation
     let timeout;
-    cartIcon.addEventListener('mouseenter', () => {
+    cartIcon.addEventListener("mouseenter", () => {
         clearTimeout(timeout);
-        cartDropdown.style.display = 'block';
+        cartDropdown.style.display = "block";
         setTimeout(() => {
-            cartDropdown.classList.add('show');
+            cartDropdown.classList.add("show");
         }, 50);
     });
 
-    cartIcon.addEventListener('mouseleave', () => {
+    cartIcon.addEventListener("mouseleave", () => {
         timeout = setTimeout(() => {
-            cartDropdown.classList.remove('show');
+            cartDropdown.classList.remove("show");
             setTimeout(() => {
-                if (!cartDropdown.classList.contains('show')) {
-                    cartDropdown.style.display = 'none';
+                if (!cartDropdown.classList.contains("show")) {
+                    cartDropdown.style.display = "none";
                 }
             }, 300);
         }, 300);
     });
 
     // Prevent closing when hovering dropdown
-    cartDropdown.addEventListener('mouseenter', () => {
+    cartDropdown.addEventListener("mouseenter", () => {
         clearTimeout(timeout);
     });
 
-    cartDropdown.addEventListener('mouseleave', () => {
+    cartDropdown.addEventListener("mouseleave", () => {
         timeout = setTimeout(() => {
-            cartDropdown.classList.remove('show');
+            cartDropdown.classList.remove("show");
             setTimeout(() => {
-                if (!cartDropdown.classList.contains('show')) {
-                    cartDropdown.style.display = 'none';
+                if (!cartDropdown.classList.contains("show")) {
+                    cartDropdown.style.display = "none";
                 }
             }, 300);
         }, 300);
@@ -354,18 +364,21 @@ function initCart() {
 
     // Load cart items from localStorage
     const loadCartItems = () => {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
         updateCartCount();
-        
+
         // Update cart dropdown content
-        const cartItems = cartDropdown.querySelector('.cart-items');
+        const cartItems = cartDropdown.querySelector(".cart-items");
         if (cartItems) {
             if (cart.length === 0) {
-                cartItems.innerHTML = '<p class="text-gray-600">Your cart is empty</p>';
+                cartItems.innerHTML =
+                    '<p class="text-gray-600">Your cart is empty</p>';
             } else {
-                cartItems.innerHTML = cart.map(item => `
+                cartItems.innerHTML = cart
+                    .map(
+                        (item) => `
                     <div class="cart-item flex items-center gap-3 mb-3 fade-in">
-                        <img src="${item.image || 'https://via.placeholder.com/150'}" alt="${item.name}" class="w-12 h-12 object-cover rounded">
+                        <img src="${item.image || "https://via.placeholder.com/150"}" alt="${item.name}" class="w-12 h-12 object-cover rounded">
                         <div class="flex-1">
                             <h4 class="font-bold text-sm">${item.name}</h4>
                             <p class="text-gray-600 text-xs">$${parseFloat(item.price).toFixed(2)} × ${item.quantity || 1}</p>
@@ -374,11 +387,17 @@ function initCart() {
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-                `).join('');
-                
+                `,
+                    )
+                    .join("");
+
                 // Calculate total
-                const total = cart.reduce((sum, item) => sum + (parseFloat(item.price) * (item.quantity || 1)), 0);
-                
+                const total = cart.reduce(
+                    (sum, item) =>
+                        sum + parseFloat(item.price) * (item.quantity || 1),
+                    0,
+                );
+
                 // Add total only (checkout button already exists in HTML)
                 cartItems.innerHTML += `
                     <div class="border-t pt-2 mt-2">
@@ -390,75 +409,76 @@ function initCart() {
             }
         }
     };
-    
+
     // Call loadCartItems initially and set up to refresh when storage changes
     loadCartItems();
-    window.addEventListener('storage', loadCartItems);
-    
+    window.addEventListener("storage", loadCartItems);
+
     // Add to cart function - make it globally available
-    window.addToCart = function(itemData) {
+    window.addToCart = function (itemData) {
         try {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
             // Handle both old and new parameter formats
             let item;
-            if (typeof itemData === 'string') {
+            if (typeof itemData === "string") {
                 // Old format: addToCart(name, price, image)
                 item = {
                     id: Date.now().toString(),
                     name: arguments[0],
                     price: parseFloat(arguments[1]) || 0,
-                    image: arguments[2] || 'https://via.placeholder.com/150',
-                    description: '',
-                    quantity: 1
+                    image: arguments[2] || "https://via.placeholder.com/150",
+                    description: "",
+                    quantity: 1,
                 };
-            } else if (itemData && typeof itemData === 'object') {
+            } else if (itemData && typeof itemData === "object") {
                 // New format: addToCart(itemObject)
                 item = {
                     id: itemData.id || Date.now().toString(),
-                    name: itemData.name || 'Unknown Item',
+                    name: itemData.name || "Unknown Item",
                     price: parseFloat(itemData.price) || 0,
-                    image: itemData.image || 'https://via.placeholder.com/150',
-                    description: itemData.description || '',
-                    quantity: itemData.quantity || 1
+                    image: itemData.image || "https://via.placeholder.com/150",
+                    description: itemData.description || "",
+                    quantity: itemData.quantity || 1,
                 };
             } else {
-                console.error('Invalid item data provided to addToCart');
+                console.error("Invalid item data provided to addToCart");
                 return;
             }
-            
+
             // Check if item already exists in cart
-            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
-            
+            const existingItemIndex = cart.findIndex(
+                (cartItem) => cartItem.name === item.name,
+            );
+
             if (existingItemIndex > -1) {
                 cart[existingItemIndex].quantity += item.quantity;
             } else {
                 cart.push(item);
             }
-            
-            localStorage.setItem('cart', JSON.stringify(cart));
+
+            localStorage.setItem("cart", JSON.stringify(cart));
             updateCartCount();
             loadCartItems();
-            
+
             // Show visual feedback
-            showNotification(`Added ${item.name} to cart!`, 'success');
-            
+            showNotification(`Added ${item.name} to cart!`, "success");
         } catch (error) {
-            console.error('Error adding item to cart:', error);
-            showNotification('Error adding item to cart', 'error');
+            console.error("Error adding item to cart:", error);
+            showNotification("Error adding item to cart", "error");
         }
-    }
-    
+    };
+
     // Helper function for notifications
-    function showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+    function showNotification(message, type = "success") {
+        const notification = document.createElement("div");
+        const bgColor = type === "success" ? "bg-green-500" : "bg-red-500";
         notification.className = `fixed top-20 right-5 ${bgColor} text-white p-3 rounded-lg shadow-lg z-50 fade-in`;
         notification.innerHTML = `<p>${message}</p>`;
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
-            notification.classList.add('fade-out');
+            notification.classList.add("fade-out");
             setTimeout(() => {
                 if (document.body.contains(notification)) {
                     document.body.removeChild(notification);
@@ -469,120 +489,123 @@ function initCart() {
 }
 
 // Make removeFromCart globally available
-window.removeFromCart = function(itemId) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const updatedCart = cart.filter(item => item.id !== itemId);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    
+window.removeFromCart = function (itemId) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const updatedCart = cart.filter((item) => item.id !== itemId);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
     // Update UI components
-    const cartIcon = document.querySelector('.cart-icon');
+    const cartIcon = document.querySelector(".cart-icon");
     if (cartIcon) {
-        const cartDropdown = cartIcon.querySelector('.cart-dropdown');
+        const cartDropdown = cartIcon.querySelector(".cart-dropdown");
         if (cartDropdown) {
             // Re-initialize cart functionality
             initCart();
         }
     }
-    
+
     // Update cart count
-    const cartCount = document.querySelector('.cart-count');
+    const cartCount = document.querySelector(".cart-count");
     if (cartCount) {
-        const count = updatedCart.reduce((total, item) => total + (item.quantity || 1), 0);
+        const count = updatedCart.reduce(
+            (total, item) => total + (item.quantity || 1),
+            0,
+        );
         cartCount.textContent = count;
-        cartCount.style.display = count > 0 ? 'flex' : 'none';
+        cartCount.style.display = count > 0 ? "flex" : "none";
     }
-    
+
     // Trigger storage event for other pages
-    window.dispatchEvent(new Event('storage'));
-}
+    window.dispatchEvent(new Event("storage"));
+};
 
 // Enhanced carousel functionality
 function initCarousel() {
-    const carousel = document.querySelector('.carousel');
+    const carousel = document.querySelector(".carousel");
     if (!carousel) return;
-    
-    const carouselInner = carousel.querySelector('.carousel-inner');
-    const slides = carousel.querySelectorAll('.carousel-item');
+
+    const carouselInner = carousel.querySelector(".carousel-inner");
+    const slides = carousel.querySelectorAll(".carousel-item");
     const slideCount = slides.length;
     let currentSlide = 0;
     let autoPlayTimer;
-    
+
     // Get existing navigation buttons
-    const prevButton = carousel.querySelector('.carousel-prev');
-    const nextButton = carousel.querySelector('.carousel-next');
-    const dots = carousel.querySelectorAll('.carousel-dot');
-    
+    const prevButton = carousel.querySelector(".carousel-prev");
+    const nextButton = carousel.querySelector(".carousel-next");
+    const dots = carousel.querySelectorAll(".carousel-dot");
+
     function goToSlide(index) {
         currentSlide = index;
-        
+
         // Update carousel position with smooth transition
         carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
-        
+
         // Update dots
         dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentSlide);
+            dot.classList.toggle("active", i === currentSlide);
         });
-        
+
         // Reset autoplay timer
         if (autoPlayTimer) {
             clearTimeout(autoPlayTimer);
             startAutoPlay();
         }
     }
-    
+
     function nextSlide() {
         goToSlide((currentSlide + 1) % slideCount);
     }
-    
+
     function prevSlide() {
         goToSlide((currentSlide - 1 + slideCount) % slideCount);
     }
-    
+
     function startAutoPlay() {
         autoPlayTimer = setTimeout(() => {
             nextSlide();
             startAutoPlay();
         }, 5000); // Change slide every 5 seconds
     }
-    
+
     function stopAutoPlay() {
         clearTimeout(autoPlayTimer);
     }
-    
+
     // Add event listeners to navigation buttons
     if (prevButton) {
-        prevButton.addEventListener('click', prevSlide);
+        prevButton.addEventListener("click", prevSlide);
     }
-    
+
     if (nextButton) {
-        nextButton.addEventListener('click', nextSlide);
+        nextButton.addEventListener("click", nextSlide);
     }
-    
+
     // Add event listeners to dots
     dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => goToSlide(index));
+        dot.addEventListener("click", () => goToSlide(index));
     });
-    
+
     // Initialize autoplay
     startAutoPlay();
-    
+
     // Pause autoplay on hover
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', startAutoPlay);
-    
+    carousel.addEventListener("mouseenter", stopAutoPlay);
+    carousel.addEventListener("mouseleave", startAutoPlay);
+
     // Handle touch events for mobile
     let touchStartX = 0;
     let touchEndX = 0;
-    
-    carousel.addEventListener('touchstart', (e) => {
+
+    carousel.addEventListener("touchstart", (e) => {
         touchStartX = e.changedTouches[0].screenX;
     });
-    
-    carousel.addEventListener('touchend', (e) => {
+
+    carousel.addEventListener("touchend", (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     });
-    
+
     function handleSwipe() {
         const swipeThreshold = 50;
         if (touchEndX < touchStartX - swipeThreshold) {
@@ -595,52 +618,52 @@ function initCarousel() {
 
 // Initialize infinite reviews carousel
 function initReviewsCarousel() {
-    const reviewsCarousel = document.querySelector('.reviews-carousel');
+    const reviewsCarousel = document.querySelector(".reviews-carousel");
     if (!reviewsCarousel) return;
-    
-    const reviewItems = reviewsCarousel.querySelectorAll('.review-item');
+
+    const reviewItems = reviewsCarousel.querySelectorAll(".review-item");
     const totalItems = reviewItems.length / 2; // Since we duplicated items
     let currentPosition = 0;
     const itemWidth = 336; // 320px width + 16px margin
     const speed = 1; // Pixels per frame
     let animationId;
     let isPaused = false;
-    
+
     function animate() {
         if (!isPaused) {
             currentPosition -= speed;
-            
+
             // Reset position when we've scrolled through all original items
             if (Math.abs(currentPosition) >= itemWidth * totalItems) {
                 currentPosition = 0;
             }
-            
+
             reviewsCarousel.style.transform = `translateX(${currentPosition}px)`;
         }
-        
+
         animationId = requestAnimationFrame(animate);
     }
-    
+
     function pauseAnimation() {
         isPaused = true;
     }
-    
+
     function resumeAnimation() {
         isPaused = false;
     }
-    
+
     // Start the animation
     animate();
-    
+
     // Pause on hover
-    const container = document.querySelector('.reviews-carousel-container');
+    const container = document.querySelector(".reviews-carousel-container");
     if (container) {
-        container.addEventListener('mouseenter', pauseAnimation);
-        container.addEventListener('mouseleave', resumeAnimation);
+        container.addEventListener("mouseenter", pauseAnimation);
+        container.addEventListener("mouseleave", resumeAnimation);
     }
-    
+
     // Pause when tab is not visible
-    document.addEventListener('visibilitychange', () => {
+    document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
             pauseAnimation();
         } else {
@@ -651,53 +674,53 @@ function initReviewsCarousel() {
 
 // Enhanced Newsletter Popup functionality
 function initNewsletterPopup() {
-    const popup = document.querySelector('.newsletter-popup');
-    const overlay = document.querySelector('.popup-overlay');
-    const closeBtn = document.querySelector('.close-popup');
-    
+    const popup = document.querySelector(".newsletter-popup");
+    const overlay = document.querySelector(".popup-overlay");
+    const closeBtn = document.querySelector(".close-popup");
+
     if (!popup || !overlay || !closeBtn) return;
-    
+
     const showPopup = () => {
-        overlay.style.display = 'block';
-        popup.style.display = 'block';
-        
+        overlay.style.display = "block";
+        popup.style.display = "block";
+
         setTimeout(() => {
-            overlay.classList.add('show');
-            popup.classList.add('show');
-            popup.classList.add('pulse-animation');
+            overlay.classList.add("show");
+            popup.classList.add("show");
+            popup.classList.add("pulse-animation");
         }, 50);
     };
-    
+
     const hidePopup = () => {
-        popup.classList.remove('show');
-        overlay.classList.remove('show');
-        
+        popup.classList.remove("show");
+        overlay.classList.remove("show");
+
         setTimeout(() => {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
+            popup.style.display = "none";
+            overlay.style.display = "none";
         }, 300);
     };
-    
+
     // Show popup after 5 seconds
-    if (!localStorage.getItem('popupShown')) {
+    if (!localStorage.getItem("popupShown")) {
         setTimeout(showPopup, 5000);
     }
-    
+
     // Close popup on close button click
-    closeBtn.addEventListener('click', () => {
+    closeBtn.addEventListener("click", () => {
         hidePopup();
-        localStorage.setItem('popupShown', 'true');
+        localStorage.setItem("popupShown", "true");
     });
-    
+
     // Close popup on overlay click
-    overlay.addEventListener('click', hidePopup);
-    
+    overlay.addEventListener("click", hidePopup);
+
     // Handle form submission
-    const form = popup.querySelector('form');
+    const form = popup.querySelector("form");
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener("submit", (e) => {
             e.preventDefault();
-            
+
             const emailInput = form.querySelector('input[type="email"]');
             if (emailInput && emailInput.value) {
                 // Simulate submission success
@@ -708,9 +731,9 @@ function initNewsletterPopup() {
                         <p>Your discount code: WELCOME10</p>
                     </div>
                 `;
-                
-                localStorage.setItem('popupShown', 'true');
-                
+
+                localStorage.setItem("popupShown", "true");
+
                 setTimeout(hidePopup, 3000);
             }
         });
@@ -720,68 +743,83 @@ function initNewsletterPopup() {
 // Form validation for the newsletter form
 function initFormValidation() {
     // Get all forms on the page
-    const forms = document.querySelectorAll('form');
-    
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+    const forms = document.querySelectorAll("form");
+
+    forms.forEach((form) => {
+        form.addEventListener("submit", function (e) {
             let hasError = false;
-            
+
             // Check all required inputs
-            const requiredInputs = form.querySelectorAll('[required]');
-            requiredInputs.forEach(input => {
+            const requiredInputs = form.querySelectorAll("[required]");
+            requiredInputs.forEach((input) => {
                 const errorMsg = input.nextElementSibling;
-                
+
                 if (!input.value.trim()) {
                     e.preventDefault();
-                    input.classList.add('border-red-500');
+                    input.classList.add("border-red-500");
                     hasError = true;
-                    
+
                     // Add error message if it doesn't exist
-                    if (!errorMsg || !errorMsg.classList.contains('text-red-500')) {
-                        const msg = document.createElement('p');
-                        msg.className = 'text-red-500 text-sm mt-1';
-                        msg.textContent = 'This field is required';
+                    if (
+                        !errorMsg ||
+                        !errorMsg.classList.contains("text-red-500")
+                    ) {
+                        const msg = document.createElement("p");
+                        msg.className = "text-red-500 text-sm mt-1";
+                        msg.textContent = "This field is required";
                         input.parentNode.insertBefore(msg, input.nextSibling);
                     }
                 } else {
-                    input.classList.remove('border-red-500');
+                    input.classList.remove("border-red-500");
                     // Remove error message if it exists
-                    if (errorMsg && errorMsg.classList.contains('text-red-500')) {
+                    if (
+                        errorMsg &&
+                        errorMsg.classList.contains("text-red-500")
+                    ) {
                         errorMsg.remove();
                     }
-                    
+
                     // Validate email format if input is email
-                    if (input.type === 'email' && !validateEmail(input.value)) {
+                    if (input.type === "email" && !validateEmail(input.value)) {
                         e.preventDefault();
-                        input.classList.add('border-red-500');
+                        input.classList.add("border-red-500");
                         hasError = true;
-                        
-                        if (!errorMsg || !errorMsg.classList.contains('text-red-500')) {
-                            const msg = document.createElement('p');
-                            msg.className = 'text-red-500 text-sm mt-1';
-                            msg.textContent = 'Please enter a valid email address';
-                            input.parentNode.insertBefore(msg, input.nextSibling);
+
+                        if (
+                            !errorMsg ||
+                            !errorMsg.classList.contains("text-red-500")
+                        ) {
+                            const msg = document.createElement("p");
+                            msg.className = "text-red-500 text-sm mt-1";
+                            msg.textContent =
+                                "Please enter a valid email address";
+                            input.parentNode.insertBefore(
+                                msg,
+                                input.nextSibling,
+                            );
                         }
                     }
                 }
             });
-            
+
             // Show success message if no errors
-            if (!hasError && form.classList.contains('newsletter-form')) {
+            if (!hasError && form.classList.contains("newsletter-form")) {
                 e.preventDefault();
-                const successMsg = document.createElement('div');
-                successMsg.className = 'text-green-500 text-center py-2 fade-in';
-                successMsg.innerHTML = '<p>Thank you for subscribing!</p>';
-                
-                form.innerHTML = '';
+                const successMsg = document.createElement("div");
+                successMsg.className =
+                    "text-green-500 text-center py-2 fade-in";
+                successMsg.innerHTML = "<p>Thank you for subscribing!</p>";
+
+                form.innerHTML = "";
                 form.appendChild(successMsg);
             }
         });
     });
-    
+
     // Email validation function
     function validateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re =
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
 }
@@ -790,68 +828,71 @@ function initFormValidation() {
 function loadFeaturedItems() {
     const featuredItems = [
         {
-            name: 'Zinger Burger',
-            description: 'Crispy chicken patty with fresh lettuce and mayo.',
+            name: "Zinger Burger",
+            description: "Crispy chicken patty with fresh lettuce and mayo.",
             price: 5.99,
-            image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'
+            image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
         },
         {
-            name: 'Biryani',
-            description: 'Aromatic rice with tender chicken and spices.',
+            name: "Biryani",
+            description: "Aromatic rice with tender chicken and spices.",
             price: 7.99,
-            image: 'https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg'
+            image: "https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg",
         },
         {
-            name: 'Chocolate Cake',
-            description: 'Rich and moist chocolate cake with frosting.',
+            name: "Chocolate Cake",
+            description: "Rich and moist chocolate cake with frosting.",
             price: 4.99,
-            image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'
+            image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
         },
         {
-            name: 'Pizza',
-            description: 'Cheesy pizza with fresh toppings and herbs.',
+            name: "Pizza",
+            description: "Cheesy pizza with fresh toppings and herbs.",
             price: 8.99,
-            image: 'https://homemadecuisine.biz/wp-content/uploads/2020/06/Gluten-Free-Medium-Pizza.jpg?x33130'
+            image: "https://homemadecuisine.biz/wp-content/uploads/2020/06/Gluten-Free-Medium-Pizza.jpg?x33130",
         },
         {
-            name: 'Pasta',
-            description: 'Creamy Alfredo pasta with chicken and herbs.',
+            name: "Pasta",
+            description: "Creamy Alfredo pasta with chicken and herbs.",
             price: 6.99,
-            image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+            image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
         },
         {
-            name: 'Ice Cream',
-            description: 'Delicious vanilla ice cream with toppings.',
+            name: "Ice Cream",
+            description: "Delicious vanilla ice cream with toppings.",
             price: 3.99,
-            image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80'
-        }
+            image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80",
+        },
     ];
-    
+
     // Get trending dishes container
-    const trendingContainer = document.querySelector('#trending-dishes .grid');
-    
+    const trendingContainer = document.querySelector("#trending-dishes .grid");
+
     if (trendingContainer) {
         // Clear container first if needed
         // trendingContainer.innerHTML = '';
-        
+
         // Update card images to fix the duplicated image issues
-        const cards = trendingContainer.querySelectorAll('.bg-white');
+        const cards = trendingContainer.querySelectorAll(".bg-white");
         if (cards.length === featuredItems.length) {
             cards.forEach((card, index) => {
-                const img = card.querySelector('img');
+                const img = card.querySelector("img");
                 if (img && featuredItems[index]) {
                     img.src = featuredItems[index].image;
-                    
+
                     // Update add to cart button to use our enhanced function
-                    const button = card.querySelector('button');
+                    const button = card.querySelector("button");
                     if (button) {
-                        button.setAttribute('onclick', `addToCart({
+                        button.setAttribute(
+                            "onclick",
+                            `addToCart({
                             name: '${featuredItems[index].name}',
                             price: ${featuredItems[index].price},
                             image: '${featuredItems[index].image}',
                             description: '${featuredItems[index].description}',
                             quantity: 1
-                        })`);
+                        })`,
+                        );
                     }
                 }
             });
@@ -861,21 +902,58 @@ function loadFeaturedItems() {
 
 // Enhanced scroll reveal functionality
 function revealOnScroll() {
-    const elements = document.querySelectorAll('.reveal');
+    const elements = document.querySelectorAll(".reveal");
     const windowHeight = window.innerHeight;
-    
-    elements.forEach(element => {
+
+    elements.forEach((element) => {
         const elementTop = element.getBoundingClientRect().top;
         const elementVisible = 150;
-        
+
         if (elementTop < windowHeight - elementVisible) {
-            element.classList.add('active');
+            element.classList.add("active");
         } else {
-            element.classList.remove('active');
+            element.classList.remove("active");
         }
     });
 }
 
 // Call revealOnScroll on load and scroll
-window.addEventListener('load', revealOnScroll);
-window.addEventListener('scroll', revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+window.addEventListener("scroll", revealOnScroll);
+
+function scrollToContent() {
+    document.querySelector("main").scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+    });
+}
+
+// Add staggered animation delays
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".fade-in-up");
+    elements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.2}s`;
+    });
+});
+
+// Add click ripple effect to buttons
+document.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", function (e) {
+        let ripple = document.createElement("span");
+        let rect = this.getBoundingClientRect();
+        let size = Math.max(rect.width, rect.height);
+        let x = e.clientX - rect.left - size / 2;
+        let y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + "px";
+        ripple.style.left = x + "px";
+        ripple.style.top = y + "px";
+        ripple.classList.add("ripple");
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+});
