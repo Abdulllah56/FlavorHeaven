@@ -79,6 +79,39 @@ const menuData = {
             dietary: ['vegetarian'],
             spicy: false,
             popular: false
+        },
+        {
+            id: 'nihari-1',
+            name: 'Beef Nihari',
+            description: 'Traditional Pakistani slow-cooked beef stew with aromatic spices, garnished with fresh ginger and cilantro',
+            price: 19.99,
+            image: 'https://www.masala.tv/wp-content/uploads/2020/09/Beef-Nihari.jpg',
+            category: 'main-dishes',
+            dietary: ['spicy'],
+            spicy: true,
+            popular: false
+        },
+        {
+            id: 'karahi-1',
+            name: 'Chicken Karahi',
+            description: 'Spicy Pakistani chicken curry cooked in a wok with tomatoes, green chilies, and freshly ground spices',
+            price: 17.99,
+            image: 'https://www.masala.tv/wp-content/uploads/2021/08/Chicken-Karahi.jpg',
+            category: 'main-dishes',
+            dietary: ['spicy'],
+            spicy: true,
+            popular: true
+        },
+        {
+            id: 'haleem-1',
+            name: 'Haleem',
+            description: 'Slow-cooked Pakistani stew with wheat, lentils, and tender shredded meat, topped with fried onions and lemon',
+            price: 16.99,
+            image: 'https://www.masala.tv/wp-content/uploads/2021/07/Haleem.jpg',
+            category: 'main-dishes',
+            dietary: ['spicy'],
+            spicy: true,
+            popular: false
         }
     ],
     'fast-food': [
@@ -410,9 +443,9 @@ function createMenuItemHTML(item) {
     return `
         <div class="menu-item-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer" data-id="${item.id}">
             <div class="relative overflow-hidden h-48">
-                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition duration-300 hover:scale-110" loading="lazy">
+                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition duration-300 hover:scale-110" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop&crop=center';" style="display: block;">
                 ${item.popular ? '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">Popular</div>' : ''}
-                <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300"></div>
+                <div class="absolute  hover:bg-opacity-10 transition-all duration-300"></div>
             </div>
             <div class="p-4">
                 <div class="flex justify-between items-start mb-2">
@@ -668,275 +701,275 @@ function setupMobileMenu() {
     }
 }
 
-/**
- * Load menu items from the server or create sample items
- */
-// function loadMenuItems() {
-//     const menuItemsContainer = document.getElementById('menu-items');
-//     if (!menuItemsContainer) return;
 
-//     // Clear loading message
-//     menuItemsContainer.innerHTML = '';
+//  * Load menu items from the server or create sample items
+//  */
+// // function loadMenuItems() {
+// //     const menuItemsContainer = document.getElementById('menu-items');
+// //     if (!menuItemsContainer) return;
 
-//     // Try to fetch menu items from the server
-//     fetch('/api/menu')
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Network response was not ok');
-//             }
-//             return response.json();
-//         })
-//         .then(menuItems => {
-//             if (menuItems && menuItems.length > 0) {
-//                 // Render menu items from the server
-//                 renderMenuItems(menuItems);
-//             } else {
-//                 // If no items returned, create sample items
-//                 createSampleMenuItems();
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error fetching menu items:', error);
-//             // Create sample menu items if fetch fails
-//             createSampleMenuItems();
-//         });
-// }
+// //     // Clear loading message
+// //     menuItemsContainer.innerHTML = '';
 
-/**
- * Create sample menu items for demonstration
- */
-// function createSampleMenuItems() {
-//     // Menu items data
-//     const menuItems = [
-//         // Starters
-//         {
-//             id: 1,
-//             name: "Caesar Salad",
-//             description: "Crisp romaine lettuce with parmesan cheese and croutons",
-//             price: 12.99,
-//             category: "starters",
-//             image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
-//         {
-//             id: 2,
-//             name: "Buffalo Wings",
-//             description: "Crispy chicken wings tossed in spicy buffalo sauce",
-//             price: 14.99,
-//             category: "starters",
-//             image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["spicy"]
-//         },
-//         {
-//             id: 3,
-//             name: "Garlic Bread",
-//             description: "Toasted bread with garlic butter and herbs",
-//             price: 8.99,
-//             category: "starters",
-//             image: "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
-//         {
-//             id: 4,
-//             name: "Mozzarella Sticks",
-//             description: "Golden fried mozzarella with marinara sauce",
-//             price: 10.99,
-//             category: "starters",
-//             image: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
-//         {
-//             id: 5,
-//             name: "Greek Salad",
-//             description: "Fresh vegetables with feta cheese and olives",
-//             price: 13.99,
-//             category: "starters",
-//             image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian", "gluten-free"]
-//         },
-//         {
-//             id: 6,
-//             name: "Stuffed Mushrooms",
-//             description: "Portobello mushrooms stuffed with cheese and herbs",
-//             price: 11.99,
-//             category: "starters",
-//             image: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
+// //     // Try to fetch menu items from the server
+// //     fetch('/api/menu')
+// //         .then(response => {
+// //             if (!response.ok) {
+// //                 throw new Error('Network response was not ok');
+// //             }
+// //             return response.json();
+// //         })
+// //         .then(menuItems => {
+// //             if (menuItems && menuItems.length > 0) {
+// //                 // Render menu items from the server
+// //                 renderMenuItems(menuItems);
+// //             } else {
+// //                 // If no items returned, create sample items
+// //                 createSampleMenuItems();
+// //             }
+// //         })
+// //         .catch(error => {
+// //             console.error('Error fetching menu items:', error);
+// //             // Create sample menu items if fetch fails
+// //             createSampleMenuItems();
+// //         });
+// // }
 
-//         // Main Dishes
-//         {
-//             id: 7,
-//             name: "Grilled Salmon",
-//             description: "Fresh Atlantic salmon grilled to perfection with herbs and lemon",
-//             price: 24.99,
-//             category: "main-dishes",
-//             image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["gluten-free"],
-//             popular: true
-//         },
-//         {
-//             id: 8,
-//             name: "Ribeye Steak",
-//             description: "Prime ribeye steak cooked to your preference",
-//             price: 32.99,
-//             category: "main-dishes",
-//             image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["gluten-free"]
-//         },
-//         {
-//             id: 9,
-//             name: "Chicken Parmesan",
-//             description: "Breaded chicken breast with marinara and mozzarella",
-//             price: 19.99,
-//             category: "main-dishes",
-//             image: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=400&h=300&fit=crop&crop=center",
-//             dietary: []
-//         },
-//         {
-//             id: 10,
-//             name: "Vegetarian Pasta",
-//             description: "Fresh pasta with seasonal vegetables and herbs",
-//             price: 16.99,
-//             category: "main-dishes",
-//             image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
-//         {
-//             id: 11,
-//             name: "BBQ Ribs",
-//             description: "Slow-cooked ribs with our signature BBQ sauce",
-//             price: 26.99,
-//             category: "main-dishes",
-//             image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["spicy"]
-//         },
-//         {
-//             id: 12,
-//             name: "Fish Tacos",
-//             description: "Grilled fish with fresh salsa in corn tortillas",
-//             price: 18.99,
-//             category: "main-dishes",
-//             image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["gluten-free"]
-//         },
+// /**
+//  * Create sample menu items for demonstration
+//  */
+// // function createSampleMenuItems() {
+// //     // Menu items data
+// //     const menuItems = [
+// //         // Starters
+// //         {
+// //             id: 1,
+// //             name: "Caesar Salad",
+// //             description: "Crisp romaine lettuce with parmesan cheese and croutons",
+// //             price: 12.99,
+// //             category: "starters",
+// //             image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
+// //         {
+// //             id: 2,
+// //             name: "Buffalo Wings",
+// //             description: "Crispy chicken wings tossed in spicy buffalo sauce",
+// //             price: 14.99,
+// //             category: "starters",
+// //             image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["spicy"]
+// //         },
+// //         {
+// //             id: 3,
+// //             name: "Garlic Bread",
+// //             description: "Toasted bread with garlic butter and herbs",
+// //             price: 8.99,
+// //             category: "starters",
+// //             image: "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
+// //         {
+// //             id: 4,
+// //             name: "Mozzarella Sticks",
+// //             description: "Golden fried mozzarella with marinara sauce",
+// //             price: 10.99,
+// //             category: "starters",
+// //             image: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
+// //         {
+// //             id: 5,
+// //             name: "Greek Salad",
+// //             description: "Fresh vegetables with feta cheese and olives",
+// //             price: 13.99,
+// //             category: "starters",
+// //             image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian", "gluten-free"]
+// //         },
+// //         {
+// //             id: 6,
+// //             name: "Stuffed Mushrooms",
+// //             description: "Portobello mushrooms stuffed with cheese and herbs",
+// //             price: 11.99,
+// //             category: "starters",
+// //             image: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
 
-//         // Fast Food
-//         {
-//             id: 13,
-//             name: "Classic Burger",
-//             description: "Beef patty with lettuce, tomato, and special sauce",
-//             price: 13.99,
-//             category: "fast-food",
-//             image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop&crop=center",
-//             dietary: []
-//         },
-//         {
-//             id: 14,
-//             name: "Chicken Sandwich",
-//             description: "Crispy chicken breast with pickles and mayo",
-//             price: 12.99,
-//             category: "fast-food",
-//             image: "https://images.unsplash.com/photo-1606755962773-d324e2d63c40?w=400&h=300&fit=crop&crop=center",
-//             dietary: []
-//         },
-//         {
-//             id: 15,
-//             name: "Loaded Fries",
-//             description: "French fries topped with cheese, bacon, and sour cream",
-//             price: 9.99,
-//             category: "fast-food",
-//             image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=300&fit=crop&crop=center",
-//             dietary: []
-//         },
-//         {
-//             id: 16,
-//             name: "Veggie Burger",
-//             description: "Plant-based patty with avocado and sprouts",
-//             price: 14.99,
-//             category: "fast-food",
-//             image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian", "vegan"]
-//         },
-//         {
-//             id: 17,
-//             name: "Hot Dog",
-//             description: "All-beef hot dog with your choice of toppings",
-//             price: 8.99,
-//             category: "fast-food",
-//             image: "https://images.unsplash.com/photo-1612392062798-2dbda12c2d3d?w=400&h=300&fit=crop&crop=center",
-//             dietary: []
-//         },
-//         {
-//             id: 18,
-//             name: "Onion Rings",
-//             description: "Beer-battered onion rings served golden brown",
-//             price: 7.99,
-//             category: "fast-food",
-//             image: "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
+// //         // Main Dishes
+// //         {
+// //             id: 7,
+// //             name: "Grilled Salmon",
+// //             description: "Fresh Atlantic salmon grilled to perfection with herbs and lemon",
+// //             price: 24.99,
+// //             category: "main-dishes",
+// //             image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["gluten-free"],
+// //             popular: true
+// //         },
+// //         {
+// //             id: 8,
+// //             name: "Ribeye Steak",
+// //             description: "Prime ribeye steak cooked to your preference",
+// //             price: 32.99,
+// //             category: "main-dishes",
+// //             image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["gluten-free"]
+// //         },
+// //         {
+// //             id: 9,
+// //             name: "Chicken Parmesan",
+// //             description: "Breaded chicken breast with marinara and mozzarella",
+// //             price: 19.99,
+// //             category: "main-dishes",
+// //             image: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=400&h=300&fit=crop&crop=center",
+// //             dietary: []
+// //         },
+// //         {
+// //             id: 10,
+// //             name: "Vegetarian Pasta",
+// //             description: "Fresh pasta with seasonal vegetables and herbs",
+// //             price: 16.99,
+// //             category: "main-dishes",
+// //             image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
+// //         {
+// //             id: 11,
+// //             name: "BBQ Ribs",
+// //             description: "Slow-cooked ribs with our signature BBQ sauce",
+// //             price: 26.99,
+// //             category: "main-dishes",
+// //             image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["spicy"]
+// //         },
+// //         {
+// //             id: 12,
+// //             name: "Fish Tacos",
+// //             description: "Grilled fish with fresh salsa in corn tortillas",
+// //             price: 18.99,
+// //             category: "main-dishes",
+// //             image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["gluten-free"]
+// //         },
 
-//         // Desserts
-//         {
-//             id: 19,
-//             name: "Chocolate Cake",
-//             description: "Decadent chocolate cake with rich frosting",
-//             price: 8.99,
-//             category: "desserts",
-//             image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
-//         {
-//             id: 20,
-//             name: "Cheesecake",
-//             description: "New York style cheesecake with berry compote",
-//             price: 9.99,
-//             category: "desserts",
-//             image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
-//         {
-//             id: 21,
-//             name: "Ice Cream Sundae",
-//             description: "Vanilla ice cream with chocolate sauce and whipped cream",
-//             price: 6.99,
-//             category: "desserts",
-//             image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian", "gluten-free"]
-//         },
-//         {
-//             id: 22,
-//             name: "Apple Pie",
-//             description: "Homemade apple pie with cinnamon and vanilla ice cream",
-//             price: 7.99,
-//             category: "desserts",
-//             image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
-//         {
-//             id: 23,
-//             name: "Tiramisu",
-//             description: "Classic Italian dessert with coffee and mascarpone",
-//             price: 10.99,
-//             category: "desserts",
-//             image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian"]
-//         },
-//         {
-//             id: 24,
-//             name: "Fruit Tart",
-//             description: "Fresh seasonal fruits on vanilla custard",
-//             price: 8.99,
-//             category: "desserts",
-//             image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=crop&crop=center",
-//             dietary: ["vegetarian", "gluten-free"]
-//         }
-//     ];
+// //         // Fast Food
+// //         {
+// //             id: 13,
+// //             name: "Classic Burger",
+// //             description: "Beef patty with lettuce, tomato, and special sauce",
+// //             price: 13.99,
+// //             category: "fast-food",
+// //             image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop&crop=center",
+// //             dietary: []
+// //         },
+// //         {
+// //             id: 14,
+// //             name: "Chicken Sandwich",
+// //             description: "Crispy chicken breast with pickles and mayo",
+// //             price: 12.99,
+// //             category: "fast-food",
+// //             image: "https://images.unsplash.com/photo-1606755962773-d324e2d63c40?w=400&h=300&fit=crop&crop=center",
+// //             dietary: []
+// //         },
+// //         {
+// //             id: 15,
+// //             name: "Loaded Fries",
+// //             description: "French fries topped with cheese, bacon, and sour cream",
+// //             price: 9.99,
+// //             category: "fast-food",
+// //             image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=300&fit=crop&crop=center",
+// //             dietary: []
+// //         },
+// //         {
+// //             id: 16,
+// //             name: "Veggie Burger",
+// //             description: "Plant-based patty with avocado and sprouts",
+// //             price: 14.99,
+// //             category: "fast-food",
+// //             image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian", "vegan"]
+// //         },
+// //         {
+// //             id: 17,
+// //             name: "Hot Dog",
+// //             description: "All-beef hot dog with your choice of toppings",
+// //             price: 8.99,
+// //             category: "fast-food",
+// //             image: "https://images.unsplash.com/photo-1612392062798-2dbda12c2d3d?w=400&h=300&fit=crop&crop=center",
+// //             dietary: []
+// //         },
+// //         {
+// //             id: 18,
+// //             name: "Onion Rings",
+// //             description: "Beer-battered onion rings served golden brown",
+// //             price: 7.99,
+// //             category: "fast-food",
+// //             image: "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
 
-//     // Render the sample menu items
-//     renderMenuItems(menuItems);
-// }
+// //         // Desserts
+// //         {
+// //             id: 19,
+// //             name: "Chocolate Cake",
+// //             description: "Decadent chocolate cake with rich frosting",
+// //             price: 8.99,
+// //             category: "desserts",
+// //             image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
+// //         {
+// //             id: 20,
+// //             name: "Cheesecake",
+// //             description: "New York style cheesecake with berry compote",
+// //             price: 9.99,
+// //             category: "desserts",
+// //             image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
+// //         {
+// //             id: 21,
+// //             name: "Ice Cream Sundae",
+// //             description: "Vanilla ice cream with chocolate sauce and whipped cream",
+// //             price: 6.99,
+// //             category: "desserts",
+// //             image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian", "gluten-free"]
+// //         },
+// //         {
+// //             id: 22,
+// //             name: "Apple Pie",
+// //             description: "Homemade apple pie with cinnamon and vanilla ice cream",
+// //             price: 7.99,
+// //             category: "desserts",
+// //             image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
+// //         {
+// //             id: 23,
+// //             name: "Tiramisu",
+// //             description: "Classic Italian dessert with coffee and mascarpone",
+// //             price: 10.99,
+// //             category: "desserts",
+// //             image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian"]
+// //         },
+// //         {
+// //             id: 24,
+// //             name: "Fruit Tart",
+// //             description: "Fresh seasonal fruits on vanilla custard",
+// //             price: 8.99,
+// //             category: "desserts",
+// //             image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=crop&crop=center",
+// //             dietary: ["vegetarian", "gluten-free"]
+// //         }
+// //     ];
+
+// //     // Render the sample menu items
+// //     renderMenuItems(menuItems);
+// // }
 
 /**
  * Render menu items to the page

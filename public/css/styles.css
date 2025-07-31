@@ -1079,10 +1079,12 @@ nav a.active::after {
 }
 
 /* Trending Dishes Section */
-#trending-dishes .group {
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
+#trending-dishes .group img {
+    display: block !important;
+    width: 100% !important;
+    height: 192px !important;
+    object-fit: cover !important;
+    flex-shrink: 0;
 }
 
 #trending-dishes .group img {

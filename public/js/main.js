@@ -796,25 +796,25 @@ function loadFeaturedItems() {
             name: 'Zinger Burger',
             description: 'Crispy chicken patty with fresh lettuce and mayo.',
             price: 5.99,
-            image: 'https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+            image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'
         },
         {
             name: 'Biryani',
             description: 'Aromatic rice with tender chicken and spices.',
             price: 7.99,
-            image: 'https://images.unsplash.com/photo-1600628421384-2c4f4c2b8b2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+            image: 'https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg'
         },
         {
             name: 'Chocolate Cake',
             description: 'Rich and moist chocolate cake with frosting.',
             price: 4.99,
-            image: 'https://images.unsplash.com/photo-1604917877937-0d7c9f9d6b6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+            image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'
         },
         {
             name: 'Pizza',
             description: 'Cheesy pizza with fresh toppings and herbs.',
             price: 8.99,
-            image: 'https://images.unsplash.com/photo-1601924579440-1a7a7f5c5c3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+            image: 'https://homemadecuisine.biz/wp-content/uploads/2020/06/Gluten-Free-Medium-Pizza.jpg?x33130'
         },
         {
             name: 'Pasta',
