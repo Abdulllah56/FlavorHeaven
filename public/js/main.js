@@ -370,7 +370,7 @@ function initCart() {
                             <h4 class="font-bold text-sm">${item.name}</h4>
                             <p class="text-gray-600 text-xs">$${parseFloat(item.price).toFixed(2)} × ${item.quantity || 1}</p>
                         </div>
-                        <button class="text-white hover:text-red-600 transform hover:scale-110 transition-transform" onclick="removeFromCart('${item.id}')">
+                        <button class="text-red-500 hover:text-red-600 transform hover:scale-110 transition-transform" onclick="removeFromCart('${item.id}')">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
