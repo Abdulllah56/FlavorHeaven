@@ -17,7 +17,7 @@ const menuData = {
             name: 'Fried Calamari',
             description: 'Crispy fried squid rings served with marinara sauce',
             price: 12.99,
-            image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1386&q=80',
+            image: 'https://diethood.com/wp-content/uploads/2021/08/air-fryer-calamari-8.jpg',
             category: 'starters',
             dietary: [],
             spicy: false,
@@ -28,7 +28,7 @@ const menuData = {
             name: 'Buffalo Wings',
             description: 'Spicy chicken wings with blue cheese dip',
             price: 11.99,
-            image: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1353&q=80',
+            image: 'https://easychickenrecipes.com/wp-content/uploads/2023/08/featured-buffalo-wings-recipe.jpg',
             category: 'starters',
             dietary: ['spicy'],
             spicy: true,
@@ -41,7 +41,7 @@ const menuData = {
             name: 'Grilled Salmon',
             description: 'Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables',
             price: 24.99,
-            image: 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1464&q=80',
+            image: 'https://www.thecookierookie.com/wp-content/uploads/2023/05/featured-grilled-salmon-recipe.jpg',
             category: 'main-dishes',
             dietary: ['gluten-free'],
             spicy: false,
@@ -63,7 +63,7 @@ const menuData = {
             name: 'Chicken Biryani',
             description: 'Aromatic basmati rice with tender chicken, exotic spices, and saffron',
             price: 18.99,
-            image: 'https://images.unsplash.com/photo-1563379091339-03246963d321?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            image: 'https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg',
             category: 'main-dishes',
             dietary: ['spicy'],
             spicy: true,
@@ -74,7 +74,7 @@ const menuData = {
             name: 'Truffle Pasta',
             description: 'Homemade fettuccine with black truffle cream sauce and wild mushrooms',
             price: 22.99,
-            image: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            image: 'https://dinnerthendessert.com/wp-content/uploads/2023/07/Truffle-Pasta-17.jpg',
             category: 'main-dishes',
             dietary: ['vegetarian'],
             spicy: false,
@@ -85,7 +85,7 @@ const menuData = {
             name: 'Beef Nihari',
             description: 'Traditional Pakistani slow-cooked beef stew with aromatic spices, garnished with fresh ginger and cilantro',
             price: 19.99,
-            image: 'https://www.masala.tv/wp-content/uploads/2020/09/Beef-Nihari.jpg',
+            image: 'https://i.ytimg.com/vi/vitJTfvnSI8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBVVanGHNzUzhHI9F8bd67O9I8FKw',
             category: 'main-dishes',
             dietary: ['spicy'],
             spicy: true,
@@ -96,7 +96,7 @@ const menuData = {
             name: 'Chicken Karahi',
             description: 'Spicy Pakistani chicken curry cooked in a wok with tomatoes, green chilies, and freshly ground spices',
             price: 17.99,
-            image: 'https://www.masala.tv/wp-content/uploads/2021/08/Chicken-Karahi.jpg',
+            image: 'https://kfoods.com/images1/newrecipeicon/red-chicken-karahi_12370.jpg',
             category: 'main-dishes',
             dietary: ['spicy'],
             spicy: true,
@@ -107,7 +107,7 @@ const menuData = {
             name: 'Haleem',
             description: 'Slow-cooked Pakistani stew with wheat, lentils, and tender shredded meat, topped with fried onions and lemon',
             price: 16.99,
-            image: 'https://www.masala.tv/wp-content/uploads/2021/07/Haleem.jpg',
+            image: 'https://headbangerskitchen.com/wp-content/uploads/2024/07/HALEEM-Horizontal1.jpg',
             category: 'main-dishes',
             dietary: ['spicy'],
             spicy: true,
@@ -131,7 +131,7 @@ const menuData = {
             name: 'Margherita Pizza',
             description: 'Classic Italian pizza with fresh mozzarella, tomatoes, and basil',
             price: 16.99,
-            image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1481&q=80',
+            image: 'https://allforpizza.com/wp-content/uploads/2022/07/1460A7EC-CF3B-40E8-B05F-A21E12E85EC6.jpeg',
             category: 'fast-food',
             dietary: ['vegetarian'],
             spicy: false,
@@ -142,7 +142,7 @@ const menuData = {
             name: 'Chicken Alfredo',
             description: 'Creamy Alfredo fettuccine pasta with grilled chicken and herbs',
             price: 15.99,
-            image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            image: 'https://eatinginaninstant.com/wp-content/uploads/2022/08/IP-Chicken-Alfredo-8-1200.jpg',
             category: 'fast-food',
             dietary: [],
             spicy: false,
@@ -166,7 +166,7 @@ const menuData = {
             name: 'Ice Cream Sundae',
             description: 'Premium vanilla ice cream with chocolate sauce, nuts, and cherry',
             price: 6.99,
-            image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80',
+            image: 'https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2022/08/Ice-cream-sundae-hero-11.jpg',
             category: 'desserts',
             dietary: ['vegetarian'],
             spicy: false,
@@ -516,10 +516,11 @@ function initItemModal() {
             const itemData = JSON.parse(this.dataset.item || '{}');
             const quantity = parseInt(quantityInput.value) || 1;
 
-            for (let i = 0; i < quantity; i++) {
-                if (typeof addToCart === 'function') {
-                    addToCart(itemData);
-                }
+            // Set the quantity in the item data and add once
+            itemData.quantity = quantity;
+            
+            if (typeof addToCart === 'function') {
+                addToCart(itemData);
             }
 
             showNotification(`${quantity}x ${itemData.name} added to cart!`);
@@ -611,35 +612,6 @@ window.hideItemModal = hideItemModal;
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize menu page
     initMenuPage();
-
-    // Modal Add to Cart functionality
-    const modalAddToCartBtn = document.getElementById('modal-add-to-cart');
-    if (modalAddToCartBtn) {
-        modalAddToCartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Gather item details from modal
-            const title = document.getElementById('modal-title').textContent;
-            const price = parseFloat(document.getElementById('modal-price').textContent.replace('$', ''));
-            const image = document.getElementById('modal-main-image').src;
-            const description = document.getElementById('modal-description').textContent;
-            const quantity = parseInt(document.getElementById('item-quantity').value) || 1;
-
-            // Compose item object
-            const item = {
-                id: `${title}-${price}-${image}`,
-                name: title,
-                price: price,
-                image: image,
-                description: description,
-                quantity: quantity
-            };
-
-            // Add to cart (will increment if already exists)
-            addToCart(item);
-            // Trigger cart update in main.js
-            window.dispatchEvent(new Event('storage'));
-        });
-    }
 });
 
 /**

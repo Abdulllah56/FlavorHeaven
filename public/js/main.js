@@ -370,7 +370,7 @@ function initCart() {
                             <h4 class="font-bold text-sm">${item.name}</h4>
                             <p class="text-gray-600 text-xs">$${parseFloat(item.price).toFixed(2)} × ${item.quantity || 1}</p>
                         </div>
-                        <button class="text-red-500 hover:text-red-600 transform hover:scale-110 transition-transform" onclick="removeFromCart('${item.id}')">
+                        <button class="text-white hover:text-red-600 transform hover:scale-110 transition-transform" onclick="removeFromCart('${item.id}')">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -379,15 +379,12 @@ function initCart() {
                 // Calculate total
                 const total = cart.reduce((sum, item) => sum + (parseFloat(item.price) * (item.quantity || 1)), 0);
                 
-                // Add total and checkout button
+                // Add total only (checkout button already exists in HTML)
                 cartItems.innerHTML += `
                     <div class="border-t pt-2 mt-2">
                         <div class="flex justify-between mb-2">
                             <span class="font-bold">Total: $${total.toFixed(2)}</span>
                         </div>
-                        <a href="checkout.html" class="bg-red-500 text-white w-full py-2 px-4 rounded text-center block hover:bg-red-600 transform hover:scale-105 transition-all">
-                            Checkout
-                        </a>
                     </div>
                 `;
             }
