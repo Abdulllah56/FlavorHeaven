@@ -1472,7 +1472,7 @@ nav a.active::after {
     }
 }
 
-/* Enhanced Special Offers Section Animations */
+/* Complete Special Offers Section Styles */
 @keyframes animate-float {
     0%, 100% {
         transform: translateY(0px);
@@ -1484,6 +1484,19 @@ nav a.active::after {
 
 .animate-float {
     animation: animate-float 4s ease-in-out infinite;
+}
+
+@keyframes float-animation {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.02);
+    }
+}
+
+.float-animation {
+    animation: float-animation 6s ease-in-out infinite;
 }
 
 @keyframes shimmer {
@@ -1501,6 +1514,21 @@ nav a.active::after {
     animation: shimmer 2s infinite;
 }
 
+@keyframes animate-gradient-x {
+    0%, 100% {
+        background-size: 200% 200%;
+        background-position: left center;
+    }
+    50% {
+        background-size: 200% 200%;
+        background-position: right center;
+    }
+}
+
+.animate-gradient-x {
+    animation: animate-gradient-x 3s ease infinite;
+}
+
 /* Countdown Timer Styles */
 .countdown-timer {
     font-family: 'Courier New', monospace;
@@ -1512,10 +1540,14 @@ nav a.active::after {
     color: #fbbf24;
 }
 
-/* Interactive Card Hover Effects */
+/* Special Offers Card Enhanced Styles */
 .special-offer-card {
     position: relative;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .special-offer-card::before {
@@ -1525,7 +1557,7 @@ nav a.active::after {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
     transform: rotate(45deg);
     transition: all 0.6s;
     opacity: 0;
@@ -1537,6 +1569,11 @@ nav a.active::after {
     opacity: 1;
 }
 
+.special-offer-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
 @keyframes shimmer-sweep {
     0% {
         transform: translateX(-100%) translateY(-100%) rotate(45deg);
@@ -1544,6 +1581,86 @@ nav a.active::after {
     100% {
         transform: translateX(100%) translateY(100%) rotate(45deg);
     }
+}
+
+/* Special Offers Button Animations */
+.special-offers-btn {
+    background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);
+    background-size: 200% 200%;
+    border: none;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.special-offers-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.special-offers-btn:hover::before {
+    left: 100%;
+}
+
+.special-offers-btn:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+}
+
+.special-offers-btn:active {
+    transform: translateY(0);
+}
+
+/* Interactive Badge Styles */
+.special-badge {
+    position: relative;
+    z-index: 10;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.4);
+    }
+}
+
+/* Enhanced Hover Overlays */
+.special-card-overlay {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+/* Trending Dishes Button Fix */
+.trending-dishes-button {
+    background: linear-gradient(135deg, #ef4444, #f59e0b);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.trending-dishes-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.trending-dishes-button:hover::before {
+    left: 100%;
 }
 
 /* Gradient Text Animation */
