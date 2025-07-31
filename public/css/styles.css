@@ -84,9 +84,39 @@ body {
     }
 }
 
-/* Hero Section Specific Animations */
+/* Hero Section Specific Animations and Text Visibility */
 .hero-heading h1 {
-    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8);
+    text-shadow: 3px 6px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Enhanced hero text visibility */
+header .text-white {
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+header .bg-gradient-to-r {
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.7);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Better background overlay for hero section */
+.hero-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.6) 25%,
+        rgba(0, 0, 0, 0.7) 75%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+}
+
+/* Enhanced text contrast for hero subtitle */
+.hero-subtitle {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .animate-gradient-x {
