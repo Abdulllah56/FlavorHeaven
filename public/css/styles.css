@@ -2035,87 +2035,28 @@ nav a.active::after {
     }
 }
 
-/* Enhanced Timeline Styles */
-.timeline-item {
-    opacity: 0;
-    transform: translateY(50px);
-    animation: timelineSlideIn 0.8s ease-out forwards;
-}
-
-.timeline-item:nth-child(1) { animation-delay: 0.2s; }
-.timeline-item:nth-child(2) { animation-delay: 0.4s; }
-.timeline-item:nth-child(3) { animation-delay: 0.6s; }
-.timeline-item:nth-child(4) { animation-delay: 0.8s; }
-
-@keyframes timelineSlideIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Timeline Dot Hover Effects */
-.timeline-dot {
+.timeline-item .absolute.left-1\/2 {
     position: relative;
-    z-index: 10;
 }
 
-.timeline-dot::before {
+.timeline-item .absolute.left-1\/2::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     width: 0;
     height: 0;
-    background: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.3);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s ease;
     z-index: -1;
 }
 
-.timeline-dot:hover::before {
-    width: 60px;
-    height: 60px;
-    background: rgba(239, 68, 68, 0.2);
-}
-
-/* Enhanced Story Section Animations */
-.story-gallery-item {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.story-gallery-item::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: rotate(45deg);
-    transition: all 0.6s;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.story-gallery-item:hover::before {
-    animation: shimmer-sweep 1s ease-in-out;
-    opacity: 1;
-}
-
-/* Dark Navy Theme Colors */
-:root {
-    --navy-900: #0f172a;
-    --navy-800: #1e293b;
-    --navy-700: #334155;
-    --navy-600: #475569;
-    --red-600: #dc2626;
-    --red-500: #ef4444;
-    --red-400: #f87171;
+.timeline-item:hover .absolute.left-1\/2::before {
+    width: 40px;
+    height: 40px;
 }
 
 /* Story CTA Button Enhancements */
