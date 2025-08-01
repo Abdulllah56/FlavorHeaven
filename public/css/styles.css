@@ -2016,6 +2016,140 @@ nav a.active::after {
     animation: pulse-glow-multi 2s ease-in-out infinite;
 }
 
+/* Enhanced Our Story Section Styles */
+.timeline-item {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: timelineSlideIn 0.8s ease-out forwards;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.2s; }
+.timeline-item:nth-child(2) { animation-delay: 0.4s; }
+.timeline-item:nth-child(3) { animation-delay: 0.6s; }
+.timeline-item:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes timelineSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Timeline Dot Hover Effects */
+.timeline-item .absolute.left-1\/2 {
+    position: relative;
+}
+
+.timeline-item .absolute.left-1\/2::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(239, 68, 68, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+    z-index: -1;
+}
+
+.timeline-item:hover .absolute.left-1\/2::before {
+    width: 40px;
+    height: 40px;
+}
+
+/* Story CTA Button Enhancements */
+.story-cta-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.story-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.story-cta-btn:hover::before {
+    left: 100%;
+}
+
+.story-cta-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Gallery Image Effects */
+.story-gallery-item {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.story-gallery-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.story-gallery-item:hover::before {
+    animation: shimmer-sweep 1s ease-in-out;
+    opacity: 1;
+}
+
+/* Timeline Responsive Design */
+@media (max-width: 768px) {
+    .timeline-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .timeline-item .w-1\/2 {
+        width: 100%;
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .timeline-item .absolute.left-1\/2 {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin: 0 auto 1rem auto;
+    }
+    
+    .timeline-item .pr-12,
+    .timeline-item .pl-12 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .timeline-item .text-right {
+        text-align: center;
+    }
+    
+    /* Hide timeline line on mobile */
+    .absolute.left-1\/2.transform.-translate-x-1\/2.w-1.h-full {
+        display: none;
+    }
+}
+
 /* Mobile Responsive Enhancements */
 @media (max-width: 768px) {
     .values-card {
@@ -2039,6 +2173,16 @@ nav a.active::after {
     .enhanced-cta-btn {
         width: 100%;
         justify-content: center;
+    }
+    
+    .story-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Story section mobile adjustments */
+    .timeline-item .bg-white\/95 {
+        margin-bottom: 1rem;
     }
 }
 
