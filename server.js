@@ -238,17 +238,20 @@ app.post('/api/contact', async (req, res) => {
         </div>
       `;
 
-      // Use the emailModule.sendEmail function
-      await emailModule.sendEmail(
+      // Send notification to restaurant
+      const restaurantResult = await emailModule.sendEmail(
         process.env.RESTAURANT_EMAIL,
         `New Contact Form: ${contact.subject} - ${contact.name}`,
         restaurantEmailHtml
       );
       
-      console.log('✅ Restaurant notification email sent successfully');
+      if (restaurantResult.success) {
+        console.log('✅ Restaurant notification email sent successfully');
+      } else {
+        console.error('❌ Failed to send restaurant notification:', restaurantResult.error);
+      }
 
       // Send confirmation to customer
-      // Use the already imported emailModule
       const customerEmailHtml = `
         <h2>Thank you for contacting Flavor Heaven!</h2>
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -269,17 +272,25 @@ app.post('/api/contact', async (req, res) => {
         </div>
       `;
 
-      // Use the emailModule.sendEmail function
-      await emailModule.sendEmail(
+      // Send confirmation to customer
+      const customerResult = await emailModule.sendEmail(
         contact.email,
         'Thank you for contacting Flavor Heaven!',
         customerEmailHtml
       );
       
-      console.log(`✅ Customer confirmation email sent successfully to ${contact.email}`);
-      
+      if (customerResult.success) {
+        console.log(`✅ Customer confirmation email sent successfully to ${contact.email}`);
+      } else {
+        console.error(`❌ Failed to send customer confirmation to ${contact.email}:`, customerResult.error);
+      }
 
-      console.log('📧 Contact form emails sent successfully');
+      // Check if both emails were successful
+      if (restaurantResult.success && customerResult.success) {
+        console.log('📧 All contact form emails sent successfully');
+      } else {
+        console.log('⚠️ Some emails failed to send, but contact form was saved');
+      }
       
     } catch (emailError) {
       console.error('❌ Email sending failed:', emailError);
