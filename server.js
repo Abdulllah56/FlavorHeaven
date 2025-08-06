@@ -1,20 +1,34 @@
 
-require('dotenv').config();
+// Load environment variables from .env.local file
+require('dotenv').config({ path: '.env.local' });
+
+// Verify email configuration
+const emailConfigured = process.env.EMAIL_USER && 
+                       process.env.EMAIL_PASSWORD && 
+                       process.env.RESTAURANT_EMAIL;
+
+if (emailConfigured) {
+  console.log('✅ Email configuration loaded successfully.');
+  console.log(`📧 Email configured with: ${process.env.EMAIL_USER}`);
+} else {
+  console.warn('⚠️ Email configuration is missing. Email features will be disabled.');
+  if (!process.env.EMAIL_USER) console.warn('Missing EMAIL_USER environment variable');
+  if (!process.env.EMAIL_PASSWORD) console.warn('Missing EMAIL_PASSWORD environment variable');
+  if (!process.env.RESTAURANT_EMAIL) console.warn('Missing RESTAURANT_EMAIL environment variable');
+}
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
 
-// Environment validation for production
-if (process.env.NODE_ENV === 'production') {
-  const requiredEnvVars = ['EMAIL_USER', 'EMAIL_PASSWORD', 'RESTAURANT_EMAIL'];
-  const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
-  
-  if (missingVars.length > 0) {
-    console.warn(`⚠️  Warning: Missing environment variables: ${missingVars.join(', ')}`);
-    console.warn('📧 Email functionality may not work properly');
-  } else {
-    console.log(`📧 Restaurant will receive contact forms at: ${process.env.RESTAURANT_EMAIL}`);
-  }
+// Environment validation for all environments
+const requiredEnvVars = ['EMAIL_USER', 'EMAIL_PASSWORD', 'RESTAURANT_EMAIL'];
+const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+if (missingVars.length > 0) {
+  console.warn(`⚠️  Warning: Missing environment variables: ${missingVars.join(', ')}`);
+  console.warn('📧 Email functionality may not work properly');
+} else {
+  console.log(`📧 Email configuration loaded successfully. Restaurant will receive contact forms at: ${process.env.RESTAURANT_EMAIL}`);
 }
 
 const app = express();
@@ -23,14 +37,21 @@ const PORT = process.env.PORT || 3000;
 // Trust proxy for deployment
 app.set('trust proxy', 1);
 
-// Middleware
+// Configure CORS
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? [process.env.FRONTEND_URL, /\.replit\.dev$/, /\.repl\.co$/]
-    : true,
+    : ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173'],
   credentials: true,
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
+
+console.log('🔒 CORS configured to allow requests from:', corsOptions.origin);
+
+console.log('🔒 CORS configured to allow requests from development URLs');
+
 
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
@@ -47,6 +68,32 @@ app.get('/health', (req, res) => {
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
     version: '1.0.0'
+  });
+});
+
+// Add a route to handle CORS preflight requests for all API endpoints
+app.options('/api/*', cors(corsOptions));
+
+// Add a route to check if the server is properly configured
+app.get('/api/config-check', (req, res) => {
+  const emailConfigured = process.env.EMAIL_USER && 
+                         process.env.EMAIL_PASSWORD && 
+                         process.env.RESTAURANT_EMAIL;
+  
+  res.json({
+    server: {
+      port: PORT,
+      environment: process.env.NODE_ENV || 'development'
+    },
+    cors: {
+      enabled: true,
+      allowedOrigins: Array.isArray(corsOptions.origin) ? corsOptions.origin : ['all origins']
+    },
+    email: {
+      configured: !!emailConfigured,
+      sender: emailConfigured ? process.env.EMAIL_USER : null,
+      receiver: emailConfigured ? process.env.RESTAURANT_EMAIL : null
+    }
   });
 });
 
@@ -142,6 +189,9 @@ app.post('/api/orders', (req, res) => {
   res.status(201).json(order);
 });
 
+// Add a route specifically for handling cross-origin contact form submissions
+app.options('/api/contact', cors(corsOptions));
+
 app.post('/api/contact', async (req, res) => {
   console.log('Contact form received:', req.body);
   
@@ -161,18 +211,13 @@ app.post('/api/contact', async (req, res) => {
   console.log('Contact saved:', contact);
   
   // Send email if email configuration is available
-  if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD && process.env.RESTAURANT_EMAIL) {
+  if (emailConfigured) {
     try {
-      const nodemailer = require('nodemailer');
+      // Import the email module if not already imported
+      const emailModule = require('./src/config/email');
       
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASSWORD
-        }
-      });
-
+      console.log('📧 Attempting to send email with configured credentials');
+      
       // Send notification to restaurant
       const restaurantEmailHtml = `
         <h2>New Contact Form Submission - Flavor Heaven</h2>
@@ -185,7 +230,7 @@ app.post('/api/contact', async (req, res) => {
           <p><strong>Rating:</strong> ${contact.rating ? '⭐'.repeat(contact.rating) + ` (${contact.rating}/5)` : 'Not provided'}</p>
           
           <h3>Message:</h3>
-          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #e53e3e;">
+          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #d35400; margin: 10px 0;">
             <p>${contact.message}</p>
           </div>
           
@@ -193,14 +238,17 @@ app.post('/api/contact', async (req, res) => {
         </div>
       `;
 
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: process.env.RESTAURANT_EMAIL,
-        subject: `New Contact Form: ${contact.subject} - ${contact.name}`,
-        html: restaurantEmailHtml
-      });
+      // Use the emailModule.sendEmail function
+      await emailModule.sendEmail(
+        process.env.RESTAURANT_EMAIL,
+        `New Contact Form: ${contact.subject} - ${contact.name}`,
+        restaurantEmailHtml
+      );
+      
+      console.log('✅ Restaurant notification email sent successfully');
 
       // Send confirmation to customer
+      // Use the already imported emailModule
       const customerEmailHtml = `
         <h2>Thank you for contacting Flavor Heaven!</h2>
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -221,12 +269,15 @@ app.post('/api/contact', async (req, res) => {
         </div>
       `;
 
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: contact.email,
-        subject: 'Thank you for contacting Flavor Heaven!',
-        html: customerEmailHtml
-      });
+      // Use the emailModule.sendEmail function
+      await emailModule.sendEmail(
+        contact.email,
+        'Thank you for contacting Flavor Heaven!',
+        customerEmailHtml
+      );
+      
+      console.log(`✅ Customer confirmation email sent successfully to ${contact.email}`);
+      
 
       console.log('📧 Contact form emails sent successfully');
       

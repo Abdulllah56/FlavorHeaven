@@ -957,3 +957,122 @@ document.querySelectorAll("button").forEach((button) => {
         }, 600);
     });
 });
+
+  // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    
+                    if (element.classList.contains('timeline-item')) {
+                        const dot = element.querySelector('.timeline-dot');
+                        const content = element.querySelector('.timeline-content');
+                        
+                        setTimeout(() => {
+                            dot.classList.add('visible');
+                        }, 200);
+                        
+                        setTimeout(() => {
+                            content.classList.add('visible');
+                        }, 400);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Enhanced parallax effect for floating particles
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            
+            document.querySelectorAll('.particle').forEach((particle, index) => {
+                const speed = 0.2 + (index * 0.1);
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add smooth reveal animations on page load
+        window.addEventListener('load', () => {
+            const elementsToAnimate = document.querySelectorAll('.animate-slide-up, .animate-scale-in');
+            elementsToAnimate.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0) scale(1)';
+                }, index * 200);
+            });
+        });
+
+        // Enhanced hover effects for timeline dots
+        document.querySelectorAll('.timeline-dot').forEach(dot => {
+            dot.addEventListener('mouseenter', () => {
+                dot.style.transform = 'scale(1.3) rotate(10deg)';
+                dot.style.boxShadow = '0 10px 30px rgba(234, 88, 12, 0.4)';
+            });
+            
+            dot.addEventListener('mouseleave', () => {
+                dot.style.transform = 'scale(1) rotate(0deg)';
+                dot.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Mobile-specific optimizations
+        if (window.innerWidth <= 768) {
+            // Adjust animations for mobile
+            document.querySelectorAll('.timeline-content').forEach(content => {
+                content.style.width = '100%';
+                content.style.padding = '0 1rem';
+                content.style.textAlign = 'center';
+            });
+            
+            // Simplify parallax on mobile
+            window.removeEventListener('scroll', () => {});
+        }
+        
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }

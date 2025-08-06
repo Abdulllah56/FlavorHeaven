@@ -11,6 +11,187 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="/src/output.css">
     <script src="js/main.js" defer></script>
+     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary-red: #dc2626;
+            --dark-red: #991b1b;
+            --gold: #f59e0b;
+            --dark-gold: #d97706;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Animated gradients */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7724, #d8363a, #dd3675, #b44593);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Pulse animation */
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(220, 38, 38, 0.6); }
+        }
+
+        /* Glass morphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input focus effects */
+        .form-control {
+            @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300;
+        }
+
+        .form-control:focus {
+            transform: scale(1.02);
+        }
+
+        /* Button effects */
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-red), var(--dark-red));
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Star rating enhancement */
+        .rating-star {
+            font-size: 2rem;
+            transition: all 0.2s ease;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .rating-star:hover {
+            transform: scale(1.2);
+        }
+
+        /* Parallax effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Map container enhancement */
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), rgba(245, 158, 11, 0.1));
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Loading animation */
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { content: '.'; }
+            33% { content: '..'; }
+            66% { content: '...'; }
+        }
+
+        /* Success animation */
+        .success-checkmark {
+            animation: checkmark 0.6s ease-in-out;
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0) rotate(45deg); }
+            50% { transform: scale(1.2) rotate(45deg); }
+            100% { transform: scale(1) rotate(45deg); }
+        }
+
+        /* Notification slide-in */
+        .notification-slide {
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- Navigation -->
@@ -19,7 +200,7 @@
             <a href="index.html" class="text-2xl font-bold text-white hover:text-red-400 transition duration-300 flex items-center">
                 <!-- 3D Spinning Logo Container -->
                 <div class="logo-container w-12 h-12 mr-2 flex items-center justify-center">
-                    <img src="Flavor Heaven.png" alt="Flavor Heaven Logo" class="w-10 h-10 rounded-full object-cover">
+                    <img src="Images/Flavor Heaven.png" alt="Flavor Heaven Logo" class="w-10 h-10 rounded-full object-cover">
                 </div>
                 Flavor Heaven
             </a>
@@ -407,12 +588,13 @@
                     const contactData = Object.fromEntries(formData);
 
                     try {
-                        const response = await fetch('/api/contact', {
+                        const response = await fetch('http://localhost:3001/api/contact', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify(contactData)
+                            body: JSON.stringify(contactData),
+                            credentials: 'include'
                         });
 
                         if (response.ok) {
