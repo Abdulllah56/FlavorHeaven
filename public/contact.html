@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Flavor Heaven - Contact Us">
     <title>Contact Us - Flavor Heaven Restaurant</title>
-    <link rel="shortcut icon" href="Flavor Heaven.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Images/Flavor Heaven.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -253,7 +253,7 @@
     </div>
 
     <!-- Page Header -->
-    <header class="bg-cover bg-center h-64 relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+    <header class="bg-cover bg-center h-64 relative flex items-center justify-center" style="background-image: url('https://icebergdriveinn.com/cdn/shop/articles/Fast-Food-How-It-Has-Evolved-in-the-Past-Decades.jpg?v=1625683335');">
         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
         <div class="relative z-10 text-center px-4">
             <h1 class="text-white text-4xl md:text-5xl font-bold mb-2">Contact Us</h1>
@@ -549,7 +549,12 @@
                     const reservationData = Object.fromEntries(formData);
 
                     try {
-                        const response = await fetch('/api/reservations', {
+                        // Use the correct server URL
+const serverUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    ? 'http://localhost:3001' 
+    : window.location.origin;
+
+const response = await fetch(`${serverUrl}/api/reservations`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -631,8 +636,8 @@
 
                     // Fill stars up to the clicked one
                     for (let i = 0; i <= index; i++) {
-                        ratingLabels[4 - i].classList.remove('text-gray-300');
-                        ratingLabels[4 - i].classList.add('text-yellow-400');
+                        ratingLabels[i].classList.remove('text-gray-300');
+                        ratingLabels[i].classList.add('text-yellow-400');
                     }
                 });
             });

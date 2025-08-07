@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Flavor Heaven - A delightful dining experience" />
     <title>Flavor Heaven Restaurant</title>
-    <link rel="shortcut icon" href="Flavor Heaven.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Images/Flavor Heaven.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="/src/output.css" />
+    <link rel="stylesheet" href="css/navbar-fix.css" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
 
@@ -1082,360 +1083,489 @@
             </section>
 
             <!-- Enhanced Our Story Section -->
-          <section id="our-story" class="relative min-h-screen py-24 overflow-hidden bg-gray-50">
-    <!-- Enhanced Background Layers -->
-    <div class="absolute inset-0">
-        <!-- Gradient Background with Subtle Animation -->
-        <div class="absolute inset-0 bg-gradient-to-br from-amber-50/80 via-orange-100/70 to-red-50/60 animate-gradient-x"></div>
-        <div class="absolute inset-0 bg-gradient-to-tl from-yellow-50/50 via-orange-100/40 to-red-50/70 animate-gradient-x" style="animation-delay: 1.5s;"></div>
-        
-        <!-- Subtle Floating Particles -->
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="floating-particle absolute top-16 left-12 w-2 h-2 bg-orange-200 rounded-full opacity-50" style="animation-delay: 0s;"></div>
-            <div class="floating-particle absolute top-48 right-16 w-3 h-3 bg-red-200 rounded-full opacity-60" style="animation-delay: 0.8s;"></div>
-            <div class="floating-particle absolute bottom-24 left-1/3 w-1.5 h-1.5 bg-yellow-200 rounded-full opacity-70" style="animation-delay: 1.6s;"></div>
-            <div class="floating-particle absolute top-1/4 right-12 w-2 h-2 bg-amber-200 rounded-full opacity-50" style="animation-delay: 1.2s;"></div>
-        </div>
-    </div>
+            <section id="our-story" class="relative min-h-screen py-24 overflow-hidden bg-gray-50">
+                <!-- Enhanced Background Layers -->
+                <div class="absolute inset-0">
+                    <!-- Gradient Background with Subtle Animation -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-amber-50/80 via-orange-100/70 to-red-50/60 animate-gradient-x">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-tl from-yellow-50/50 via-orange-100/40 to-red-50/70 animate-gradient-x"
+                        style="animation-delay: 1.5s;"></div>
 
-    <div class="container mx-auto px-6 relative z-10">
-        <!-- Header Section -->
-        <div class="text-center mb-24">
-            <h1 class="font-display text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight">
-                <span class="block newsletter-gradient-text animate-slide-up">Our Story</span>
-            </h1>
-            <div class="flex justify-center mt-6">
-                <div class="w-20 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-scale-in" style="animation-delay: 0.3s;"></div>
-            </div>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-8 leading-relaxed font-light animate-slide-up newsletter-text-shadow" style="animation-delay: 0.5s;">
-                A journey of culinary passion, where each dish weaves a tale of dedication, innovation, and unforgettable moments shared across generations.
-            </p>
-        </div>
+                    <!-- Subtle Floating Particles -->
+                    <div class="absolute inset-0 pointer-events-none">
+                        <div class="floating-particle absolute top-16 left-12 w-2 h-2 bg-orange-200 rounded-full opacity-50"
+                            style="animation-delay: 0s;"></div>
+                        <div class="floating-particle absolute top-48 right-16 w-3 h-3 bg-red-200 rounded-full opacity-60"
+                            style="animation-delay: 0.8s;"></div>
+                        <div class="floating-particle absolute bottom-24 left-1/3 w-1.5 h-1.5 bg-yellow-200 rounded-full opacity-70"
+                            style="animation-delay: 1.6s;"></div>
+                        <div class="floating-particle absolute top-1/4 right-12 w-2 h-2 bg-amber-200 rounded-full opacity-50"
+                            style="animation-delay: 1.2s;"></div>
+                    </div>
+                </div>
 
-        <!-- Enhanced Timeline -->
-        <div class="max-w-6xl mx-auto mb-24">
-            <div class="relative">
-                <!-- Timeline Line -->
-                <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-orange-300 via-red-400 to-amber-400 rounded-full shadow-lg animate-draw-line" style="animation-delay: 0.8s;"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                    <!-- Header Section -->
+                    <div class="text-center mb-24">
+                        <h1 class="font-display text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight">
+                            <span class="block newsletter-gradient-text animate-slide-up">Our Story</span>
+                        </h1>
+                        <div class="flex justify-center mt-6">
+                            <div class="w-20 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-scale-in"
+                                style="animation-delay: 0.3s;"></div>
+                        </div>
+                        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-8 leading-relaxed font-light animate-slide-up newsletter-text-shadow"
+                            style="animation-delay: 0.5s;">
+                            A journey of culinary passion, where each dish weaves a tale of dedication, innovation, and
+                            unforgettable moments shared across generations.
+                        </p>
+                    </div>
 
-                <div class="space-y-20">
-                    <!-- 2015 Timeline Item -->
-                    <div class="timeline-item flex items-center" data-year="2015">
-                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow"></div>
-                        <div class="timeline-content w-1/2 pr-12 text-right">
-                            <div class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
-                                <div class="text-3xl font-bold text-orange-600 mb-3 font-display">2015</div>
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">The Beginning</h3>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Founded by Chef Marco Rodriguez with a vision to deliver authentic, passion-driven cuisine, starting with just 10 tables and boundless ambition.
-                                </p>
+                    <!-- Enhanced Timeline -->
+                    <div class="max-w-6xl mx-auto mb-24">
+                        <div class="relative">
+                            <!-- Timeline Line -->
+                            <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-orange-300 via-red-400 to-amber-400 rounded-full shadow-lg animate-draw-line"
+                                style="animation-delay: 0.8s;"></div>
+
+                            <div class="space-y-20">
+                                <!-- 2015 Timeline Item -->
+                                <div class="timeline-item flex items-center" data-year="2015">
+                                    <div
+                                        class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                    </div>
+                                    <div class="timeline-content w-1/2 pr-12 text-right">
+                                        <div
+                                            class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-3xl font-bold text-orange-600 mb-3 font-display">2015</div>
+                                            <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">The
+                                                Beginning</h3>
+                                            <p class="text-gray-600 leading-relaxed">
+                                                Founded by Chef Marco Rodriguez with a vision to deliver authentic,
+                                                passion-driven cuisine, starting with just 10 tables and boundless
+                                                ambition.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-1/2 pl-12"></div>
+                                </div>
+
+                                <!-- 2018 Timeline Item -->
+                                <div class="timeline-item flex items-center" data-year="2018">
+                                    <div
+                                        class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-red-500 to-amber-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                    </div>
+                                    <div class="w-1/2 pr-12"></div>
+                                    <div class="timeline-content right w-1/2 pl-12">
+                                        <div
+                                            class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-3xl font-bold text-red-600 mb-3 font-display">2018</div>
+                                            <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">
+                                                Philosophy Evolves</h3>
+                                            <p class="text-gray-600 leading-relaxed">
+                                                Our commitment to fresh, locally-sourced ingredients deepened, forging
+                                                strong partnerships with local farmers and artisans.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2020 Timeline Item -->
+                                <div class="timeline-item flex items-center" data-year="2020">
+                                    <div
+                                        class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                    </div>
+                                    <div class="timeline-content w-1/2 pr-12 text-right">
+                                        <div
+                                            class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-3xl font-bold text-amber-600 mb-3 font-display">2020</div>
+                                            <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">Community
+                                                Focus</h3>
+                                            <p class="text-gray-600 leading-relaxed">
+                                                During challenging times, we transformed into a community hub,
+                                                supporting local families and uniting people through the joy of food.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-1/2 pl-12"></div>
+                                </div>
+
+                                <!-- 2024 Timeline Item -->
+                                <div class="timeline-item flex items-center" data-year="2024">
+                                    <div
+                                        class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                    </div>
+                                    <div class="w-1/2 pr-12"></div>
+                                    <div class="timeline-content right w-1/2 pl-12">
+                                        <div
+                                            class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-3xl font-bold text-yellow-600 mb-3 font-display">2024</div>
+                                            <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">Future
+                                                Awaits</h3>
+                                            <p class="text-gray-600 leading-relaxed">
+                                                We continue to innovate, crafting new culinary experiences and
+                                                sustainable practices to create lasting memories for generations.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="w-1/2 pl-12"></div>
                     </div>
 
-                    <!-- 2018 Timeline Item -->
-                    <div class="timeline-item flex items-center" data-year="2018">
-                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-red-500 to-amber-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow"></div>
-                        <div class="w-1/2 pr-12"></div>
-                        <div class="timeline-content right w-1/2 pl-12">
-                            <div class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
-                                <div class="text-3xl font-bold text-red-600 mb-3 font-display">2018</div>
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">Philosophy Evolves</h3>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Our commitment to fresh, locally-sourced ingredients deepened, forging strong partnerships with local farmers and artisans.
-                                </p>
+                    <!-- Enhanced Image Gallery -->
+                    <div class="mb-24">
+                        <div class="text-center mb-16">
+                            <h3 class="font-display text-4xl md:text-5xl font-semibold text-gray-900">
+                                <span class="newsletter-gradient-text">Visual Journey</span>
+                            </h3>
+                            <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
+                                Explore the evolution of our space and the cherished memories we've crafted together.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Gallery Image 1 -->
+                            <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
+                                <div class="aspect-[4/3] overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Restaurant Interior"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div
+                                        class="absolute bottom-4 left-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        <h4 class="text-xl font-semibold font-display">Elegant Interior</h4>
+                                        <p class="text-sm">Where comfort meets sophistication</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute top-3 right-3 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">
+                                    2015</div>
+                            </div>
+
+                            <!-- Gallery Image 2 -->
+                            <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
+                                <div class="aspect-[4/3] overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Gourmet Kitchen"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div
+                                        class="absolute bottom-4 left-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        <h4 class="text-xl font-semibold font-display">Master Kitchen</h4>
+                                        <p class="text-sm">Where culinary magic happens</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">
+                                    2018</div>
+                            </div>
+
+                            <!-- Gallery Image 3 -->
+                            <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
+                                <div class="aspect-[4/3] overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Dining Experience"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div
+                                        class="absolute bottom-4 left-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        <h4 class="text-xl font-semibold font-display">Dining Experience</h4>
+                                        <p class="text-sm">Memories made around every table</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute top-3 right-3 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">
+                                    Today</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 2020 Timeline Item -->
-                    <div class="timeline-item flex items-center" data-year="2020">
-                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow"></div>
-                        <div class="timeline-content w-1/2 pr-12 text-right">
-                            <div class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
-                                <div class="text-3xl font-bold text-amber-600 mb-3 font-display">2020</div>
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">Community Focus</h3>
-                                <p class="text-gray-600 leading-relaxed">
-                                    During challenging times, we transformed into a community hub, supporting local families and uniting people through the joy of food.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="w-1/2 pl-12"></div>
-                    </div>
-
-                    <!-- 2024 Timeline Item -->
-                    <div class="timeline-item flex items-center" data-year="2024">
-                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow"></div>
-                        <div class="w-1/2 pr-12"></div>
-                        <div class="timeline-content right w-1/2 pl-12">
-                            <div class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
-                                <div class="text-3xl font-bold text-yellow-600 mb-3 font-display">2024</div>
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">Future Awaits</h3>
-                                <p class="text-gray-600 leading-relaxed">
-                                    We continue to innovate, crafting new culinary experiences and sustainable practices to create lasting memories for generations.
-                                </p>
+                    <!-- Call to Action -->
+                    <div class="text-center">
+                        <div
+                            class="glass-strong rounded-2xl p-10 md:p-12 shadow-xl border border-white/20 backdrop-blur-lg max-w-3xl mx-auto newsletter-hover-lift">
+                            <h3 class="font-display text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
+                                <span class="newsletter-gradient-text">Be Part of Our Story</span>
+                            </h3>
+                            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+                                Every guest adds a new chapter to our legacy. Experience our passion, savor our
+                                dedication, and join the Flavor Heaven family.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button
+                                    class="story-cta-btn px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold text-base rounded-full shadow-lg newsletter-hover-lift">
+                                    Taste Our Story
+                                </button>
+                                <button
+                                    class="story-cta-btn px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-semibold text-base rounded-full shadow-lg newsletter-hover-lift">
+                                    Visit Us Today
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Enhanced Image Gallery -->
-        <div class="mb-24">
-            <div class="text-center mb-16">
-                <h3 class="font-display text-4xl md:text-5xl font-semibold text-gray-900">
-                    <span class="newsletter-gradient-text">Visual Journey</span>
-                </h3>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
-                    Explore the evolution of our space and the cherished memories we've crafted together.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Gallery Image 1 -->
-                <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
-                    <div class="aspect-[4/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div class="absolute bottom-4 left-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <h4 class="text-xl font-semibold font-display">Elegant Interior</h4>
-                            <p class="text-sm">Where comfort meets sophistication</p>
-                        </div>
-                    </div>
-                    <div class="absolute top-3 right-3 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">2015</div>
-                </div>
-
-                <!-- Gallery Image 2 -->
-                <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
-                    <div class="aspect-[4/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gourmet Kitchen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div class="absolute bottom-4 left-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <h4 class="text-xl font-semibold font-display">Master Kitchen</h4>
-                            <p class="text-sm">Where culinary magic happens</p>
-                        </div>
-                    </div>
-                    <div class="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">2018</div>
-                </div>
-
-                <!-- Gallery Image 3 -->
-                <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
-                    <div class="aspect-[4/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dining Experience" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div class="absolute bottom-4 left-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <h4 class="text-xl font-semibold font-display">Dining Experience</h4>
-                            <p class="text-sm">Memories made around every table</p>
-                        </div>
-                    </div>
-                    <div class="absolute top-3 right-3 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">Today</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="text-center">
-            <div class="glass-strong rounded-2xl p-10 md:p-12 shadow-xl border border-white/20 backdrop-blur-lg max-w-3xl mx-auto newsletter-hover-lift">
-                <h3 class="font-display text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
-                    <span class="newsletter-gradient-text">Be Part of Our Story</span>
-                </h3>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-                    Every guest adds a new chapter to our legacy. Experience our passion, savor our dedication, and join the Flavor Heaven family.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="story-cta-btn px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold text-base rounded-full shadow-lg newsletter-hover-lift">
-                        Taste Our Story
-                    </button>
-                    <button class="story-cta-btn px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-semibold text-base rounded-full shadow-lg newsletter-hover-lift">
-                        Visit Us Today
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </section>
             <!-- Enhanced Our Guiding Values Section -->
-<section id="our-values" class="relative min-h-screen py-24 md:py-32 overflow-hidden bg-gray-50">
-    <!-- Enhanced Multi-Layer Background -->
-    <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-gradient-to-br from-amber-50/80 via-orange-100/70 to-red-50/60 animate-gradient-x rounded-3xl"></div>
-        <div class="absolute inset-0 bg-gradient-to-tl from-yellow-50/50 via-orange-100/40 to-red-50/70 animate-gradient-x rounded-3xl opacity-70" style="animation-delay: 1.5s;"></div>
-    </div>
+            <section id="our-values" class="relative min-h-screen py-24 md:py-32 overflow-hidden bg-gray-50">
+                <!-- Enhanced Multi-Layer Background -->
+                <div class="absolute inset-0">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-amber-50/80 via-orange-100/70 to-red-50/60 animate-gradient-x rounded-3xl">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-tl from-yellow-50/50 via-orange-100/40 to-red-50/70 animate-gradient-x rounded-3xl opacity-70"
+                        style="animation-delay: 1.5s;"></div>
+                </div>
 
-    <!-- Subtle Floating Particles for Depth -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
-        <div class="floating-particle absolute top-16 left-16 w-2 h-2 bg-orange-200 rounded-full opacity-50 animate-float" style="animation-delay: 0s;"></div>
-        <div class="floating-particle absolute top-32 right-24 w-3 h-3 bg-red-200 rounded-full opacity-60 animate-float" style="animation-delay: 0.8s;"></div>
-        <div class="floating-particle absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-yellow-200 rounded-full opacity-70 animate-float" style="animation-delay: 1.6s;"></div>
-        <div class="floating-particle absolute top-1/3 right-16 w-2 h-2 bg-amber-200 rounded-full opacity-50 animate-float" style="animation-delay: 1.2s;"></div>
-    </div>
+                <!-- Subtle Floating Particles for Depth -->
+                <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div class="floating-particle absolute top-16 left-16 w-2 h-2 bg-orange-200 rounded-full opacity-50 animate-float"
+                        style="animation-delay: 0s;"></div>
+                    <div class="floating-particle absolute top-32 right-24 w-3 h-3 bg-red-200 rounded-full opacity-60 animate-float"
+                        style="animation-delay: 0.8s;"></div>
+                    <div class="floating-particle absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-yellow-200 rounded-full opacity-70 animate-float"
+                        style="animation-delay: 1.6s;"></div>
+                    <div class="floating-particle absolute top-1/3 right-16 w-2 h-2 bg-amber-200 rounded-full opacity-50 animate-float"
+                        style="animation-delay: 1.2s;"></div>
+                </div>
 
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <!-- Header Section -->
-        <div class="text-center mb-16 md:mb-20">
-            <span class="text-sm font-semibold tracking-wider text-orange-600 uppercase bg-orange-50/50 px-4 py-1.5 rounded-full mb-4 inline-block shadow-sm animate-slide-up">What Drives Us</span>
-            <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-                <span class="block newsletter-gradient-text animate-slide-up">Our Core</span>
-                <span class="block newsletter-gradient-text animate-slide-up" style="animation-delay: 0.2s;">Values</span>
-            </h2>
-            <div class="flex justify-center mt-6">
-                <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-scale-in" style="animation-delay: 0.4s;"></div>
-            </div>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-6 leading-relaxed font-light animate-slide-up newsletter-text-shadow" style="animation-delay: 0.6s;">
-                Our values define every dish we craft and every moment we share, guiding us to deliver exceptional experiences.
-            </p>
-        </div>
-
-        <!-- Main Content: Two-Column Layout -->
-        <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-            <!-- Left Column: Values Cards -->
-            <div class="w-full lg:w-3/5">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                    <!-- Quality Excellence Card -->
-                    <div class="value-card group relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 newsletter-hover-lift min-h-[280px] overflow-hidden animate-slide-up" style="animation-delay: 0.1s;" tabindex="0" role="button" aria-label="Quality Excellence value">
-                        <div class="absolute inset-0 bg-gradient-to-br from-orange-200/20 via-red-200/15 to-amber-200/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div class="relative p-6 md:p-8 flex flex-col h-full">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-red-500 mb-4 flex items-center justify-center text-white font-display text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">QE</div>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-orange-600 transition-colors duration-500 font-display">Quality Excellence</h3>
-                            <p class="text-gray-600 leading-relaxed flex-grow text-base">
-                                Every dish is crafted with the finest ingredients, ensuring unparalleled quality and flavor in every bite.
-                            </p>
-                            <div class="mt-4 flex justify-end">
-                                <span class="text-orange-600 font-medium group-hover:text-orange-700 inline-flex items-center text-sm md:text-base transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-orange-600 after:transition-all after:duration-300 group-hover:after:w-full">
-                                    Learn More
-                                    <svg class="w-5 h-5 ml-1 transform group-hover:translate-x-2 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                    </svg>
-                                </span>
-                            </div>
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <!-- Header Section -->
+                    <div class="text-center mb-16 md:mb-20">
+                        <span
+                            class="text-sm font-semibold tracking-wider text-orange-600 uppercase bg-orange-50/50 px-4 py-1.5 rounded-full mb-4 inline-block shadow-sm animate-slide-up">What
+                            Drives Us</span>
+                        <h2
+                            class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+                            <span class="block newsletter-gradient-text animate-slide-up">Our Core</span>
+                            <span class="block newsletter-gradient-text animate-slide-up"
+                                style="animation-delay: 0.2s;">Values</span>
+                        </h2>
+                        <div class="flex justify-center mt-6">
+                            <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-scale-in"
+                                style="animation-delay: 0.4s;"></div>
                         </div>
+                        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-6 leading-relaxed font-light animate-slide-up newsletter-text-shadow"
+                            style="animation-delay: 0.6s;">
+                            Our values define every dish we craft and every moment we share, guiding us to deliver
+                            exceptional experiences.
+                        </p>
                     </div>
 
-                    <!-- Creative Innovation Card -->
-                    <div class="value-card group relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 newsletter-hover-lift min-h-[280px] overflow-hidden animate-slide-up" style="animation-delay: 0.2s;" tabindex="0" role="button" aria-label="Creative Innovation value">
-                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-200/20 via-orange-200/15 to-amber-200/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div class="relative p-6 md:p-8 flex flex-col h-full">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 mb-4 flex items-center justify-center text-white font-display text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">CI</div>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-yellow-600 transition-colors duration-500 font-display">Creative Innovation</h3>
-                            <p class="text-gray-600 leading-relaxed flex-grow text-base">
-                                We blend tradition with bold creativity to deliver unique flavors that inspire and delight.
-                            </p>
-                            <div class="mt-4 flex justify-end">
-                                <span class="text-yellow-600 font-medium group-hover:text-yellow-700 inline-flex items-center text-sm md:text-base transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-600 after:transition-all after:duration-300 group-hover:after:w-full">
-                                    Learn More
-                                    <svg class="w-5 h-5 ml-1 transform group-hover:translate-x-2 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                    </svg>
-                                </span>
+                    <!-- Main Content: Two-Column Layout -->
+                    <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+                        <!-- Left Column: Values Cards -->
+                        <div class="w-full lg:w-3/5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                                <!-- Quality Excellence Card -->
+                                <div class="value-card group relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 newsletter-hover-lift min-h-[280px] overflow-hidden animate-slide-up"
+                                    style="animation-delay: 0.1s;" tabindex="0" role="button"
+                                    aria-label="Quality Excellence value">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-br from-orange-200/20 via-red-200/15 to-amber-200/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                                    </div>
+                                    <div class="relative p-6 md:p-8 flex flex-col h-full">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-red-500 mb-4 flex items-center justify-center text-white font-display text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">
+                                            QE</div>
+                                        <h3
+                                            class="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-orange-600 transition-colors duration-500 font-display">
+                                            Quality Excellence</h3>
+                                        <p class="text-gray-600 leading-relaxed flex-grow text-base">
+                                            Every dish is crafted with the finest ingredients, ensuring unparalleled
+                                            quality and flavor in every bite.
+                                        </p>
+                                        <div class="mt-4 flex justify-end">
+                                            <span
+                                                class="text-orange-600 font-medium group-hover:text-orange-700 inline-flex items-center text-sm md:text-base transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-orange-600 after:transition-all after:duration-300 group-hover:after:w-full">
+                                                Learn More
+                                                <svg class="w-5 h-5 ml-1 transform group-hover:translate-x-2 transition-transform duration-500"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Creative Innovation Card -->
+                                <div class="value-card group relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 newsletter-hover-lift min-h-[280px] overflow-hidden animate-slide-up"
+                                    style="animation-delay: 0.2s;" tabindex="0" role="button"
+                                    aria-label="Creative Innovation value">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-br from-yellow-200/20 via-orange-200/15 to-amber-200/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                                    </div>
+                                    <div class="relative p-6 md:p-8 flex flex-col h-full">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 mb-4 flex items-center justify-center text-white font-display text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">
+                                            CI</div>
+                                        <h3
+                                            class="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-yellow-600 transition-colors duration-500 font-display">
+                                            Creative Innovation</h3>
+                                        <p class="text-gray-600 leading-relaxed flex-grow text-base">
+                                            We blend tradition with bold creativity to deliver unique flavors that
+                                            inspire and delight.
+                                        </p>
+                                        <div class="mt-4 flex justify-end">
+                                            <span
+                                                class="text-yellow-600 font-medium group-hover:text-yellow-700 inline-flex items-center text-sm md:text-base transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-600 after:transition-all after:duration-300 group-hover:after:w-full">
+                                                Learn More
+                                                <svg class="w-5 h-5 ml-1 transform group-hover:translate-x-2 transition-transform duration-500"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sustainability Card -->
+                                <div class="value-card group relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 newsletter-hover-lift min-h-[280px] overflow-hidden animate-slide-up"
+                                    style="animation-delay: 0.3s;" tabindex="0" role="button"
+                                    aria-label="Sustainability value">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-br from-green-200/20 via-emerald-200/15 to-teal-200/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                                    </div>
+                                    <div class="relative p-6 md:p-8 flex flex-col h-full">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 mb-4 flex items-center justify-center text-white font-display text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">
+                                            SU</div>
+                                        <h3
+                                            class="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-green-600 transition-colors duration-500 font-display">
+                                            Sustainability</h3>
+                                        <p class="text-gray-600 leading-relaxed flex-grow text-base">
+                                            We prioritize eco-friendly practices and local sourcing to nurture a
+                                            healthier planet for future generations.
+                                        </p>
+                                        <div class="mt-4 flex justify-end">
+                                            <span
+                                                class="text-green-600 font-medium group-hover:text-green-700 inline-flex items-center text-sm md:text-base transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-green-600 after:transition-all after:duration-300 group-hover:after:w-full">
+                                                Learn More
+                                                <svg class="w-5 h-5 ml-1 transform group-hover:translate-x-2 transition-transform duration-500"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Community Focus Card -->
+                                <div class="value-card group relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 newsletter-hover-lift min-h-[280px] overflow-hidden animate-slide-up"
+                                    style="animation-delay: 0.4s;" tabindex="0" role="button"
+                                    aria-label="Community Focus value">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-br from-blue-200/20 via-purple-200/15 to-indigo-200/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                                    </div>
+                                    <div class="relative p-6 md:p-8 flex flex-col h-full">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 mb-4 flex items-center justify-center text-white font-display text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">
+                                            CF</div>
+                                        <h3
+                                            class="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-500 font-display">
+                                            Community Focus</h3>
+                                        <p class="text-gray-600 leading-relaxed flex-grow text-base">
+                                            We foster strong community ties, supporting local initiatives to create
+                                            lasting connections.
+                                        </p>
+                                        <div class="mt-4 flex justify-end">
+                                            <span
+                                                class="text-blue-600 font-medium group-hover:text-blue-700 inline-flex items-center text-sm md:text-base transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-300 group-hover:after:w-full">
+                                                Learn More
+                                                <svg class="w-5 h-5 ml-1 transform group-hover:translate-x-2 transition-transform duration-500"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Sustainability Card -->
-                    <div class="value-card group relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 newsletter-hover-lift min-h-[280px] overflow-hidden animate-slide-up" style="animation-delay: 0.3s;" tabindex="0" role="button" aria-label="Sustainability value">
-                        <div class="absolute inset-0 bg-gradient-to-br from-green-200/20 via-emerald-200/15 to-teal-200/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div class="relative p-6 md:p-8 flex flex-col h-full">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 mb-4 flex items-center justify-center text-white font-display text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">SU</div>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-green-600 transition-colors duration-500 font-display">Sustainability</h3>
-                            <p class="text-gray-600 leading-relaxed flex-grow text-base">
-                                We prioritize eco-friendly practices and local sourcing to nurture a healthier planet for future generations.
-                            </p>
-                            <div class="mt-4 flex justify-end">
-                                <span class="text-green-600 font-medium group-hover:text-green-700 inline-flex items-center text-sm md:text-base transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-green-600 after:transition-all after:duration-300 group-hover:after:w-full">
-                                    Learn More
-                                    <svg class="w-5 h-5 ml-1 transform group-hover:translate-x-2 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Community Focus Card -->
-                    <div class="value-card group relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 newsletter-hover-lift min-h-[280px] overflow-hidden animate-slide-up" style="animation-delay: 0.4s;" tabindex="0" role="button" aria-label="Community Focus value">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-200/20 via-purple-200/15 to-indigo-200/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div class="relative p-6 md:p-8 flex flex-col h-full">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 mb-4 flex items-center justify-center text-white font-display text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">CF</div>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-500 font-display">Community Focus</h3>
-                            <p class="text-gray-600 leading-relaxed flex-grow text-base">
-                                We foster strong community ties, supporting local initiatives to create lasting connections.
-                            </p>
-                            <div class="mt-4 flex justify-end">
-                                <span class="text-blue-600 font-medium group-hover:text-blue-700 inline-flex items-center text-sm md:text-base transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-300 group-hover:after:w-full">
-                                    Learn More
-                                    <svg class="w-5 h-5 ml-1 transform group-hover:translate-x-2 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                    </svg>
-                                </span>
+                        <!-- Right Column: Stats and CTA -->
+                        <div class="w-full lg:w-2/5">
+                            <div class="glass-strong rounded-2xl p-8 md:p-10 shadow-xl border border-white/20 backdrop-blur-lg relative overflow-hidden animate-slide-up"
+                                style="animation-delay: 0.5s;">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-red-50/50 opacity-50">
+                                </div>
+                                <div class="relative">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-8 font-display">Our Impact by Numbers
+                                    </h3>
+                                    <div class="space-y-6">
+                                        <!-- Years of Excellence -->
+                                        <div
+                                            class="stats-card group bg-white/95 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 backdrop-blur-sm">
+                                            <div class="flex items-center">
+                                                <div
+                                                    class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-orange-200 transition-all duration-300">
+                                                    <span class="text-orange-600 font-bold text-lg">25+</span>
+                                                </div>
+                                                <div>
+                                                    <div class="text-gray-600 text-sm">Years of Culinary Excellence
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Fresh Ingredients -->
+                                        <div
+                                            class="stats-card group bg-white/95 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 backdrop-blur-sm">
+                                            <div class="flex items-center">
+                                                <div
+                                                    class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-red-200 transition-all duration-300">
+                                                    <span class="text-red-600 font-bold text-lg">100%</span>
+                                                </div>
+                                                <div>
+                                                    <div class="text-gray-600 text-sm">Fresh, Local Ingredients</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Happy Customers -->
+                                        <div
+                                            class="stats-card group bg-white/95 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 backdrop-blur-sm">
+                                            <div class="flex items-center">
+                                                <div
+                                                    class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-amber-200 transition-all duration-300">
+                                                    <span class="text-amber-600 font-bold text-lg">50K+</span>
+                                                </div>
+                                                <div>
+                                                    <div class="text-gray-600 text-sm">Satisfied Guests</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CTA Buttons -->
+                                    <div class="mt-8 space-y-4">
+                                        <a href="about.html"
+                                            class="block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-center px-6 py-4 rounded-full font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 newsletter-hover-lift">
+                                            Discover Our Story
+                                        </a>
+                                        <a href="menu.html"
+                                            class="block w-full bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-center px-6 py-4 rounded-full font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 newsletter-hover-lift">
+                                            Experience Our Menu
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Right Column: Stats and CTA -->
-            <div class="w-full lg:w-2/5">
-                <div class="glass-strong rounded-2xl p-8 md:p-10 shadow-xl border border-white/20 backdrop-blur-lg relative overflow-hidden animate-slide-up" style="animation-delay: 0.5s;">
-                    <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-red-50/50 opacity-50"></div>
-                    <div class="relative">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-8 font-display">Our Impact by Numbers</h3>
-                        <div class="space-y-6">
-                            <!-- Years of Excellence -->
-                            <div class="stats-card group bg-white/95 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 backdrop-blur-sm">
-                                <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-orange-200 transition-all duration-300">
-                                        <span class="text-orange-600 font-bold text-lg">25+</span>
-                                    </div>
-                                    <div>
-                                        <div class="text-gray-600 text-sm">Years of Culinary Excellence</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Fresh Ingredients -->
-                            <div class="stats-card group bg-white/95 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 backdrop-blur-sm">
-                                <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-red-200 transition-all duration-300">
-                                        <span class="text-red-600 font-bold text-lg">100%</span>
-                                    </div>
-                                    <div>
-                                        <div class="text-gray-600 text-sm">Fresh, Local Ingredients</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Happy Customers -->
-                            <div class="stats-card group bg-white/95 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 backdrop-blur-sm">
-                                <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-amber-200 transition-all duration-300">
-                                        <span class="text-amber-600 font-bold text-lg">50K+</span>
-                                    </div>
-                                    <div>
-                                        <div class="text-gray-600 text-sm">Satisfied Guests</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- CTA Buttons -->
-                        <div class="mt-8 space-y-4">
-                            <a href="about.html" class="block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-center px-6 py-4 rounded-full font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 newsletter-hover-lift">
-                                Discover Our Story
-                            </a>
-                            <a href="menu.html" class="block w-full bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-center px-6 py-4 rounded-full font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 newsletter-hover-lift">
-                                Experience Our Menu
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script src="js/counter.js"></script>
+            <script src="js/counter.js"></script>
 
             <!-- Restaurant Gallery -->
             <section id="gallery" class="mb-16 reveal">
@@ -1553,7 +1683,7 @@
                     </div>
 
                     <!-- Gallery Item 8 - Wine Cellar -->
-                    
+
                 </div>
             </section>
 

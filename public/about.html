@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Flavor Heaven - About Us">
     <title>About Us - Flavor Heaven Restaurant</title>
-    <link rel="shortcut icon" href="Flavor Heaven.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Images/Flavor Heaven.png " type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navbar-fix.css">
     <link rel="stylesheet" href="/src/output.css">
     <script src="js/main.js" defer></script>
     <style>
@@ -181,15 +182,41 @@
         .value-card {
             background: linear-gradient(135deg, #fef7f0 0%, #fed7aa 100%);
         }
+
+        /* Hero section specific fixes */
+        .hero-section {
+            padding-top: 80px !important;
+            height: 100vh !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 100px !important;
+            }
+            
+            .stats-counter {
+                font-size: 2rem;
+            }
+            
+            .timeline-item {
+                text-align: center;
+            }
+            
+            .timeline-item .md\:text-right {
+                text-align: center !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-gray-900 shadow-xl fixed w-full z-50 transition duration-300 ease-in-out">
+    <nav class="bg-gray-900 shadow-xl fixed w-full z-50 transition duration-300 ease-in-out" style="background-color: #111827 !important;">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-white hover:text-red-400 transition duration-300 flex items-center">
                 <div class="logo-container w-12 h-12 mr-2 flex items-center justify-center">
-                    <img src="Flavor Heaven.png" alt="Flavor Heaven Logo" class="w-10 h-10 rounded-full object-cover">
+                    <img src="Images/Flavor Heaven.png" alt="Flavor Heaven Logo" class="w-10 h-10 rounded-full object-cover">
                 </div>
                 Flavor Heaven
             </a>
@@ -198,7 +225,7 @@
             <div class="hidden md:flex space-x-6">
                 <a href="index.html" class="text-white hover:text-red-400 font-medium transition duration-300">Home</a>
                 <a href="menu.html" class="text-white hover:text-red-400 font-medium transition duration-300">Menu</a>
-                <a href="about.html" class="text-red-400 hover:text-red-500 font-bold transition duration-300 border-b-2 border-red-400">About</a>
+                <a href="about.html" class="hover:text-red-500 font-bold transition duration-300 border-b-2 border-red-400">About</a>
                 <a href="contact.html" class="text-white hover:text-red-400 font-medium transition duration-300">Contact</a>
             </div>
 
@@ -241,7 +268,7 @@
     </div>
 
     <!-- Hero Section with Parallax -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden parallax-bg" style="background-image: linear-gradient(135deg, rgba(239, 68, 68, 0.8), rgba(249, 115, 22, 0.8)), url('https://images.unsplash.com/photo-1604908177525-1b6b3d5b5f3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+    <section class="hero-section relative flex items-center justify-center overflow-hidden parallax-bg" style="background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(4, 4, 41, 0.8)), url('https://cdn.hswstatic.com/gif/desserts-update.jpg');">
         <!-- Floating Elements -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
             <div class="absolute top-20 left-10 w-20 h-20 bg-white bg-opacity-10 rounded-full animate-float"></div>
@@ -258,10 +285,10 @@
                 A culinary journey that began with passion and continues with excellence
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
-                <button onclick="scrollToSection('our-journey')" class="bg-white text-red-500 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                <button onclick="scrollToSection('our-journey')" class="bg-white text-red-500 rounded-full font-semibold hover:bg-gray-100 transition duration-300 transform hover:scale-105" style="padding: 10px;">
                     Discover Our Journey
                 </button>
-                <button onclick="scrollToSection('meet-team')" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-red-500 transition duration-300 transform hover:scale-105">
+                <button onclick="scrollToSection('meet-team')" class="border-2 border-white text-white  rounded-full font-semibold hover:bg-white hover:text-red-500 transition duration-300 transform hover:scale-105"style="padding: 10px;" >
                     Meet Our Team
                 </button>
             </div>
@@ -269,24 +296,26 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-20 bg-white relative overflow-hidden">
+    <section class="py-16 bg-white relative overflow-hidden">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="section-reveal">
-                    <div class="stats-counter" data-target="18">0</div>
-                    <p class="text-gray-600 font-medium">Years of Excellence</p>
-                </div>
-                <div class="section-reveal" style="animation-delay: 0.1s;">
-                    <div class="stats-counter" data-target="50000">0</div>
-                    <p class="text-gray-600 font-medium">Happy Customers</p>
-                </div>
-                <div class="section-reveal" style="animation-delay: 0.2s;">
-                    <div class="stats-counter" data-target="150">0</div>
-                    <p class="text-gray-600 font-medium">Signature Dishes</p>
-                </div>
-                <div class="section-reveal" style="animation-delay: 0.3s;">
-                    <div class="stats-counter" data-target="25">0</div>
-                    <p class="text-gray-600 font-medium">Expert Chefs</p>
+            <div class="bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-lg p-8 mx-auto max-w-5xl">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="section-reveal">
+                        <div class="stats-counter text-3xl md:text-4xl" data-target="18">0</div>
+                        <p class="text-gray-600 font-medium text-sm md:text-base">Years of Excellence</p>
+                    </div>
+                    <div class="section-reveal" style="animation-delay: 0.1s;">
+                        <div class="stats-counter text-3xl md:text-4xl" data-target="50000">0</div>
+                        <p class="text-gray-600 font-medium text-sm md:text-base">Happy Customers</p>
+                    </div>
+                    <div class="section-reveal" style="animation-delay: 0.2s;">
+                        <div class="stats-counter text-3xl md:text-4xl" data-target="150">0</div>
+                        <p class="text-gray-600 font-medium text-sm md:text-base">Signature Dishes</p>
+                    </div>
+                    <div class="section-reveal" style="animation-delay: 0.3s;">
+                        <div class="stats-counter text-3xl md:text-4xl" data-target="25">0</div>
+                        <p class="text-gray-600 font-medium text-sm md:text-base">Expert Chefs</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -300,7 +329,7 @@
                     Our <span class="gradient-text">Journey</span>
                 </h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-orange-500 mx-auto rounded-full mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p class="text-xl text-bule-100 max-w-3xl mx-auto">
                     From humble beginnings to culinary excellence, discover the milestones that shaped Flavor Heaven into the beloved destination it is today.
                 </p>
             </div>
@@ -308,7 +337,7 @@
             <!-- Timeline -->
             <div class="relative max-w-6xl mx-auto">
                 <!-- Timeline Line -->
-                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-500 to-orange-500 rounded-full"></div>
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-500 to-orange-500 rounded-full hidden md:block"></div>
 
                 <!-- Timeline Items -->
                 <div class="space-y-16">
@@ -426,7 +455,7 @@
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 mb-4">"Cooking is an art form where every ingredient tells a story, and every dish creates a memory."</p>
-                        <div class="flex space-x-2">
+                        <div class="flex flex-wrap gap-2">
                             <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">20+ Years Experience</span>
                             <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">Michelin Star</span>
                         </div>
@@ -445,7 +474,7 @@
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 mb-4">"Precision and passion are the secret ingredients that transform good food into extraordinary experiences."</p>
-                        <div class="flex space-x-2">
+                        <div class="flex flex-wrap gap-2">
                             <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Culinary Arts Graduate</span>
                             <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">Innovation Expert</span>
                         </div>
@@ -464,7 +493,7 @@
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 mb-4">"Creating memorable experiences is about attention to detail and genuine care for every guest who walks through our doors."</p>
-                        <div class="flex space-x-2">
+                        <div class="flex flex-wrap gap-2">
                             <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">Hospitality Expert</span>
                             <span class="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-sm">15+ Years</span>
                         </div>

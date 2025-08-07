@@ -22,7 +22,7 @@ const sendEmail = async (to, subject, html) => {
         console.log(`📧 Attempting to send email to: ${to}`);
         
         const info = await transporter.sendMail({
-            from: process.env.EMAIL_USER,
+            from: `"Flavor Heaven support" <${process.env.EMAIL_USER}>`,
             to,
             subject,
             html

@@ -130,7 +130,8 @@ let menuItems = [
 
 let reservations = [];
 let orders = [];
-let contacts = [];
+const mongoose = require('mongoose');
+const Contact = require('./src/models/Contact'); // Import the Contact model
 
 // Simple API routes without database
 app.get('/api/menu', (req, res) => {
@@ -142,7 +143,7 @@ app.get('/api/menu/category/:category', (req, res) => {
   res.json(filteredItems);
 });
 
-app.post('/api/reservations', (req, res) => {
+app.post('/api/reservations', async (req, res) => {
   console.log('Reservation form received:', req.body);
   
   const reservation = {
@@ -161,6 +162,93 @@ app.post('/api/reservations', (req, res) => {
   reservations.push(reservation);
   console.log('Reservation saved:', reservation);
   console.log('Total reservations:', reservations.length);
+  
+  // Send email if email configuration is available
+  if (emailConfigured) {
+    try {
+      // Import the email module if not already imported
+      const emailModule = require('./src/config/email');
+      
+      console.log('📧 Attempting to send reservation emails with configured credentials');
+      
+      // Send notification to restaurant
+      const restaurantEmailHtml = `
+        <h2>New Reservation - Flavor Heaven</h2>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h3>Reservation Details:</h3>
+          <p><strong>Name:</strong> ${reservation.name}</p>
+          <p><strong>Email:</strong> ${reservation.email}</p>
+          <p><strong>Phone:</strong> ${reservation.phone}</p>
+          <p><strong>Date:</strong> ${reservation.date}</p>
+          <p><strong>Time:</strong> ${reservation.time}</p>
+          <p><strong>Number of Guests:</strong> ${reservation.guests}</p>
+          ${reservation.specialRequests ? `<p><strong>Special Requests:</strong> ${reservation.specialRequests}</p>` : ''}
+          
+          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #d35400; margin: 10px 0;">
+            <p><strong>Status:</strong> ${reservation.status}</p>
+            <p><strong>Reservation ID:</strong> #${reservation.id}</p>
+          </div>
+          
+          <p><small>Submitted on: ${reservation.createdAt.toLocaleString()}</small></p>
+        </div>
+      `;
+
+      // Send notification to restaurant
+      await emailModule.sendEmail(
+        process.env.RESTAURANT_EMAIL,
+        `New Reservation: ${reservation.name} - ${reservation.date} at ${reservation.time}`,
+        restaurantEmailHtml
+      );
+      
+      console.log('✅ Restaurant notification email sent successfully');
+
+      // Send confirmation to customer
+      const customerEmailHtml = `
+        <h2>Reservation Confirmed - Flavor Heaven</h2>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <p>Dear ${reservation.name},</p>
+          
+          <p>Thank you for choosing Flavor Heaven! Your reservation has been confirmed.</p>
+          
+          <h3>Your Reservation Details:</h3>
+          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #e53e3e; margin: 10px 0;">
+            <p><strong>Date:</strong> ${reservation.date}</p>
+            <p><strong>Time:</strong> ${reservation.time}</p>
+            <p><strong>Number of Guests:</strong> ${reservation.guests}</p>
+            <p><strong>Reservation ID:</strong> #${reservation.id}</p>
+            ${reservation.specialRequests ? `<p><strong>Special Requests:</strong> ${reservation.specialRequests}</p>` : ''}
+          </div>
+          
+          <h3>Restaurant Information:</h3>
+          <p><strong>Address:</strong> 123 Main Street, City, State 12345</p>
+          <p><strong>Phone:</strong> (123) 456-7890</p>
+          
+          <p>If you need to make any changes to your reservation, please contact us at least 2 hours before your scheduled time.</p>
+          
+          <p>We look forward to serving you!</p>
+          
+          <p>Best regards,<br>The Flavor Heaven Team</p>
+        </div>
+      `;
+
+      // Send confirmation to customer
+      await emailModule.sendEmail(
+        reservation.email,
+        'Reservation Confirmed - Flavor Heaven',
+        customerEmailHtml
+      );
+      
+      console.log(`✅ Customer confirmation email sent successfully to ${reservation.email}`);
+      
+      console.log('📧 Reservation emails sent successfully');
+      
+    } catch (emailError) {
+      console.error('❌ Email sending failed:', emailError);
+      // Don't fail the entire request if email fails
+    }
+  } else {
+    console.log('📧 Email not configured - reservation saved without sending emails');
+  }
   
   res.status(201).json({
     message: 'Reservation confirmed successfully',
@@ -192,119 +280,128 @@ app.post('/api/orders', (req, res) => {
 // Add a route specifically for handling cross-origin contact form submissions
 app.options('/api/contact', cors(corsOptions));
 
+// Connect to MongoDB
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
+} else {
+  console.warn('⚠️ MongoDB URI not provided - contact form will not save to database');
+}
+
 app.post('/api/contact', async (req, res) => {
-  console.log('Contact form received:', req.body);
+  const { name, email, phone, subject, message, rating } = req.body;
+
+  try {
+    const newContact = new Contact({
+      name,
+      email,
+      phone,
+      subject,
+      message,
+      rating,
+      status: 'new',
+      createdAt: new Date()
+    });
+
+    await newContact.save();
+    console.log('Contact saved to MongoDB:', newContact);
   
-  const contact = {
-    id: contacts.length + 1,
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
-    subject: req.body.subject,
-    message: req.body.message,
-    rating: req.body.rating,
-    status: 'new',
-    createdAt: new Date()
-  };
-  
-  contacts.push(contact);
-  console.log('Contact saved:', contact);
-  
-  // Send email if email configuration is available
-  if (emailConfigured) {
-    try {
-      // Import the email module if not already imported
-      const emailModule = require('./src/config/email');
-      
-      console.log('📧 Attempting to send email with configured credentials');
-      
-      // Send notification to restaurant
-      const restaurantEmailHtml = `
-        <h2>New Contact Form Submission - Flavor Heaven</h2>
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h3>Contact Details:</h3>
-          <p><strong>Name:</strong> ${contact.name}</p>
-          <p><strong>Email:</strong> ${contact.email}</p>
-          <p><strong>Phone:</strong> ${contact.phone || 'Not provided'}</p>
-          <p><strong>Subject:</strong> ${contact.subject}</p>
-          <p><strong>Rating:</strong> ${contact.rating ? '⭐'.repeat(contact.rating) + ` (${contact.rating}/5)` : 'Not provided'}</p>
-          
-          <h3>Message:</h3>
-          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #d35400; margin: 10px 0;">
-            <p>${contact.message}</p>
+    // Send email if email configuration is available
+    if (emailConfigured) {
+      try {
+        // Import the email module if not already imported
+        const emailModule = require('./src/config/email');
+        
+        console.log('📧 Attempting to send email with configured credentials');
+        
+        // Send notification to restaurant
+        const restaurantEmailHtml = `
+          <h2>New Contact Form Submission - Flavor Heaven</h2>
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h3>Contact Details:</h3>
+            <p><strong>Name:</strong> ${newContact.name}</p>
+            <p><strong>Email:</strong> ${newContact.email}</p>
+            <p><strong>Phone:</strong> ${newContact.phone || 'Not provided'}</p>
+            <p><strong>Subject:</strong> ${newContact.subject}</p>
+            <p><strong>Rating:</strong> ${newContact.rating ? '⭐'.repeat(newContact.rating) + ` (${newContact.rating}/5)` : 'Not provided'}</p>
+            
+            <h3>Message:</h3>
+            <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #d35400; margin: 10px 0;">
+              <p>${newContact.message}</p>
+            </div>
+            
+            <p><small>Submitted on: ${newContact.createdAt.toLocaleString()}</small></p>
           </div>
-          
-          <p><small>Submitted on: ${contact.createdAt.toLocaleString()}</small></p>
-        </div>
-      `;
+        `;
 
-      // Use the emailModule.sendEmail function
-      await emailModule.sendEmail(
-        process.env.RESTAURANT_EMAIL,
-        `New Contact Form: ${contact.subject} - ${contact.name}`,
-        restaurantEmailHtml
-      );
-      
-      console.log('✅ Restaurant notification email sent successfully');
+        // Use the emailModule.sendEmail function
+        await emailModule.sendEmail(
+          process.env.RESTAURANT_EMAIL,
+          `New Contact Form: ${newContact.subject} - ${newContact.name}`,
+          restaurantEmailHtml
+        );
+        
+        console.log('✅ Restaurant notification email sent successfully');
 
-      // Send confirmation to customer
-      // Use the already imported emailModule
-      const customerEmailHtml = `
-        <h2>Thank you for contacting Flavor Heaven!</h2>
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <p>Dear ${contact.name},</p>
-          
-          <p>We have received your message and will get back to you shortly.</p>
-          
-          <h3>Your Message Summary:</h3>
-          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #e53e3e;">
-            <p><strong>Subject:</strong> ${contact.subject}</p>
-            <p><strong>Message:</strong> ${contact.message}</p>
-            ${contact.rating ? `<p><strong>Rating:</strong> ${'⭐'.repeat(contact.rating)} (${contact.rating}/5)</p>` : ''}
+        // Send confirmation to customer
+        // Use the already imported emailModule
+        const customerEmailHtml = `
+          <h2>Thank you for contacting Flavor Heaven!</h2>
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <p>Dear ${newContact.name},</p>
+            
+            <p>We have received your message and will get back to you shortly.</p>
+            
+            <h3>Your Message Summary:</h3>
+            <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #e53e3e;">
+              <p><strong>Subject:</strong> ${newContact.subject}</p>
+              <p><strong>Message:</strong> ${newContact.message}</p>
+              ${newContact.rating ? `<p><strong>Rating:</strong> ${'⭐'.repeat(newContact.rating)} (${newContact.rating}/5)</p>` : ''}
+            </div>
+            
+            <p>We appreciate your feedback and will respond as soon as possible.</p>
+            
+            <p>Best regards,<br>The Flavor Heaven Team</p>
           </div>
-          
-          <p>We appreciate your feedback and will respond as soon as possible.</p>
-          
-          <p>Best regards,<br>The Flavor Heaven Team</p>
-        </div>
-      `;
+        `;
 
-      // Use the emailModule.sendEmail function
-      await emailModule.sendEmail(
-        contact.email,
-        'Thank you for contacting Flavor Heaven!',
-        customerEmailHtml
-      );
-      
-      console.log(`✅ Customer confirmation email sent successfully to ${contact.email}`);
-      
+        // Use the emailModule.sendEmail function
+        await emailModule.sendEmail(
+          newContact.email,
+          'Thank you for contacting Flavor Heaven!',
+          customerEmailHtml
+        );
+        
+        console.log(`✅ Customer confirmation email sent successfully to ${newContact.email}`);
+        
 
-      console.log('📧 Contact form emails sent successfully');
-      
-    } catch (emailError) {
-      console.error('❌ Email sending failed:', emailError);
-      // Don't fail the entire request if email fails
+        console.log('📧 Contact form emails sent successfully');
+        
+      } catch (emailError) {
+        console.error('❌ Email sending failed:', emailError);
+        // Don't fail the entire request if email fails
+      }
+    } else {
+      console.log('📧 Email not configured - contact form saved without sending emails');
     }
-  } else {
-    console.log('📧 Email not configured - contact form saved without sending emails');
+    
+    res.status(201).json({
+      message: 'Contact form submitted successfully',
+      contact: newContact
+    });
+  } catch (error) {
+    console.error('Error submitting contact form:', error);
+    res.status(500).json({ message: 'Failed to submit contact form.', error: error.message });
   }
-  
-  console.log('Total contacts:', contacts.length);
-  
-  res.status(201).json({
-    message: 'Contact form submitted successfully',
-    contact: contact
-  });
 });
 
 // Get all contacts (for debugging)
-app.get('/api/contacts', (req, res) => {
-  res.json({
-    message: 'All contact submissions',
-    contacts: contacts,
-    total: contacts.length
-  });
-});
+// Remove the in-memory contacts array
+// const contacts = [];
+// app.get('/api/contacts', (req, res) => {
+//   res.json(contacts);
+// });
 
 // Serve static files for any other route
 app.get('*', (req, res) => {

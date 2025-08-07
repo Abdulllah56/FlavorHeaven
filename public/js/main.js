@@ -11,6 +11,81 @@ document.addEventListener("DOMContentLoaded", function () {
     init3DAnimations();
     initFormValidation();
 
+    // Handle reservation form submission
+    const reservationForm = document.getElementById('reservation-form');
+    if (reservationForm) {
+        reservationForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(reservationForm);
+            const data = Object.fromEntries(formData.entries());
+
+            // Show loading state
+            const submitButton = reservationForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Processing...';
+            submitButton.disabled = true;
+
+            try {
+                // Use the correct server URL - adjust for both development and production
+                const serverUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                    ? 'http://localhost:3001' 
+                    : window.location.origin;
+                
+                const response = await fetch(`${serverUrl}/api/reservations`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Reservation successful:', result);
+                    
+                    // Hide the form and show success message
+                    reservationForm.style.display = 'none';
+                    const confirmationDiv = document.getElementById('reservation-confirmation');
+                    if (confirmationDiv) {
+                        confirmationDiv.classList.remove('hidden');
+                        confirmationDiv.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        alert('Reservation successful! A confirmation email has been sent to your email address.');
+                    }
+                } else {
+                    const errorData = await response.json().catch(() => ({ message: 'Unknown error occurred' }));
+                    console.error('Reservation failed:', errorData);
+                    
+                    // Show error message
+                    const errorDiv = document.getElementById('reservation-error');
+                    if (errorDiv) {
+                        errorDiv.classList.remove('hidden');
+                        errorDiv.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        alert(`Reservation failed: ${errorData.message || 'Please try again.'}`);
+                    }
+                }
+            } catch (error) {
+                console.error('Error submitting reservation:', error);
+                
+                // Show error message
+                const errorDiv = document.getElementById('reservation-error');
+                if (errorDiv) {
+                    errorDiv.classList.remove('hidden');
+                    errorDiv.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert('An error occurred while submitting your reservation. Please check your internet connection and try again.');
+                }
+            } finally {
+                // Reset button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        });
+    }
+
     // Add enhanced parallax scrolling effect
     window.addEventListener("scroll", function () {
         const parallaxElements = document.querySelectorAll(".parallax");
