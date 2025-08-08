@@ -5,7 +5,7 @@ console.log('📧 Initializing email transport with Gmail');
 console.log('📧 Email User:', process.env.EMAIL_USER);
 console.log('📧 Using App Password:', process.env.EMAIL_PASSWORD ? 'Yes (hidden)' : 'No');
 
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',
     port: 587,
@@ -36,16 +36,11 @@ const sendEmail = async (to, subject, html) => {
         console.log(`📧 Attempting to send email to: ${to}`);
         console.log(`📧 Subject: ${subject}`);
         
-<<<<<<< HEAD
-        const info = await transporter.sendMail({
-            from: `"Flavor Heaven support" <${process.env.EMAIL_USER}>`,
-=======
         const mailOptions = {
             from: {
                 name: 'Flavor Heaven Restaurant',
                 address: process.env.EMAIL_USER
             },
->>>>>>> a35d9e50d8dcbdd601d4a3aba0c4b959ca63bc56
             to,
             subject,
             html,

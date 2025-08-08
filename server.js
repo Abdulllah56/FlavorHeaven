@@ -1,4 +1,3 @@
-
 // Load environment variables from .env.local file
 require('dotenv').config({ path: '.env.local' });
 
@@ -16,6 +15,7 @@ if (emailConfigured) {
   if (!process.env.EMAIL_PASSWORD) console.warn('Missing EMAIL_PASSWORD environment variable');
   if (!process.env.RESTAURANT_EMAIL) console.warn('Missing RESTAURANT_EMAIL environment variable');
 }
+
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -49,9 +49,6 @@ const corsOptions = {
 };
 
 console.log('🔒 CORS configured to allow requests from:', corsOptions.origin);
-
-console.log('🔒 CORS configured to allow requests from development URLs');
-
 
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
@@ -130,8 +127,15 @@ let menuItems = [
 
 let reservations = [];
 let orders = [];
-const mongoose = require('mongoose');
-const Contact = require('./src/models/Contact'); // Import the Contact model
+
+// Import mongoose and Contact model with error handling
+let mongoose, Contact;
+try {
+  mongoose = require('mongoose');
+  Contact = require('./src/models/Contact');
+} catch (error) {
+  console.warn('⚠️ MongoDB dependencies not found - contact form will work without database storage');
+}
 
 // Simple API routes without database
 app.get('/api/menu', (req, res) => {
@@ -166,7 +170,7 @@ app.post('/api/reservations', async (req, res) => {
   // Send email if email configuration is available
   if (emailConfigured) {
     try {
-      // Import the email module if not already imported
+      // Import the email module with error handling
       const emailModule = require('./src/config/email');
       
       console.log('📧 Attempting to send reservation emails with configured credentials');
@@ -239,7 +243,6 @@ app.post('/api/reservations', async (req, res) => {
       );
       
       console.log(`✅ Customer confirmation email sent successfully to ${reservation.email}`);
-      
       console.log('📧 Reservation emails sent successfully');
       
     } catch (emailError) {
@@ -280,40 +283,73 @@ app.post('/api/orders', (req, res) => {
 // Add a route specifically for handling cross-origin contact form submissions
 app.options('/api/contact', cors(corsOptions));
 
-// Connect to MongoDB
-if (process.env.MONGODB_URI) {
+// Connect to MongoDB if available
+if (process.env.MONGODB_URI && mongoose) {
   mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+    .then(() => console.log('✅ MongoDB connected'))
+    .catch(err => console.error('❌ MongoDB connection error:', err));
 } else {
-  console.warn('⚠️ MongoDB URI not provided - contact form will not save to database');
+  console.warn('⚠️ MongoDB URI not provided or mongoose not available - contact form will work without database storage');
 }
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, phone, subject, message, rating } = req.body;
 
   try {
-    const newContact = new Contact({
-      name,
-      email,
-      phone,
-      subject,
-      message,
-      rating,
-      status: 'new',
-      createdAt: new Date()
-    });
+    let newContact;
+    
+    // Try to save to database if available
+    if (Contact && mongoose) {
+      try {
+        newContact = new Contact({
+          name,
+          email,
+          phone,
+          subject,
+          message,
+          rating,
+          status: 'new',
+          createdAt: new Date()
+        });
 
-    await newContact.save();
-    console.log('Contact saved to MongoDB:', newContact);
+        await newContact.save();
+        console.log('✅ Contact saved to MongoDB:', newContact);
+      } catch (dbError) {
+        console.warn('⚠️ Failed to save to database, continuing without database storage:', dbError.message);
+        // Create a simple object if database save fails
+        newContact = {
+          name,
+          email,
+          phone,
+          subject,
+          message,
+          rating,
+          status: 'new',
+          createdAt: new Date()
+        };
+      }
+    } else {
+      // Create a simple object if no database
+      newContact = {
+        name,
+        email,
+        phone,
+        subject,
+        message,
+        rating,
+        status: 'new',
+        createdAt: new Date()
+      };
+      console.log('📝 Contact form data processed (no database):', newContact);
+    }
   
     // Send email if email configuration is available
     if (emailConfigured) {
       try {
-        // Import the email module if not already imported
+        // Import the email module with error handling
         const emailModule = require('./src/config/email');
         
-        console.log('📧 Attempting to send email with configured credentials');
+        console.log('📧 Attempting to send contact form emails');
         
         // Send notification to restaurant
         const restaurantEmailHtml = `
@@ -335,8 +371,7 @@ app.post('/api/contact', async (req, res) => {
           </div>
         `;
 
-<<<<<<< HEAD
-        // Use the emailModule.sendEmail function
+        // Send notification to restaurant
         await emailModule.sendEmail(
           process.env.RESTAURANT_EMAIL,
           `New Contact Form: ${newContact.subject} - ${newContact.name}`,
@@ -346,7 +381,6 @@ app.post('/api/contact', async (req, res) => {
         console.log('✅ Restaurant notification email sent successfully');
 
         // Send confirmation to customer
-        // Use the already imported emailModule
         const customerEmailHtml = `
           <h2>Thank you for contacting Flavor Heaven!</h2>
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -364,39 +398,10 @@ app.post('/api/contact', async (req, res) => {
             <p>We appreciate your feedback and will respond as soon as possible.</p>
             
             <p>Best regards,<br>The Flavor Heaven Team</p>
-=======
-      // Send notification to restaurant
-      const restaurantResult = await emailModule.sendEmail(
-        process.env.RESTAURANT_EMAIL,
-        `New Contact Form: ${contact.subject} - ${contact.name}`,
-        restaurantEmailHtml
-      );
-      
-      if (restaurantResult.success) {
-        console.log('✅ Restaurant notification email sent successfully');
-      } else {
-        console.error('❌ Failed to send restaurant notification:', restaurantResult.error);
-      }
-
-      // Send confirmation to customer
-      const customerEmailHtml = `
-        <h2>Thank you for contacting Flavor Heaven!</h2>
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <p>Dear ${contact.name},</p>
-          
-          <p>We have received your message and will get back to you shortly.</p>
-          
-          <h3>Your Message Summary:</h3>
-          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #e53e3e;">
-            <p><strong>Subject:</strong> ${contact.subject}</p>
-            <p><strong>Message:</strong> ${contact.message}</p>
-            ${contact.rating ? `<p><strong>Rating:</strong> ${'⭐'.repeat(contact.rating)} (${contact.rating}/5)</p>` : ''}
->>>>>>> a35d9e50d8dcbdd601d4a3aba0c4b959ca63bc56
           </div>
         `;
 
-<<<<<<< HEAD
-        // Use the emailModule.sendEmail function
+        // Send confirmation to customer
         await emailModule.sendEmail(
           newContact.email,
           'Thank you for contacting Flavor Heaven!',
@@ -404,8 +409,6 @@ app.post('/api/contact', async (req, res) => {
         );
         
         console.log(`✅ Customer confirmation email sent successfully to ${newContact.email}`);
-        
-
         console.log('📧 Contact form emails sent successfully');
         
       } catch (emailError) {
@@ -414,31 +417,6 @@ app.post('/api/contact', async (req, res) => {
       }
     } else {
       console.log('📧 Email not configured - contact form saved without sending emails');
-=======
-      // Send confirmation to customer
-      const customerResult = await emailModule.sendEmail(
-        contact.email,
-        'Thank you for contacting Flavor Heaven!',
-        customerEmailHtml
-      );
-      
-      if (customerResult.success) {
-        console.log(`✅ Customer confirmation email sent successfully to ${contact.email}`);
-      } else {
-        console.error(`❌ Failed to send customer confirmation to ${contact.email}:`, customerResult.error);
-      }
-
-      // Check if both emails were successful
-      if (restaurantResult.success && customerResult.success) {
-        console.log('📧 All contact form emails sent successfully');
-      } else {
-        console.log('⚠️ Some emails failed to send, but contact form was saved');
-      }
-      
-    } catch (emailError) {
-      console.error('❌ Email sending failed:', emailError);
-      // Don't fail the entire request if email fails
->>>>>>> a35d9e50d8dcbdd601d4a3aba0c4b959ca63bc56
     }
     
     res.status(201).json({
@@ -446,17 +424,10 @@ app.post('/api/contact', async (req, res) => {
       contact: newContact
     });
   } catch (error) {
-    console.error('Error submitting contact form:', error);
+    console.error('❌ Error submitting contact form:', error);
     res.status(500).json({ message: 'Failed to submit contact form.', error: error.message });
   }
 });
-
-// Get all contacts (for debugging)
-// Remove the in-memory contacts array
-// const contacts = [];
-// app.get('/api/contacts', (req, res) => {
-//   res.json(contacts);
-// });
 
 // Serve static files for any other route
 app.get('*', (req, res) => {
@@ -472,8 +443,8 @@ app.use((err, req, res, next) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server is running on port ${PORT}`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`📧 Email configured: ${process.env.EMAIL_USER ? 'Yes' : 'No'}`);
-  console.log('💾 Database functionality removed - using in-memory storage');
+  console.log(`📧 Email configured: ${emailConfigured ? 'Yes' : 'No'}`);
+  console.log('💾 Using in-memory storage with optional database support');
   
   if (process.env.NODE_ENV === 'production') {
     console.log('🎯 Production mode - Server ready for deployment');

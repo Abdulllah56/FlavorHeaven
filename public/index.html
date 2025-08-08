@@ -1056,21 +1056,21 @@
                                     access to special events</p>
                             </div>
 
-                            <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
                                 <button
-                                    class="special-offers-btn px-8 py-4 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-2xl font-bold text-lg relative overflow-hidden"
+                                    class="special-offers-btn px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-2xl font-semibold text-sm sm:text-base lg:text-lg relative overflow-hidden"
                                     style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
-                                    <span class="relative z-10 flex items-center p-2">
-                                        <i class="fas fa-bell mr-3 animate-pulse"></i>
-                                        Get Notifications
+                                    <span class="relative z-10 flex items-center justify-center">
+                                        <i class="fas fa-bell mr-2 animate-pulse text-sm sm:text-base"></i>
+                                        <span class="whitespace-nowrap">Get Notifications</span>
                                     </span>
                                 </button>
                                 <button
-                                    class="special-offers-btn px-8 py-4 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-2xl font-bold text-lg relative overflow-hidden"
+                                    class="special-offers-btn px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-2xl font-semibold text-sm sm:text-base lg:text-lg relative overflow-hidden"
                                     style="background: linear-gradient(135deg, #374151, #111827);">
-                                    <span class="relative z-10 flex items-center p-2">
-                                        <i class="fas fa-download mr-3 animate-bounce"></i>
-                                        Download App
+                                    <span class="relative z-10 flex items-center justify-center">
+                                        <i class="fas fa-download mr-2 animate-bounce text-sm sm:text-base"></i>
+                                        <span class="whitespace-nowrap">Download App</span>
                                     </span>
                                 </button>
                             </div>
@@ -1123,45 +1123,90 @@
                     <!-- Enhanced Timeline -->
                     <div class="max-w-6xl mx-auto mb-24">
                         <div class="relative">
-                            <!-- Timeline Line -->
-                            <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-orange-300 via-red-400 to-amber-400 rounded-full shadow-lg animate-draw-line"
+                            <!-- Timeline Line - Hidden on mobile, visible on desktop -->
+                            <div class="timeline-line hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-orange-300 via-red-400 to-amber-400 rounded-full shadow-lg animate-draw-line"
+                                style="animation-delay: 0.8s;"></div>
+                            
+                            <!-- Mobile Timeline Line - Visible only on mobile -->
+                            <div class="timeline-line-mobile md:hidden absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-300 via-red-400 to-amber-400 rounded-full shadow-lg animate-draw-line"
                                 style="animation-delay: 0.8s;"></div>
 
-                            <div class="space-y-20">
+                            <div class="space-y-12 md:space-y-20">
                                 <!-- 2015 Timeline Item -->
-                                <div class="timeline-item flex items-center" data-year="2015">
+                                <div class="timeline-item flex items-center md:flex-row flex-col" data-year="2015">
+                                    <!-- Desktop Timeline Dot -->
                                     <div
-                                        class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                        class="timeline-dot hidden md:block absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
                                     </div>
-                                    <div class="timeline-content w-1/2 pr-12 text-right">
+                                    
+                                    <!-- Mobile Timeline Dot -->
+                                    <div
+                                        class="timeline-dot-mobile md:hidden absolute left-6 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                    </div>
+                                    
+                                    <!-- Desktop Layout -->
+                                    <div class="timeline-content hidden md:block w-1/2 pr-12 text-right">
                                         <div
-                                            class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
-                                            <div class="text-3xl font-bold text-orange-600 mb-3 font-display">2015</div>
-                                            <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">The
-                                                Beginning</h3>
-                                            <p class="text-gray-600 leading-relaxed">
+                                            class="glass-strong rounded-2xl p-6 lg:p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-2xl lg:text-3xl font-bold text-orange-600 mb-3 font-display">2015</div>
+                                            <h3 class="text-xl lg:text-2xl font-semibold text-gray-800 mb-3 font-display">The Beginning</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm lg:text-base">
                                                 Founded by Chef Marco Rodriguez with a vision to deliver authentic,
                                                 passion-driven cuisine, starting with just 10 tables and boundless
                                                 ambition.
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="w-1/2 pl-12"></div>
+                                    <div class="hidden md:block w-1/2 pl-12"></div>
+                                    
+                                    <!-- Mobile Layout -->
+                                    <div class="timeline-content-mobile md:hidden w-full pl-16 pr-4">
+                                        <div
+                                            class="glass-strong rounded-2xl p-4 sm:p-6 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-2xl font-bold text-orange-600 mb-2 font-display">2015</div>
+                                            <h3 class="text-lg font-semibold text-gray-800 mb-2 font-display">The Beginning</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm">
+                                                Founded by Chef Marco Rodriguez with a vision to deliver authentic,
+                                                passion-driven cuisine, starting with just 10 tables and boundless
+                                                ambition.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- 2018 Timeline Item -->
-                                <div class="timeline-item flex items-center" data-year="2018">
+                                <div class="timeline-item flex items-center md:flex-row flex-col" data-year="2018">
+                                    <!-- Desktop Timeline Dot -->
                                     <div
-                                        class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-red-500 to-amber-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                        class="timeline-dot hidden md:block absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-red-500 to-amber-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
                                     </div>
-                                    <div class="w-1/2 pr-12"></div>
-                                    <div class="timeline-content right w-1/2 pl-12">
+                                    
+                                    <!-- Mobile Timeline Dot -->
+                                    <div
+                                        class="timeline-dot-mobile md:hidden absolute left-6 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-red-500 to-amber-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                    </div>
+                                    
+                                    <!-- Desktop Layout -->
+                                    <div class="hidden md:block w-1/2 pr-12"></div>
+                                    <div class="timeline-content right hidden md:block w-1/2 pl-12">
                                         <div
-                                            class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
-                                            <div class="text-3xl font-bold text-red-600 mb-3 font-display">2018</div>
-                                            <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">
-                                                Philosophy Evolves</h3>
-                                            <p class="text-gray-600 leading-relaxed">
+                                            class="glass-strong rounded-2xl p-6 lg:p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-2xl lg:text-3xl font-bold text-red-600 mb-3 font-display">2018</div>
+                                            <h3 class="text-xl lg:text-2xl font-semibold text-gray-800 mb-3 font-display">Philosophy Evolves</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm lg:text-base">
+                                                Our commitment to fresh, locally-sourced ingredients deepened, forging
+                                                strong partnerships with local farmers and artisans.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Mobile Layout -->
+                                    <div class="timeline-content-mobile md:hidden w-full pl-16 pr-4">
+                                        <div
+                                            class="glass-strong rounded-2xl p-4 sm:p-6 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-2xl font-bold text-red-600 mb-2 font-display">2018</div>
+                                            <h3 class="text-lg font-semibold text-gray-800 mb-2 font-display">Philosophy Evolves</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm">
                                                 Our commitment to fresh, locally-sourced ingredients deepened, forging
                                                 strong partnerships with local farmers and artisans.
                                             </p>
@@ -1170,38 +1215,78 @@
                                 </div>
 
                                 <!-- 2020 Timeline Item -->
-                                <div class="timeline-item flex items-center" data-year="2020">
+                                <div class="timeline-item flex items-center md:flex-row flex-col" data-year="2020">
+                                    <!-- Desktop Timeline Dot -->
                                     <div
-                                        class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                        class="timeline-dot hidden md:block absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
                                     </div>
-                                    <div class="timeline-content w-1/2 pr-12 text-right">
+                                    
+                                    <!-- Mobile Timeline Dot -->
+                                    <div
+                                        class="timeline-dot-mobile md:hidden absolute left-6 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                    </div>
+                                    
+                                    <!-- Desktop Layout -->
+                                    <div class="timeline-content hidden md:block w-1/2 pr-12 text-right">
                                         <div
-                                            class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
-                                            <div class="text-3xl font-bold text-amber-600 mb-3 font-display">2020</div>
-                                            <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">Community
-                                                Focus</h3>
-                                            <p class="text-gray-600 leading-relaxed">
+                                            class="glass-strong rounded-2xl p-6 lg:p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-2xl lg:text-3xl font-bold text-amber-600 mb-3 font-display">2020</div>
+                                            <h3 class="text-xl lg:text-2xl font-semibold text-gray-800 mb-3 font-display">Community Focus</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm lg:text-base">
                                                 During challenging times, we transformed into a community hub,
                                                 supporting local families and uniting people through the joy of food.
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="w-1/2 pl-12"></div>
+                                    <div class="hidden md:block w-1/2 pl-12"></div>
+                                    
+                                    <!-- Mobile Layout -->
+                                    <div class="timeline-content-mobile md:hidden w-full pl-16 pr-4">
+                                        <div
+                                            class="glass-strong rounded-2xl p-4 sm:p-6 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-2xl font-bold text-amber-600 mb-2 font-display">2020</div>
+                                            <h3 class="text-lg font-semibold text-gray-800 mb-2 font-display">Community Focus</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm">
+                                                During challenging times, we transformed into a community hub,
+                                                supporting local families and uniting people through the joy of food.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- 2024 Timeline Item -->
-                                <div class="timeline-item flex items-center" data-year="2024">
+                                <div class="timeline-item flex items-center md:flex-row flex-col" data-year="2024">
+                                    <!-- Desktop Timeline Dot -->
                                     <div
-                                        class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                        class="timeline-dot hidden md:block absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
                                     </div>
-                                    <div class="w-1/2 pr-12"></div>
-                                    <div class="timeline-content right w-1/2 pl-12">
+                                    
+                                    <!-- Mobile Timeline Dot -->
+                                    <div
+                                        class="timeline-dot-mobile md:hidden absolute left-6 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full shadow-2xl border-4 border-white z-20 newsletter-pulse-glow">
+                                    </div>
+                                    
+                                    <!-- Desktop Layout -->
+                                    <div class="hidden md:block w-1/2 pr-12"></div>
+                                    <div class="timeline-content right hidden md:block w-1/2 pl-12">
                                         <div
-                                            class="glass-strong rounded-2xl p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
-                                            <div class="text-3xl font-bold text-yellow-600 mb-3 font-display">2024</div>
-                                            <h3 class="text-2xl font-semibold text-gray-800 mb-3 font-display">Future
-                                                Awaits</h3>
-                                            <p class="text-gray-600 leading-relaxed">
+                                            class="glass-strong rounded-2xl p-6 lg:p-8 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-2xl lg:text-3xl font-bold text-yellow-600 mb-3 font-display">2024</div>
+                                            <h3 class="text-xl lg:text-2xl font-semibold text-gray-800 mb-3 font-display">Future Awaits</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm lg:text-base">
+                                                We continue to innovate, crafting new culinary experiences and
+                                                sustainable practices to create lasting memories for generations.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Mobile Layout -->
+                                    <div class="timeline-content-mobile md:hidden w-full pl-16 pr-4">
+                                        <div
+                                            class="glass-strong rounded-2xl p-4 sm:p-6 shadow-xl card-hover border border-white/20 backdrop-blur-lg newsletter-hover-lift">
+                                            <div class="text-2xl font-bold text-yellow-600 mb-2 font-display">2024</div>
+                                            <h3 class="text-lg font-semibold text-gray-800 mb-2 font-display">Future Awaits</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm">
                                                 We continue to innovate, crafting new culinary experiences and
                                                 sustainable practices to create lasting memories for generations.
                                             </p>
@@ -1227,7 +1312,7 @@
                             <!-- Gallery Image 1 -->
                             <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
                                 <div class="aspect-[4/3] overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    <img src="https://i.natgeofe.com/n/04cf2a79-4a49-45eb-90f8-38356167690d/image00037.jpeg"
                                         alt="Restaurant Interior"
                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 </div>
@@ -1247,7 +1332,7 @@
                             <!-- Gallery Image 2 -->
                             <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
                                 <div class="aspect-[4/3] overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    <img src="https://assets-news.housing.com/news/wp-content/uploads/2022/03/16162704/COMMERCIAL-KITCHEN-FEATURE-compressed.jpg"
                                         alt="Gourmet Kitchen"
                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 </div>
@@ -1267,7 +1352,7 @@
                             <!-- Gallery Image 3 -->
                             <div class="story-gallery-item rounded-xl overflow-hidden shadow-lg newsletter-hover-lift">
                                 <div class="aspect-[4/3] overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    <img src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_16:9/k%2Farchive%2F5f530110470d50e6fd2aca848056ee6412ab044b"
                                         alt="Dining Experience"
                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 </div>
@@ -1666,17 +1751,7 @@
                             </p>
                         </div>
                     </div>
-                    <div
-                        class="gallery-item overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out cursor-pointer group relative">
-                        <img src="https://images.unsplash.com/photo-1574936145840-28808d77a0b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                            alt="Lounge Area"
-                            class="w-full h-64 object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 group-hover:brightness-50" />
-                        <div
-                            class="absolute inset-0 flex items-center justify-center opacity-0 translate-y-full group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                            <p class="text-white text-xl font-bold px-4 text-center">
-                                Lounge Area
-                            </p>
-                        </div>
+                    
                     </div>
 
                     <!-- Gallery Item 8 - Wine Cellar -->
@@ -1764,7 +1839,7 @@
                         </div>
 
                         <!-- Review 4 -->
-                        <div class="bg-white p-6 rounded-lg shadow-md md:col-span-1 lg:col-span-2">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
                             <div class="flex items-center mb-4">
                                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                                     alt="Customer" class="w-12 h-12 rounded-full mr-4 object-cover" />
@@ -2001,16 +2076,8 @@
                                         <a href="#"
                                             class="newsletter-glass-morphism rounded-xl p-4 newsletter-hover-lift group flex items-center transition-all duration-300">
                                             <div
-                                                class="w-8 h-8   rounded-lg flex items-center justify-center mr-3  transition-transform duration-300">
-                                                <div
-                                                    class="w-5 h-5 border-2 rounded-lg relative flex items-center justify-center">
-                                                    <div
-                                                        class="absolute top-0.5 right-0.5 w-8 h-7  rounded-full justify-center items-center">
-                                                        <img src="Images/Insta.png" alt="" width="55px" height="55px">
-                                                    </div>
-                                                    <div class="absolute inset-1 border border-white rounded-full">
-                                                    </div>
-                                                </div>
+                                                class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 group-hover:rotate-12 transition-transform duration-300">
+                                                <img src="Images/Insta.png" alt="Instagram" width="32px" height="32px">
                                             </div>
                                             <span
                                                 class="text-gray-200 group-hover:text-white transition-colors duration-300 text-sm font-medium newsletter-text-shadow">Instagram</span>
@@ -2028,11 +2095,8 @@
                                         <a href="#"
                                             class="newsletter-glass-morphism rounded-xl p-4 newsletter-hover-lift group flex items-center transition-all duration-300">
                                             <div
-                                                class="w-8 h-8  rounded-lg flex items-center justify-center mr-3 group-hover:rotate-12 transition-transform duration-300">
-                                                <div
-                                                    class="w-0 h-0 border-l-2 border-l-white border-t-1 border-b-1 border-t-transparent border-b-transparent ml-0.5">
-                                                    <img src="Images/yt.png" alt="" width="55px" height="55px">
-                                                </div>
+                                                class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 group-hover:rotate-12 transition-transform duration-300">
+                                                <img src="Images/yt.png" alt="YouTube" width="32px" height="32px">
                                             </div>
                                             <span
                                                 class="text-gray-200 group-hover:text-white transition-colors duration-300 text-sm font-medium newsletter-text-shadow">YouTube</span>
