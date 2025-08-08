@@ -335,6 +335,7 @@ app.post('/api/contact', async (req, res) => {
           </div>
         `;
 
+<<<<<<< HEAD
         // Use the emailModule.sendEmail function
         await emailModule.sendEmail(
           process.env.RESTAURANT_EMAIL,
@@ -363,9 +364,38 @@ app.post('/api/contact', async (req, res) => {
             <p>We appreciate your feedback and will respond as soon as possible.</p>
             
             <p>Best regards,<br>The Flavor Heaven Team</p>
+=======
+      // Send notification to restaurant
+      const restaurantResult = await emailModule.sendEmail(
+        process.env.RESTAURANT_EMAIL,
+        `New Contact Form: ${contact.subject} - ${contact.name}`,
+        restaurantEmailHtml
+      );
+      
+      if (restaurantResult.success) {
+        console.log('✅ Restaurant notification email sent successfully');
+      } else {
+        console.error('❌ Failed to send restaurant notification:', restaurantResult.error);
+      }
+
+      // Send confirmation to customer
+      const customerEmailHtml = `
+        <h2>Thank you for contacting Flavor Heaven!</h2>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <p>Dear ${contact.name},</p>
+          
+          <p>We have received your message and will get back to you shortly.</p>
+          
+          <h3>Your Message Summary:</h3>
+          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #e53e3e;">
+            <p><strong>Subject:</strong> ${contact.subject}</p>
+            <p><strong>Message:</strong> ${contact.message}</p>
+            ${contact.rating ? `<p><strong>Rating:</strong> ${'⭐'.repeat(contact.rating)} (${contact.rating}/5)</p>` : ''}
+>>>>>>> a35d9e50d8dcbdd601d4a3aba0c4b959ca63bc56
           </div>
         `;
 
+<<<<<<< HEAD
         // Use the emailModule.sendEmail function
         await emailModule.sendEmail(
           newContact.email,
@@ -384,6 +414,31 @@ app.post('/api/contact', async (req, res) => {
       }
     } else {
       console.log('📧 Email not configured - contact form saved without sending emails');
+=======
+      // Send confirmation to customer
+      const customerResult = await emailModule.sendEmail(
+        contact.email,
+        'Thank you for contacting Flavor Heaven!',
+        customerEmailHtml
+      );
+      
+      if (customerResult.success) {
+        console.log(`✅ Customer confirmation email sent successfully to ${contact.email}`);
+      } else {
+        console.error(`❌ Failed to send customer confirmation to ${contact.email}:`, customerResult.error);
+      }
+
+      // Check if both emails were successful
+      if (restaurantResult.success && customerResult.success) {
+        console.log('📧 All contact form emails sent successfully');
+      } else {
+        console.log('⚠️ Some emails failed to send, but contact form was saved');
+      }
+      
+    } catch (emailError) {
+      console.error('❌ Email sending failed:', emailError);
+      // Don't fail the entire request if email fails
+>>>>>>> a35d9e50d8dcbdd601d4a3aba0c4b959ca63bc56
     }
     
     res.status(201).json({

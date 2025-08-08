@@ -208,10 +208,17 @@ function initMenuFilters() {
     // Category buttons
     const categoryBtns = document.querySelectorAll('.category-btn');
     categoryBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             // Update active state
-            categoryBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+            categoryBtns.forEach(b => {
+                b.classList.remove('active', 'bg-red-500', 'text-white');
+                b.classList.add('bg-white', 'text-gray-700');
+            });
+            this.classList.remove('bg-white', 'text-gray-700');
+            this.classList.add('active', 'bg-red-500', 'text-white');
 
             // Update filter
             currentFilters.category = this.dataset.category;
@@ -219,25 +226,70 @@ function initMenuFilters() {
         });
     });
 
+    // Dietary filters dropdown
+    const dietaryDropdownBtn = document.getElementById('dietary-dropdown-btn');
+    const dietaryDropdown = document.getElementById('dietary-dropdown');
+    
+    if (dietaryDropdownBtn && dietaryDropdown) {
+        dietaryDropdownBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dietaryDropdown.classList.toggle('hidden');
+            
+            // Close other dropdowns
+            const priceDropdown = document.getElementById('price-dropdown');
+            if (priceDropdown) priceDropdown.classList.add('hidden');
+        });
+    }
+
+    // Price range dropdown
+    const priceDropdownBtn = document.getElementById('price-dropdown-btn');
+    const priceDropdown = document.getElementById('price-dropdown');
+    
+    if (priceDropdownBtn && priceDropdown) {
+        priceDropdownBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            priceDropdown.classList.toggle('hidden');
+            
+            // Close other dropdowns
+            if (dietaryDropdown) dietaryDropdown.classList.add('hidden');
+        });
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (dietaryDropdown && !dietaryDropdown.contains(e.target) && !dietaryDropdownBtn.contains(e.target)) {
+            dietaryDropdown.classList.add('hidden');
+        }
+        if (priceDropdown && !priceDropdown.contains(e.target) && !priceDropdownBtn.contains(e.target)) {
+            priceDropdown.classList.add('hidden');
+        }
+    });
+
     // Dietary filters
     const dietaryFilters = document.querySelectorAll('.dietary-filter');
     dietaryFilters.forEach(filter => {
-        filter.addEventListener('change', function() {
+        filter.addEventListener('change', function(e) {
+            e.stopPropagation();
             if (this.checked) {
                 currentFilters.dietary.push(this.value);
             } else {
                 currentFilters.dietary = currentFilters.dietary.filter(d => d !== this.value);
             }
             applyAllFilters();
+            updateActiveFilters();
         });
     });
 
     // Price range filters
     const priceFilters = document.querySelectorAll('.price-filter');
     priceFilters.forEach(filter => {
-        filter.addEventListener('change', function() {
+        filter.addEventListener('change', function(e) {
+            e.stopPropagation();
             currentFilters.priceRange = this.value;
             applyAllFilters();
+            updateActiveFilters();
         });
     });
 
@@ -251,35 +303,49 @@ function initMenuFilters() {
     }
 
     // Reset filters
-    document.getElementById('reset-filters').addEventListener('click', function() {
-        // Reset category
-        currentFilters.category = 'all';
-        document.querySelector('.category-btn[data-category="all"]').classList.add('active');
-        categoryBtns.forEach(btn => {
-            if (btn.dataset.category !== 'all') {
-                btn.classList.remove('active');
-            }
+    const resetBtn = document.getElementById('reset-filters');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Reset category
+            currentFilters.category = 'all';
+            categoryBtns.forEach(btn => {
+                btn.classList.remove('active', 'bg-red-500', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700');
+                if (btn.dataset.category === 'all') {
+                    btn.classList.remove('bg-white', 'text-gray-700');
+                    btn.classList.add('active', 'bg-red-500', 'text-white');
+                }
+            });
+
+            // Reset dietary
+            currentFilters.dietary = [];
+            dietaryFilters.forEach(filter => filter.checked = false);
+
+            // Reset price range
+            currentFilters.priceRange = 'all';
+            const allPriceFilter = document.querySelector('.price-filter[value="all"]');
+            if (allPriceFilter) allPriceFilter.checked = true;
+
+            // Reset sort
+            currentFilters.sort = 'name-asc';
+            if (sortSelect) sortSelect.value = 'name-asc';
+
+            // Reset search
+            currentFilters.search = '';
+            const searchInput = document.getElementById('menu-search');
+            if (searchInput) searchInput.value = '';
+
+            // Close dropdowns
+            if (dietaryDropdown) dietaryDropdown.classList.add('hidden');
+            if (priceDropdown) priceDropdown.classList.add('hidden');
+
+            applyAllFilters();
+            updateActiveFilters();
         });
-
-        // Reset dietary
-        currentFilters.dietary = [];
-        dietaryFilters.forEach(filter => filter.checked = false);
-
-        // Reset price range
-        currentFilters.priceRange = 'all';
-        document.querySelector('.price-filter[value="all"]').checked = true;
-
-        // Reset sort
-        currentFilters.sort = 'name-asc';
-        if (sortSelect) sortSelect.value = 'name-asc';
-
-        // Reset search
-        currentFilters.search = '';
-        const searchInput = document.getElementById('menu-search');
-        if (searchInput) searchInput.value = '';
-
-        applyAllFilters();
-    });
+    }
 }
 
 // Initialize search functionality
@@ -604,10 +670,75 @@ function showNotification(message) {
     }
 }
 
+// Update active filters display
+function updateActiveFilters() {
+    const activeFiltersContainer = document.getElementById('active-filters');
+    if (!activeFiltersContainer) return;
+
+    let activeFiltersHTML = '';
+
+    // Add dietary filters
+    currentFilters.dietary.forEach(diet => {
+        activeFiltersHTML += `
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                ${diet}
+                <button type="button" class="ml-1 text-red-600 hover:text-red-800" onclick="removeDietaryFilter('${diet}')">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </span>
+        `;
+    });
+
+    // Add price range filter
+    if (currentFilters.priceRange !== 'all') {
+        const priceLabels = {
+            'budget': 'Under $15',
+            'premium': '$15 - $25',
+            'luxury': '$25+'
+        };
+        activeFiltersHTML += `
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                ${priceLabels[currentFilters.priceRange]}
+                <button type="button" class="ml-1 text-green-600 hover:text-green-800" onclick="removePriceFilter()">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </span>
+        `;
+    }
+
+    activeFiltersContainer.innerHTML = activeFiltersHTML;
+}
+
+// Remove dietary filter
+function removeDietaryFilter(diet) {
+    currentFilters.dietary = currentFilters.dietary.filter(d => d !== diet);
+    
+    // Uncheck the corresponding checkbox
+    const checkbox = document.querySelector(`.dietary-filter[value="${diet}"]`);
+    if (checkbox) checkbox.checked = false;
+    
+    applyAllFilters();
+    updateActiveFilters();
+}
+
+// Remove price filter
+function removePriceFilter() {
+    currentFilters.priceRange = 'all';
+    
+    // Check the "all" radio button
+    const allPriceFilter = document.querySelector('.price-filter[value="all"]');
+    if (allPriceFilter) allPriceFilter.checked = true;
+    
+    applyAllFilters();
+    updateActiveFilters();
+}
+
 // Make functions globally available
 window.applyAllFilters = applyAllFilters;
 window.showItemModal = showItemModal;
 window.hideItemModal = hideItemModal;
+window.removeDietaryFilter = removeDietaryFilter;
+window.removePriceFilter = removePriceFilter;
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize menu page
