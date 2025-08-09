@@ -593,7 +593,12 @@ const response = await fetch(`${serverUrl}/api/reservations`, {
                     const contactData = Object.fromEntries(formData);
 
                     try {
-                        const response = await fetch('http://localhost:3001/api/contact', {
+                        // Use the correct server URL based on environment
+                        const serverUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                            ? 'http://localhost:3001' 
+                            : window.location.origin;
+
+                        const response = await fetch(`${serverUrl}/api/contact`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
